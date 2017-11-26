@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5b2a06dfc2cf1e34f9f110f53ce3465f
+timeCreated: 1511628915
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Hot Thin Roof
+  fontNames:
+  - Hot Thin Roof
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e123e0c04b626cf48bf9f19b3d1eb927
+timeCreated: 1511628949
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Monster Hunter Warped
+  fontNames:
+  - Monster Hunter Warped
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

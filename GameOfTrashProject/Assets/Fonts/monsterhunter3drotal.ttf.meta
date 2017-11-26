@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e4d153b2b9c409243a00e9d91e06bfa6
+timeCreated: 1511628949
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Monster Hunter 3D Rotalic
+  fontNames:
+  - Monster Hunter 3D Rotalic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
