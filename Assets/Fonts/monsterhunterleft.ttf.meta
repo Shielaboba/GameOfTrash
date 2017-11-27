@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 281eb5320f1e2524da538eb6b034f2f4
+timeCreated: 1511628947
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Monster Hunter Leftalic
+  fontNames:
+  - Monster Hunter Leftalic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: bc03c3491d9dd8543ac4cb27093da881
+timeCreated: 1511629037
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: The Light Font
+  fontNames:
+  - The Light Font
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

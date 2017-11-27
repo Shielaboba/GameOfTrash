@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 7c6b798f3626e0d4b93f41b8260e1308
+timeCreated: 1511628948
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Monster Hunter Engraved Italic
+  fontNames:
+  - Monster Hunter Engraved Italic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
