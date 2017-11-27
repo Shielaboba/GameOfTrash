@@ -22,7 +22,6 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
-/GameOfTrashProject/Library/metadata/
 
 # Unity3D generated meta files
 *.pidb.meta
