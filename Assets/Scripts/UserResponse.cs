@@ -7,11 +7,12 @@ using com.shephertz.app42.paas.sdk.csharp.user;
 using com.shephertz.app42.paas.sdk.csharp;
 
 public class UserResponse : App42CallBack
-{
-    private string result = "";
+{   
+	Text errorMessage;
+
     void start()
     {
-
+		errorMessage = GameObject.Find("warning").GetComponent<Text> ();
     }
 
     public void OnSuccess(object user)
@@ -19,24 +20,21 @@ public class UserResponse : App42CallBack
         try
         {
             User userObj = (User)user;
-            result = userObj.ToString();
-            Debug.Log("UserName : " + userObj.GetUserName());
-            Debug.Log("EmailId : " + userObj.GetEmail());
         }
         catch (App42Exception e)
         {
+			errorMessage.text = e.ToString();
         }
     }
 
     public void OnException(Exception e)
     {
-        result = e.ToString();
-        Debug.Log("Exception : " + e);
-    }
+		App42Exception exception = (App42Exception)e;
+		int appErrorCode = exception.GetAppErrorCode ();
+		int httpErrorCode = exception.GetHttpErrorCode ();
 
-    public string getResult()
-    {
-        return result;
+		if (appErrorCode == 2002)
+			errorMessage.text = exception.GetMessage ();
     }
-
+		
 }

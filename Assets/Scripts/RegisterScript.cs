@@ -13,8 +13,7 @@ public class RegisterScript : MonoBehaviour
     InputField username, pass, confPass, email;
 
     void Start()
-    {
-        Debug.Log("hey");
+    {		
         username = GameObject.Find("username").GetComponent<InputField>();
         pass = GameObject.Find("pass").GetComponent<InputField>();
         confPass = GameObject.Find("confpass").GetComponent<InputField>();
@@ -33,7 +32,6 @@ public class RegisterScript : MonoBehaviour
         if (!userField.Equals("") && !passField.Equals("") && !confPassField.Equals("") && !emailField.Equals(""))
         {
             flag = true;
-            Debug.Log("q");
         }
 
         if (passField.Equals(confPassField)) flag = true;
@@ -42,12 +40,11 @@ public class RegisterScript : MonoBehaviour
     }
 
     public void registerBtn()
-    {
-        Debug.Log("yey");
+    {       
         if (fieldCheck())
-        {
-            Constant cons = new Constant();
-            App42API.Initialize(cons.apiKey, cons.secretKey);
+        {           
+			Constant cons = new Constant();
+			App42API.Initialize(cons.apiKey, cons.secretKey);
             UserService userService = App42API.BuildUserService();
             try
             {
