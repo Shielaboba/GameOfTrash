@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using System;
 using com.shephertz.app42.paas.sdk.csharp.user;
 using com.shephertz.app42.paas.sdk.csharp;
-
+using Newtonsoft.Json.Linq;
 public class UserResponse : App42CallBack
 {   
 	Text errorMessage;
+	String jsonTxt;
 
     void start()
     {
@@ -19,22 +20,29 @@ public class UserResponse : App42CallBack
     {
         try
         {
-            User userObj = (User)user;
+			
         }
         catch (App42Exception e)
         {
-			errorMessage.text = e.ToString();
+			
         }
     }
 
     public void OnException(Exception e)
-    {
-		App42Exception exception = (App42Exception)e;
-		int appErrorCode = exception.GetAppErrorCode ();
-		int httpErrorCode = exception.GetHttpErrorCode ();
-
-		if (appErrorCode == 2002)
-			errorMessage.text = exception.GetMessage ();
-    }
+    {		
 		
+		App42Exception exception = (App42Exception) e ;
+		Debug.Log (exception.GetAppErrorCode ());
+		//int appErrorCode = exception.GetAppErrorCode ();
+		//int httpErrorCode = exception.GetHttpErrorCode ();
+
+		if (exception.GetAppErrorCode () == 2002 || exception.GetHttpErrorCode () == 404) {
+			jsonTxt = exception.GetMessage ();
+			Debug.Log (jsonTxt);
+
+		}
+		//App42Log.SetDebug(true);
+
+    }
+
 }

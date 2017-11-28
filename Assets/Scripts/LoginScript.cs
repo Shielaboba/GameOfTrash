@@ -33,6 +33,7 @@ public class LoginScript : MonoBehaviour {
 	}
 
 	public void loginBtn() {
+		
 		if (fieldCheck())
 		{			
 			Constant cons = new Constant();
@@ -41,12 +42,13 @@ public class LoginScript : MonoBehaviour {
 			try
 			{
 				userService.Authenticate(userField, passField, new UserResponse());
+
 			}
 			catch (App42Exception e)
 			{
-
+				
 			};
-			App42Log.SetDebug(true);
+
 		}
 	}
 }
