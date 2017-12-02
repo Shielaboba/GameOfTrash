@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using com.shephertz.app42.paas.sdk.csharp.user;
 using com.shephertz.app42.paas.sdk.csharp;
-using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json.Linq;
 public class UserResponse : App42CallBack
 {   
 	Text errorMessage;
@@ -13,35 +13,30 @@ public class UserResponse : App42CallBack
 
     void start()
     {
-		errorMessage = GameObject.Find("warning").GetComponent<Text> ();
-    }
+        errorMessage = GameObject.Find("warning").GetComponent<Text>();
+    } 
 
-    public void OnSuccess(object user)
+    public void OnSuccess(object response)
     {
-        try
-        {
-			
-        }
-        catch (App42Exception e)
-        {
-			
-        }
+        App42Response app42response = (App42Response)response;
+        String jsonResponse = app42response.ToString();
     }
 
     public void OnException(Exception e)
-    {		
-		
-		App42Exception exception = (App42Exception) e ;
-		Debug.Log (exception.GetAppErrorCode ());
-		//int appErrorCode = exception.GetAppErrorCode ();
-		//int httpErrorCode = exception.GetHttpErrorCode ();
+    {
+        App42Exception exception = (App42Exception)e;
+        //Debug.Log(exception.GetAppErrorCode());
+        int appErrorCode = exception.GetAppErrorCode();
+        //int httpErrorCode = exception.GetHttpErrorCode ();
 
-		if (exception.GetAppErrorCode () == 2002 || exception.GetHttpErrorCode () == 404) {
-			jsonTxt = exception.GetMessage ();
-			Debug.Log (jsonTxt);
+        if (appErrorCode == 2002 || appErrorCode == 404 ||
+            appErrorCode == 2001 || appErrorCode == 2005)
+        {
+            errorMessage.text = "" + jsonTxt;
+        }
+        Debug.Log(jsonTxt);
+        App42Log.SetDebug(true); //print output in editor console
 
-		}
-		//App42Log.SetDebug(true);
 
     }
 
