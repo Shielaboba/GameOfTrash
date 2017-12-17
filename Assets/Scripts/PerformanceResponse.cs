@@ -20,9 +20,9 @@ public class PerformanceResponse : App42CallBack {
         Data = new Data();
         Data = JsonUtility.FromJson<Data>(jsonDocList[0].GetJsonDoc()); 
         
-        SceneManager.LoadScene("map_level");
+        SceneManager.LoadScene("map");
         var lvlManager = LevelManager.GetInstance();
-        lvlManager.SetLevel(Data.PlayerGameLvlNo);        
+        lvlManager.SetLevel(Data.PlayerGameLvlNo);
     }
 
     public void OnException(Exception e)
