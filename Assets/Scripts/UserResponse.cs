@@ -3,42 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using com.shephertz.app42.paas.sdk.csharp.user;
+using com.shephertz.app42.paas.sdk.csharp.storage;
 using com.shephertz.app42.paas.sdk.csharp;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel;
+using SimpleJSON;
 
 public class UserResponse : App42CallBack
 {   
 	Text errorMessage;
+    String user;
+    String collectionName, key, value;
+    public UserResponse() { }
 
-    void init()
+    public UserResponse ( String user)
     {
-        errorMessage = GameObject.Find("warning").GetComponent<Text> ();
-    } 
-
+       
+        errorMessage = GameObject.Find("warning").GetComponent<Text>();
+        this.user = user;
+    }
+   
     public void OnSuccess(object response)
-    {
-		init ();
-		Scene scene = SceneManager.GetActiveScene ();
-		//App42Response app42response = (App42Response)response;
+    {		
+		Scene scene = SceneManager.GetActiveScene ();		
 	
 		errorMessage.text = "Success";
-		if (scene.name.Equals ("login_menu"))
-			errorMessage.text = "Success"; // Direct to map scene	
-		else if (scene.name.Equals ("reg_menu")) {			
-			SceneManager.LoadScene ("login_menu");
-
-		}
+        if (scene.name.Equals("login_menu"))
+        {
+            errorMessage.text = "Success";
+            
+            new ProgressLoadScript(user).LoadProgress();
+        }
+        else if (scene.name.Equals("reg_menu"))
+        {
+            JSONClass json = new JSONClass
+            {
+                { "PlayerGameLvlNo", 1 },
+                { "PlayerName", user }
+            };
+            StorageService storageService = App42API.BuildStorageService();
+            storageService.InsertJSONDocument("GOTDB", "PerformanceFile", json, new UserResponse());
+            SceneManager.LoadScene("login_menu");
+        }
         
-		
     }
 
     public void OnException(Exception e)
     {
-		init ();
-		string jsonTxt = "";
+		String jsonTxt = "";
         App42Exception exception = (App42Exception)e;
         Debug.Log(exception.GetAppErrorCode());
         int appErrorCode = exception.GetAppErrorCode();
@@ -63,11 +74,7 @@ public class UserResponse : App42CallBack
 		{
 			jsonTxt = "Username already exists!";
 		}
-
-
-
-					
-
+        
 		errorMessage.text = jsonTxt;
 
 		Debug.Log(exception.GetMessage());
