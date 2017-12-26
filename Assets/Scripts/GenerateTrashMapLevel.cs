@@ -8,10 +8,17 @@ public class GenerateTrashMapLevel : MonoBehaviour {
     
     int Level;
     public Button btn;
+    int LvlBtn;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Level = LevelManager.GetInstance().GetLevel();
+        LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
+        if (LvlBtn > Level)
+        {
+            btn.gameObject.SetActive(false);
+            //btn.enabled = false;
+        }
     }
 	
 	// Update is called once per frame
@@ -21,31 +28,18 @@ public class GenerateTrashMapLevel : MonoBehaviour {
 
     public void OnClick()
     {       
-        Level = LevelManager.GetInstance().GetLevel();
-        int LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
-        if (LvlBtn <= Level)
-        {
+        //Level = LevelManager.GetInstance().GetLevel();
+        //int LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
+        //if (LvlBtn <= Level)
+        //{
             Debug.Log(btn.GetComponentInChildren<Text>().text);
             SceneManager.LoadScene("map_level");
             LevelManager.GetInstance().SetLevel(LvlBtn);
-        }
-        else
-        {
-            Debug.Log("X = " + btn.GetComponentInChildren<Text>().text);
-        }
+        //}
+        //else
+        //{
+        //    Debug.Log("X = " + btn.GetComponentInChildren<Text>().text);
+        //}
     }
 
-    /*
-    public void TrapLevel()
-    {
-        Level = LevelManager.GetInstance().GetLevel();
-        for(int i = 0; i < LvlBtn.Length; i++)
-        {
-            if(!(LvlBtn[i].GetComponent<Text> ().ToString()).Equals(""+Level))
-            {
-                LvlBtn[i].SetActive(false);
-            }
-        }
-    }
-    */
 }
