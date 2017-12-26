@@ -43,7 +43,7 @@ public class RegisterScript : MonoBehaviour
 		}
 	}
 
-    public bool fieldCheck()
+    public bool FieldCheck()
     {
         bool flag = false;
 
@@ -79,9 +79,9 @@ public class RegisterScript : MonoBehaviour
         return flag;
     }
 
-    public void registerBtn()
+    public void RegisterBtn()
     {
-        if (fieldCheck())
+        if (FieldCheck())
         {
 
             Constant cons = new Constant();
@@ -90,7 +90,7 @@ public class RegisterScript : MonoBehaviour
 
             try
             {
-                userService.CreateUser(userField, passField, emailField, new UserResponse());
+                userService.CreateUser(userField, passField, emailField, new UserResponse(userField));
             }
             catch (App42Exception e)
             {
