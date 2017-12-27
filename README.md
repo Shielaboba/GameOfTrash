@@ -1,9 +1,10 @@
 # GameOfTrash
-    - Login/Registration Form
+    - Login/Registration Form DONE!
+    - Map DONE!
+    - Trivia DONE!
     - Drag and Drop Game
     - AR Game
     - Leaderboard
-    - Logs
-    - Trivia
+    - Logs  
     - Trash Info/Crafts
     - Music
