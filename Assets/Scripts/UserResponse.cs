@@ -9,10 +9,10 @@ using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 
+
 public class UserResponse : App42CallBack
 {   
 	Text errorMessage;
-
     void init()
     {
         errorMessage = GameObject.Find("warning").GetComponent<Text> ();
