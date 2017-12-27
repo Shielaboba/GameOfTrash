@@ -8,7 +8,6 @@ using com.shephertz.app42.paas.sdk.csharp.user;
 
 public class LoginScript : MonoBehaviour
 {
-
     string userField, passField;
     System.String jsonTxt; 
     InputField username, pass;
@@ -41,7 +40,7 @@ public class LoginScript : MonoBehaviour
 		}
 	}
 
-    public bool fieldCheck()
+    public bool FieldCheck()
     {
         userField = username.text;
         passField = pass.text;
@@ -58,10 +57,10 @@ public class LoginScript : MonoBehaviour
         return false;
     }
 
-    public void loginBtn()
+    public void LoginBtn()
     {
 
-        if (fieldCheck())
+        if (FieldCheck())
         {
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);
@@ -69,7 +68,7 @@ public class LoginScript : MonoBehaviour
            
 			try {
 				
-            	userService.Authenticate(userField, passField, new UserResponse());
+            	userService.Authenticate(userField, passField, new UserResponse(userField));
 			}
 			catch (App42Exception e)
 			{
