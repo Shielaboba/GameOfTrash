@@ -8,9 +8,11 @@ using com.shephertz.app42.paas.sdk.csharp;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
 
+
 public class UserResponse : App42CallBack
 {   
 	Text errorMessage;
+
     String user;
     String collectionName, key, value;
     public UserResponse() { }
