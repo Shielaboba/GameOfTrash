@@ -3,7 +3,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
+
   m_Scenes:
   - enabled: 1
     path: Assets/main_menu.unity
@@ -15,11 +15,16 @@ EditorBuildSettings:
     path: Assets/reg_menu.unity
     guid: ba9ab6c5db3a1ed448542763f4c0725d
   - enabled: 1
+    path: Assets/map.unity
+    guid: d38a51c92c0ffae4b8a4b2b5d8e5cd54
+  - enabled: 1
+    path: Assets/leaderboard_display.unity
+    guid: 4899fb9c9774a334ca193723af4751a0
     path: Assets/map_level.unity
     guid: 2146a1f32a4ef7148ad70095664b41bb
   - enabled: 1
     path: Assets/trash_menu.unity
     guid: 4d8572a988aa80c43a2b4e6ac590ddd3
-=======
+
   m_Scenes: []
->>>>>>> devBranch
+
