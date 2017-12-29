@@ -25,7 +25,7 @@ public class PerformanceResponse : App42CallBack {
         lvlManager.SetLevel(Data.PlayerGameLvlNo);
     }
 
-    public void OnException(Exception e)
+    public void OnException(Exception e)        
     {
         Debug.Log(e.Message);
         App42Log.Console("Exception : " + e);

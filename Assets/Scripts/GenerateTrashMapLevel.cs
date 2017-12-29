@@ -33,7 +33,7 @@ public class GenerateTrashMapLevel : MonoBehaviour {
         //if (LvlBtn <= Level)
         //{
             Debug.Log(btn.GetComponentInChildren<Text>().text);
-            SceneManager.LoadScene("map_level");
+            SceneManager.LoadScene("trash_menu");
             LevelManager.GetInstance().SetLevel(LvlBtn);
         //}
         //else
