@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TrashSearchScript : MonoBehaviour {
 
     string trash;
 
-    TrashSearchScript(string trash)
+    public TrashSearchScript(string trash)
     {
-        this.trash = trash;
+        
+    }
+
+    private void Start()
+    {
+        trash = TrashManager.GetInstance().GetTrash();
+        print(trash);
+        GameObject.Find("LabelText").GetComponent<Text>().text = trash;
     }
 
     public int captureWidth = 600;
@@ -21,8 +29,7 @@ public class TrashSearchScript : MonoBehaviour {
     public int maxResults = 20;
     Dictionary<string, string> headers;
 
-    byte[] fileData = null;
-    byte[] imageByteArray;    
+    byte[] fileData = null;     
     
     // private vars for screenshot
     private Rect rect;
@@ -176,11 +183,12 @@ public class TrashSearchScript : MonoBehaviour {
 
     void Sample_OnAnnotateImageResponses(AnnotateImageResponses responses)
     {
-        print(responses.responses[0].webDetection.webEntities.Count);
+        
         
         for(int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++)
         {
-            if(trash.Equals(responses.responses[0].webDetection.webEntities[0].description))
+            print(responses.responses[0].webDetection.webEntities[i].description.ToUpper());
+            if (trash.ToUpper().Equals(responses.responses[0].webDetection.webEntities[i].description.ToUpper()))
                 GameObject.Find("LabelText").GetComponent<Text>().text = "TRUE";
             else
                 GameObject.Find("LabelText").GetComponent<Text>().text = "FALSE";
