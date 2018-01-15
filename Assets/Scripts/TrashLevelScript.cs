@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using com.shephertz.app42.paas.sdk.csharp;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class TrashLevelScript : MonoBehaviour {
 
@@ -29,14 +30,14 @@ public class TrashLevelScript : MonoBehaviour {
      
     void TrashRandom()
     {
+        if (level == 1 || level == 2) value = "easy";
+        else value = "hard";
         c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
-        key = "TrashLvlDifficulty";
-        value = "Easy";
+        key = "TrashLvlDifficulty";        
         StorageService storageService = App42API.BuildStorageService();
         storageService.FindDocumentByKeyValue("GOTDB", "TrashFile", key, value, new TrashLevelResponse()); 
-    }
-    
+    }    
 }
 
 internal class TrashLevelResponse : App42CallBack
@@ -63,8 +64,8 @@ internal class TrashLevelResponse : App42CallBack
         trash = new TrashData[btn.Length];
         
         for (int i = 0; i < btn.Length; i++)
-        {			
-			do {
+        {            
+            do {
 				number = rnd.Next (0, jsonDocList.Count - 1);
 			} while (randomNumbers.Contains (number));
 
@@ -74,8 +75,11 @@ internal class TrashLevelResponse : App42CallBack
 			trash [i] = JsonUtility.FromJson<TrashData> (jsonDocList [number].GetJsonDoc ());            
 
             btn[i] = GameObject.Find("b" + (i + 1)).GetComponent<Button>();
-            btn[i].GetComponent<Button>().GetComponentInChildren<Text>().text = trash[i].TrashName;            
-        }        
+            btn[i].GetComponent<Button>().GetComponentInChildren<Text>().text = trash[i].TrashName;
+            btn[i].GetComponent<Button>().gameObject.AddComponent<BtnObject>();
+            //btn[i].GetComponent<Button>().onClick.AddListener(delegate {  });
+        }
+        
     }
 
     public void OnException(Exception ex)
@@ -83,4 +87,11 @@ internal class TrashLevelResponse : App42CallBack
         Debug.Log(ex.Message);
     }
 
+
+
+}
+
+internal class BtnObject:MonoBehaviour
+{
+    public string GetName() { return this.gameObject.name; }
 }
