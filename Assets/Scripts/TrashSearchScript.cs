@@ -94,6 +94,7 @@ public class TrashSearchScript : MonoBehaviour {
     public IEnumerator Take()
     {
         Camera camera = GameObject.Find("ARCamera").GetComponent<Camera>();
+        GameObject.Find("LabelText").GetComponent<Text>().text = trash;
         captureWidth = camera.pixelWidth;
         captureHeight = camera.pixelHeight;
 
