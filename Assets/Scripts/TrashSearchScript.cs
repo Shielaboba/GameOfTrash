@@ -9,11 +9,6 @@ public class TrashSearchScript : MonoBehaviour {
 
     string trash;
 
-    public TrashSearchScript(string trash)
-    {
-        
-    }
-
     private void Start()
     {
         trash = TrashManager.GetInstance().GetTrash();
