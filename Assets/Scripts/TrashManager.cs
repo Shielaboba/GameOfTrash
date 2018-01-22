@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class TrashManager {
     private static TrashManager Instance;
-    private string CurrentTrash;
+    private TrashData CurrentTrash;
     private TrashManager()
     {
-        CurrentTrash = "";
+        //CurrentTrash = "";
     }
 
     public static TrashManager GetInstance()
@@ -24,6 +24,6 @@ public class TrashManager {
         }
     }
 
-    public string GetTrash() { return CurrentTrash; }
-    public void SetTrash(string trash) { this.CurrentTrash = trash; }
+    public TrashData GetTrash() { return CurrentTrash; }
+    public void SetTrash(TrashData trash) { this.CurrentTrash = trash; }
 }

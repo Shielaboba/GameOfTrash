@@ -5,4 +5,5 @@ public class TrashData {
     public string TrashMatComp;
     public string TrashCraftMade;
     public string TrashSegType;
+    public string TrashBase;
 }

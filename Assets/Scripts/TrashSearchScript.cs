@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class TrashSearchScript : MonoBehaviour {
 
-    string trash;
+    TrashData trash;
 
     private void Start()
     {
         trash = TrashManager.GetInstance().GetTrash();
         print(trash);
-        GameObject.Find("LabelText").GetComponent<Text>().text = trash;
+        GameObject.Find("LabelText").GetComponent<Text>().text = trash.TrashName;
     }
 
     public int captureWidth = 600;
@@ -89,7 +89,7 @@ public class TrashSearchScript : MonoBehaviour {
     public IEnumerator Take()
     {
         Camera camera = GameObject.Find("ARCamera").GetComponent<Camera>();
-        GameObject.Find("LabelText").GetComponent<Text>().text = trash;
+        GameObject.Find("LabelText").GetComponent<Text>().text = trash.TrashName;
         captureWidth = camera.pixelWidth;
         captureHeight = camera.pixelHeight;
 
@@ -178,27 +178,29 @@ public class TrashSearchScript : MonoBehaviour {
     }
 
     void Sample_OnAnnotateImageResponses(AnnotateImageResponses responses)
-    {
-        
-        
+    {                
         for(int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++)
         {
-            print(responses.responses[0].webDetection.webEntities[i].description.ToUpper());
-            if (trash.ToUpper().Equals(responses.responses[0].webDetection.webEntities[i].description.ToUpper()))
-                GameObject.Find("LabelText").GetComponent<Text>().text = "TRUE";
+            print("Base: " + trash.TrashBase + "Res: " +responses.responses[0].webDetection.webEntities[i].description.ToUpper());
+            if ((trash.TrashBase.ToUpper().Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper()) ||
+                trash.TrashName.ToUpper().Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper())))
+            {
+                for (int j = 0; j < responses.responses[0].webDetection.webEntities.Count; j++)
+                {
+                    if(trash.TrashMatComp.ToUpper().Contains(responses.responses[0].webDetection.webEntities[j].description.ToUpper()))
+                    {
+                        GameObject.Find("LabelText").GetComponent<Text>().text = "TRUE";
+                        break;
+                    }                   
+                }
+                GameObject.Find("LabelText").GetComponent<Text>().text = "NOT SURE";
+                break;
+            }
+               
             else
                 GameObject.Find("LabelText").GetComponent<Text>().text = "FALSE";
         }
-        /*
-       if (responses.responses.Count > 0)
-       {
-           if (responses.responses[0].webDetection.webEntities != null && responses.responses[0].webDetection.webEntities.Count > 0)
-           {
-               GameObject.Find("LabelText").GetComponent<Text>().text = responses.responses[0].webDetection.webEntities[0].description;
-               //Debug.Log("Label: " + responses.responses[0].webDetection.webEntities[0].description);
-           }
-       }
-      */
+       
         print("END");
     }
 }

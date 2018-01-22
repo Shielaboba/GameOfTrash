@@ -76,11 +76,11 @@ internal class TrashLevelResponse : App42CallBack
             btn[i].GetComponentInChildren<Text>().text = trash[i].TrashName;            
 
             int copy = i;
-            btn[i].onClick.AddListener(delegate () { StartGame(trash[copy].TrashName); });            
+            btn[i].onClick.AddListener(delegate () { StartGame(trash[copy]); });            
         }        
     }
 
-    void StartGame(string trash)
+    void StartGame(TrashData trash)
     {
         TrashManager.GetInstance().SetTrash(trash);        
         SceneManager.LoadScene("trash_search");        
