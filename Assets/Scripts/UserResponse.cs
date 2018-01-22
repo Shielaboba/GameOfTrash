@@ -18,8 +18,11 @@ public class UserResponse : App42CallBack
 
     public void OnSuccess(object response)
     {
+        
         App42Response app42response = (App42Response)response;
         String jsonResponse = app42response.ToString();
+        errorMessage.text = "Success";
+        Debug.Log("YOW" + jsonResponse);
     }
 
     public void OnException(Exception e)
@@ -34,8 +37,8 @@ public class UserResponse : App42CallBack
         {
             errorMessage.text = "" + jsonTxt;
         }
-        Debug.Log(jsonTxt);
-        App42Log.SetDebug(true); //print output in editor console
+        //Debug.Log(jsonTxt);
+        //App42Log.SetDebug(true); //print output in editor console
 
 
     }
