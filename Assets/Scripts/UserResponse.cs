@@ -80,9 +80,6 @@ public class UserResponse : App42CallBack
 		errorMessage.text = jsonTxt;
 
 		Debug.Log(exception.GetMessage());
-        //App42Log.SetDebug(true); //print output in editor console
-
-
     }
 
 }

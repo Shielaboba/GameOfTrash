@@ -15,17 +15,17 @@ PlayerSettings:
   productName: GameOfTrash
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.24094257, g: 0.25, b: 0.24080883, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
   m_SplashScreenLogoStyle: 1
-  m_SplashScreenDrawMode: 0
-  m_SplashScreenBackgroundAnimationZoom: 1
+  m_SplashScreenDrawMode: 1
+  m_SplashScreenBackgroundAnimationZoom: 0
   m_SplashScreenLogoAnimationZoom: 1
-  m_SplashScreenBackgroundLandscapeAspect: 1
-  m_SplashScreenBackgroundPortraitAspect: 1
+  m_SplashScreenBackgroundLandscapeAspect: 1.7777778
+  m_SplashScreenBackgroundPortraitAspect: 1.7777778
   m_SplashScreenBackgroundLandscapeUvs:
     serializedVersion: 2
     x: 0
@@ -38,7 +38,11 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: 6fe429a748ed28c489365cab73206a04, type: 3}
+    duration: 3.7
+  - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -543,8 +547,10 @@ PlayerSettings:
   psp2InfoBarColor: 0
   psp2ScriptOptimizationLevel: 0
   psmSplashimage: {fileID: 0}
-  splashScreenBackgroundSourceLandscape: {fileID: 0}
-  splashScreenBackgroundSourcePortrait: {fileID: 0}
+  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: 21e93a07c4a146944801dbd63cc4232d,
+    type: 3}
+  splashScreenBackgroundSourcePortrait: {fileID: 21300000, guid: 21e93a07c4a146944801dbd63cc4232d,
+    type: 3}
   spritePackerPolicy: 
   webGLMemorySize: 256
   webGLExceptionSupport: 1
