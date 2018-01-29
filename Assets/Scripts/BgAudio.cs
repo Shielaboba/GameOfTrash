@@ -6,20 +6,14 @@ using UnityEngine.UI;
 public class BgAudio : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
-    public Slider volMusic;
-    public AudioSource music;
-    private static BgAudio instance = null;
-    public static BgAudio Instance
-    {
-        get { return instance;  }
-    }
-
+    
     void Awake()
     {
-        if (instance!=null && instance!=this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
             return;
@@ -30,9 +24,12 @@ public class BgAudio : MonoBehaviour {
         }
         DontDestroyOnLoad(this.gameObject);
     }
+    public AudioSource music;
+    private static BgAudio instance = null;
 
-    void Update()
+    public static BgAudio Instance
     {
-        music.volume = volMusic.value;
+        get { return instance; }
     }
+    
 }
