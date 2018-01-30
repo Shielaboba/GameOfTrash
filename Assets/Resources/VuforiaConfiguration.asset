@@ -8,15 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
+  m_Script: {fileID: -2067402452, guid: 8a9a760f95896c34689febc965510927, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: 
-    ufoLicenseKey: QVp2Zk1Cci8vLy8vQUFBQUtJODhaYS9wS2tZVXNTdWppOXArbVlsL3FPdStzRTJqMnZXVEp6Z3I2OE5ySDUxd2k1YU9GcGhZOU14YWFBeWFvb2doc042TCtJMm10WnZodEJackQ0QjBsczB2SVlDbmtxeWFZNkFsSXAxZmRlaSswdnRrcU0rQStwWVpCcFA1ekkzSDlDWkxYNkpSc3BZUHhCc2YxNHhWS3dlMktHQ21SN2MyaWQrTDVic1NPOHlxbXg4elF6ZnJNLzBzL0dycC9EMURHY2lMYXpIVjlTQmxiSGxIM3JoeHUyZEdiZXZjeDBJbUNCZWNxMXA4SU04S1d3aGJOVkxERlpaUTNocG1pM1ZuanVIZmhsQ1Z6c0NYTmw3bE03TmVacm4ra2xjVWJPMS9vdUhiRlpFeDRmd3lJdzlRb0RsUE54RGVRV3hLNUNuRDdFRXZteUIvVGhXTVdmOFR1aTRFeHBxWFlrelNJVnU4bTFZVm03cVY=
+    ufoLicenseKey: QVptSVVkVC8vLy8vQUFBQUtDSzJ4LzJCOGtweWlZZzhHQUtDekdON0tPYjFHOUFsY2pGK1hyakdmVlpDdy9FK0FVN0xGeTRHcVpEVGRlN3V1TTlYNUJPL2RVM0MrRlMwVVphOGhtZ1pDc3EyejhlbXFTK3h3azgxWTZyNlpJbGFEN1ZSNjBTVVlXZUZqdDNHb0EwWkkvTnNYZVc3VUJHSktzbnRRcll0VURaeUV1Z3JWWTZHR1FvRjdTV3pYVFFHYWxhV3FJR2RkcTAwRXpDUTNoaEJiYXpCS2xiQUMyNHAzeGV2ZmpjditvSkZxcXVEVi8zOFR6eDI3cnE5N05NUW5PMmtic25IZzE2QnlhYlFpdVBUUERMdU5VY3k2dUlxTGF4NUlEOGNoeGprNm9MaTZkRVNoL2JGak9TTHBJc1dmWHU1bnRhTkdwNlpVRTlsYkJEZ2plRkN3bWtrSXZnNlBKb2pldE5xY09OTnRCOUd4Q0lGdlJ1Q3lkVzM=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
+    maxSimultaneousImageTargets: 4
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
@@ -43,12 +43,8 @@ MonoBehaviour:
       FieldOfView: {x: 0, y: 0, z: 0, w: 0}
       ContainsMagnet: 0
   databaseLoad:
-    dataSetsToLoad:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
-    dataSetsToActivate:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
+    dataSetsToLoad: []
+    dataSetsToActivate: []
   videoBackground:
     clippingMode: 0
     numDivisions: 2
@@ -68,7 +64,7 @@ MonoBehaviour:
     autoInitTracker: 0
     autoStartTracker: 0
   webcam:
-    deviceNameSetInEditor: 
+    deviceNameSetInEditor: Logitech Camera
     flipHorizontally: 0
     turnOffWebCam: 0
     renderTextureLayer: 30
