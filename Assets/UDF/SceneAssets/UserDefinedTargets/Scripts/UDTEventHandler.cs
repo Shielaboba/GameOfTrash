@@ -27,6 +27,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     public int maxResults = 20;
     Dictionary<string, string> headers;
     Boolean holder = false;
+    TrashData trash;
 
     [System.Serializable]
     public class AnnotateImageRequests
@@ -114,6 +115,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     #region MONOBEHAVIOUR_METHODS
     void Start()
     {
+        trash = TrashManager.GetInstance().GetTrash();
+        GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
         m_TargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
 
         if (m_TargetBuildingBehaviour)
@@ -394,13 +397,13 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++)
         {
             //print("Base: " + trash.TrashBase + "Res: " + responses.responses[0].webDetection.webEntities[i].description.ToUpper());
-            if (("EYEBROW".Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper()) ||
-                "EYEBROW".Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper())))
+            if ((trash.TrashBase.ToUpper().Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper()) ||
+               trash.TrashName.ToUpper().Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper())))
             {
                 for (int j = 0; j < responses.responses[0].webDetection.webEntities.Count; j++)
                 {
-                    if ("EYEBROW".Contains(responses.responses[0].webDetection.webEntities[j].description.ToUpper()))
-                    {
+                    if (trash.TrashMatComp.ToUpper().Contains(responses.responses[0].webDetection.webEntities[j].description.ToUpper()))
+                    {                        
                         //GameObject.Find("LabelText").GetComponent<Text>().text = "TRUE";
                         print("TRUE");
                         holder = true;
@@ -422,6 +425,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
         }
+        else GameObject.Find("Title").GetComponent<Text>().text = "FALSE";
+
 
         print("END");
     }
