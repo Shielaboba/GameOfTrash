@@ -492,7 +492,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 98ebb26938705074ba8e7a777af2879f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.31
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -548,7 +548,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1320,8 +1320,8 @@ MonoBehaviour:
           m_StringArgument: login_menu
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1280636855}
-        m_MethodName: Play
+      - m_Target: {fileID: 1568451610}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1571,6 +1571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568451613}
   - component: {fileID: 1568451614}
+  - component: {fileID: 1568451611}
   m_Layer: 0
   m_Name: BtnSounds
   m_TagString: Untagged
@@ -1578,6 +1579,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1568451611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1568451610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e7aa8593b99e942aab6b97b35fe722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 1568451614}
+  click: {fileID: 8300000, guid: 887242ac89852754eacea7044d4c35fd, type: 3}
 --- !u!4 &1568451613
 Transform:
   m_ObjectHideFlags: 0
@@ -2200,6 +2214,7 @@ GameObject:
   - component: {fileID: 1848629348}
   - component: {fileID: 1848629351}
   - component: {fileID: 1848629352}
+  - component: {fileID: 1848629353}
   m_Layer: 5
   m_Name: about
   m_TagString: Buttons
@@ -2277,7 +2292,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1848629352}
-        m_MethodName: Play
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2345,7 +2360,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1848629346}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 887242ac89852754eacea7044d4c35fd, type: 3}
@@ -2419,6 +2434,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1848629353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1848629346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1568451611}
+          m_MethodName: Onclick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1937526695
 GameObject:
   m_ObjectHideFlags: 0
