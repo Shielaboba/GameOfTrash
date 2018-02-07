@@ -27,27 +27,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     protected virtual void Start()
     {
-        Init();
-
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
             mTrackableBehaviour.RegisterTrackableEventHandler(this);        
-    }
-
-    private void Init()
-    {
-        int gameLevel = LevelManager.GetInstance().GetLevel();
-
-        if (gameLevel == 1 || gameLevel == 2)
-        {
-            btn = new Button[2];
-        }
-        else btn = new Button[4];
-
-        for (int i = 0; i < btn.Length; i++)
-        {           
-            btn[i] = GameObject.Find("TypeBtn" + (i + 1)).GetComponent<Button>();
-        }
     }
 
 
@@ -107,13 +89,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         foreach (var component in canvasComponents)
             component.enabled = true;
 
-        for (int i = 0; i < btn.Length; i++)
-        {
-            if (btn[i].GetComponentInChildren<Text>().text != string.Empty)
-                btn[i].enabled = true;
-            else btn[i].enabled = false;
-        }
-
     }
 
 
@@ -134,10 +109,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
-
-        for (int i = 0; i < btn.Length; i++)
-            btn[i].enabled = false;
-
 
     }
 

@@ -24,10 +24,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
-    public int maxResults = 20;
+    public int maxResults = 10;
     Dictionary<string, string> headers;
     Boolean holder = false;
-    TrashData trash;
+    TrashData trash = TrashManager.GetInstance().GetTrash();
+    private String[] trashType = {"Biodegradable", "Hazardous", "Non-biodegradable", "Residual", "Recyclable"};
 
     [System.Serializable]
     public class AnnotateImageRequests
@@ -70,11 +71,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     [System.Serializable]
     public class EntityAnnotation
     {
-        public List<webEntity> webEntities;
+        public List<WebEntity> webEntities;
     }
 
     [System.Serializable]
-    public class webEntity
+    public class WebEntity
     {
         public string description;
     }
@@ -114,8 +115,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
     #region MONOBEHAVIOUR_METHODS
     void Start()
-    {
-        trash = TrashManager.GetInstance().GetTrash();
+    {        
         GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
         m_TargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
 
@@ -157,11 +157,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     /// </summary>
     public void OnFrameQualityChanged(ImageTargetBuilder.FrameQuality frameQuality)
     {
-        Debug.Log("Frame quality changed: " + frameQuality.ToString());
+        //Debug.Log("Frame quality changed: " + frameQuality.ToString());
         m_FrameQuality = frameQuality;
         if (m_FrameQuality == ImageTargetBuilder.FrameQuality.FRAME_QUALITY_LOW)
         {
-            Debug.Log("Low camera image quality");
+            //Debug.Log("Low camera image quality");
         }
 
         m_FrameQualityMeter.SetQuality(frameQuality);
@@ -232,8 +232,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             m_FrameQuality == ImageTargetBuilder.FrameQuality.FRAME_QUALITY_HIGH)
         {
             // create the name of the next target.
-            // the TrackableName of the original, linked ImageTargetBehaviour is extended with a continuous number to ensure unique names
-
+            // the TrackableName of the original, linked ImageTargetBehaviour is extended with a continuous number to ensure unique names            
             StartCoroutine(DetectImage());
 
             // generate a new target:
@@ -310,6 +309,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     {
         holder = false;
         Camera camera = GameObject.Find("ARCamera").GetComponent<Camera>();
+        GameObject.Find("Title").GetComponent<Text>().text = "Scanning..";
         captureWidth = camera.pixelWidth;
         captureHeight = camera.pixelHeight;
 
@@ -386,47 +386,33 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
                 else
                 {
                     Debug.Log("Error: " + www.error);
+                    GameObject.Find("Title").GetComponent<Text>().text = "System Error!";
                 }
             }
         }
     }
 
     void Sample_OnAnnotateImageResponses(AnnotateImageResponses responses)
-    {
+    {               
         holder = false;
         for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++)
         {
-            //print("Base: " + trash.TrashBase + "Res: " + responses.responses[0].webDetection.webEntities[i].description.ToUpper());
-            if ((trash.TrashBase.ToUpper().Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper()) ||
-               trash.TrashName.ToUpper().Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper())))
+            if ((trash.TrashBase.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty)) ||
+               trash.TrashName.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty))))
             {
-                for (int j = 0; j < responses.responses[0].webDetection.webEntities.Count; j++)
-                {
-                    if (trash.TrashMatComp.ToUpper().Contains(responses.responses[0].webDetection.webEntities[j].description.ToUpper()))
-                    {                        
-                        //GameObject.Find("LabelText").GetComponent<Text>().text = "TRUE";
-                        print("TRUE");
-                        holder = true;
-                        break;
-                    }
-                }
-                //GameObject.Find("LabelText").GetComponent<Text>().text = "NOT SURE";
-                print("NOT SURE"); holder = true; break;
-                //return true;
-
+                holder = true;
+                break;          
             }
-
-            else { print("FALSE"); }
-            //GameObject.Find("LabelText").GetComponent<Text>().text = "FALSE";
         }
 
         if (holder)
         {
+           
+            GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
         }
-        else GameObject.Find("Title").GetComponent<Text>().text = "FALSE";
-
+        else GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
 
         print("END");
     }
