@@ -21,14 +21,16 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     public int captureWidth = 600;
     public int captureHeight = 1024;
     byte[] fileData = null;
-
-    private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
-    private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     public int maxResults = 10;
     Dictionary<string, string> headers;
     Boolean holder = false;
     TrashData trash = TrashManager.GetInstance().GetTrash();
-    private String[] trashType = {"Biodegradable", "Hazardous", "Non-biodegradable", "Residual", "Recyclable"};
+
+    private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
+    private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
+    private GameObject[] typeBtn = new GameObject[4];
+    private String[] trashType = {"Biodegradable", "Hazardous", "Non-biodegradable", "Residual"};
+
 
     [System.Serializable]
     public class AnnotateImageRequests
@@ -115,7 +117,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
     #region MONOBEHAVIOUR_METHODS
     void Start()
-    {        
+    {
+        ConfigBtn();
         GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
         m_TargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
 
@@ -407,7 +410,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
         if (holder)
         {
-           
+            
             GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
@@ -415,5 +418,35 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         else GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
 
         print("END");
+    }
+
+    public void ConfigBtn()
+    {
+        for(int i=0; i< typeBtn.Length; i++)
+        {
+            typeBtn[i] = GameObject.Find("TypeBtn" + (i + 1));
+        }
+
+        int gameLevel = LevelManager.GetInstance().GetLevel();
+        if(gameLevel == 1 || gameLevel == 2)
+        {
+            typeBtn[0].SetActive(true);
+            typeBtn[1].SetActive(true);
+            typeBtn[2].SetActive(false);
+            typeBtn[3].SetActive(false);
+        }
+        else if (gameLevel == 3 || gameLevel == 4)
+        {
+            typeBtn[0].SetActive(true);
+            typeBtn[1].SetActive(true);
+            typeBtn[2].SetActive(true);
+            typeBtn[3].SetActive(false);
+        } else
+        {
+            typeBtn[0].SetActive(true);
+            typeBtn[1].SetActive(true);
+            typeBtn[2].SetActive(true);
+            typeBtn[3].SetActive(true);
+        }
     }
 }
