@@ -414,6 +414,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
+
         }
         else GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
 

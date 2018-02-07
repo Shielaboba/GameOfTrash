@@ -88,7 +88,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         foreach (var component in canvasComponents)
             component.enabled = true;
 
-        gm.SetActive(true);
+        if (gm != null) gm.SetActive(true);
     }
 
 
@@ -110,7 +110,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         foreach (var component in canvasComponents)
             component.enabled = false;
 
-        gm.SetActive(false);
+        if(gm != null) gm.SetActive(false);
     }
 
     #endregion // PRIVATE_METHODS
