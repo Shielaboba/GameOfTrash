@@ -13,6 +13,7 @@ public class TriviaResponse : App42CallBack
     public Text DisplayName;
     public Text DisplayDesc;
     public TriviaData TriviaData;
+   
    // Boolean flag;
     
 
@@ -32,7 +33,7 @@ public class TriviaResponse : App42CallBack
            IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
 
            TriviaData = new TriviaData();
-
+        
            for (int i = 0; i < jsonDocList.Count; i++)
            {
                TriviaData = JsonUtility.FromJson<TriviaData>(jsonDocList[i].GetJsonDoc());
