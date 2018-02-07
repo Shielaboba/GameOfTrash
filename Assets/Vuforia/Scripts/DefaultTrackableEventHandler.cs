@@ -8,6 +8,8 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 using UnityEngine;
 using Vuforia;
+using UnityEngine.UI;
+using System;
 
 /// <summary>
 ///     A custom handler that implements the ITrackableEventHandler interface.
@@ -17,17 +19,37 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     #region PRIVATE_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
-
+    private Button[] btn;
+    private int size;
     #endregion // PRIVATE_MEMBER_VARIABLES
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
 
     protected virtual void Start()
     {
+        Init();
+
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
-            mTrackableBehaviour.RegisterTrackableEventHandler(this);
+            mTrackableBehaviour.RegisterTrackableEventHandler(this);        
     }
+
+    private void Init()
+    {
+        int gameLevel = LevelManager.GetInstance().GetLevel();
+
+        if (gameLevel == 1 || gameLevel == 2)
+        {
+            btn = new Button[2];
+        }
+        else btn = new Button[4];
+
+        for (int i = 0; i < btn.Length; i++)
+        {           
+            btn[i] = GameObject.Find("TypeBtn" + (i + 1)).GetComponent<Button>();
+        }
+    }
+
 
     #endregion // UNTIY_MONOBEHAVIOUR_METHODS
 
@@ -84,6 +106,14 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+
+        for (int i = 0; i < btn.Length; i++)
+        {
+            if (btn[i].GetComponentInChildren<Text>().text != string.Empty)
+                btn[i].enabled = true;
+            else btn[i].enabled = false;
+        }
+
     }
 
 
@@ -104,7 +134,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
+
+        for (int i = 0; i < btn.Length; i++)
+            btn[i].enabled = false;
+
+
     }
 
     #endregion // PRIVATE_METHODS
+
 }
