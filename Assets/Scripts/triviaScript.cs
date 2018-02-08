@@ -15,15 +15,11 @@ public class TriviaScript : MonoBehaviour {
     public Text messageField;
     string trashHolderValue = "";
     Text trashTxt;
-
-
-  
-
+    
     public void Show(string message)
     {
        
-        trashTxt = GameObject.Find("btnText").GetComponent<Text>();
-        
+        trashTxt = GameObject.Find("btnText").GetComponent<Text>();        
 
             trashHolderValue = trashTxt.text;
       
@@ -33,13 +29,7 @@ public class TriviaScript : MonoBehaviour {
             StorageService storageService = App42API.BuildStorageService();
             storageService.FindDocumentsByQuery(cons.dbName, collectionName, query, new TriviaResponse());
             
-
-          
-      
-
-        
-            window.SetActive(true);
-        
+            window.SetActive(true);        
     }
 
     public void Hide()
