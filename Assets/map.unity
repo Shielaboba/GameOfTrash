@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 316013754}
   - component: {fileID: 316013759}
   m_Layer: 5
-  m_Name: noBtn
+  m_Name: noBtn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 330140845}
   - component: {fileID: 330140844}
   m_Layer: 5
-  m_Name: yesBtn
+  m_Name: yesBtn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2820,12 +2820,10 @@ GameObject:
   - component: {fileID: 924801034}
   - component: {fileID: 924801037}
   - component: {fileID: 924801033}
-  - component: {fileID: 924801038}
-  - component: {fileID: 924801032}
   - component: {fileID: 924801031}
   - component: {fileID: 924801036}
   m_Layer: 5
-  m_Name: yesBtn
+  m_Name: yesBtn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2858,18 +2856,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 924801029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1444ffce5eac554db92fe7447795bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &924801032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 924801029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a51f44f37c4bf543aab89459cc27276, type: 3}
+  m_Script: {fileID: 11500000, guid: 73f0a4a646e8d654e882e485f94f5c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &924801033
@@ -2911,7 +2898,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 924801038}
+      - m_Target: {fileID: 924801031}
         m_MethodName: quit
         m_Mode: 1
         m_Arguments:
@@ -3059,17 +3046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fee75866c935bb4f998f1b432f048c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &924801038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 924801029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73f0a4a646e8d654e882e485f94f5c98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1029279514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3082,7 +3058,6 @@ GameObject:
   - component: {fileID: 1029279517}
   - component: {fileID: 1029279516}
   - component: {fileID: 1029279519}
-  - component: {fileID: 1029279520}
   m_Layer: 5
   m_Name: menuBtn
   m_TagString: Untagged
@@ -3216,86 +3191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   window: {fileID: 1029279514}
---- !u!82 &1029279520
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1029279514}
-  m_Enabled: 0
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 887242ac89852754eacea7044d4c35fd, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &1094646821
 GameObject:
   m_ObjectHideFlags: 0
@@ -4454,7 +4349,7 @@ GameObject:
   - component: {fileID: 1743001255}
   - component: {fileID: 1743001254}
   m_Layer: 5
-  m_Name: noBtn
+  m_Name: noBtn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
