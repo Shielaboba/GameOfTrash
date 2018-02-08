@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using com.shephertz.app42.paas.sdk.csharp;
-using com.shephertz.app42.paas.sdk.csharp.user;
 using com.shephertz.app42.paas.sdk.csharp.storage;
+using UnityEngine.SceneManagement;
 
 public class TriviaScript : MonoBehaviour {
 
@@ -12,20 +12,19 @@ public class TriviaScript : MonoBehaviour {
     string collectionName = "TriviaFile";
     string keyName = "TrashName";
     public GameObject window;
-    public Text messageField;
-    string trashHolderValue = "";
-    Text trashTxt;
-    
-    public void Show(string message)
-    {
-       
-        trashTxt = GameObject.Find("btnText").GetComponent<Text>();        
+    TrashData trash;
 
-            trashHolderValue = trashTxt.text;
-      
+    private void Start()
+    {
+        trash = TrashManager.GetInstance().GetTrash();    
+    }
+
+    public void Show()
+    {
+        print("HI");
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);
-            Query query = QueryBuilder.Build(keyName, trashHolderValue, Operator.EQUALS);
+            Query query = QueryBuilder.Build(keyName, trash.TrashName, Operator.EQUALS);
             StorageService storageService = App42API.BuildStorageService();
             storageService.FindDocumentsByQuery(cons.dbName, collectionName, query, new TriviaResponse());
             
@@ -34,7 +33,21 @@ public class TriviaScript : MonoBehaviour {
 
     public void Hide()
     {
-
         window.SetActive(false);
+    }
+
+    public void OnClick()
+    {
+        if(gameObject.GetComponentInChildren<Text>().text.ToUpper().Equals(trash.TrashSegType.ToUpper()))
+        {
+            SceneManager.LoadScene("trivia_menu");
+            Show();
+        }
+        else
+        {
+            print("GO: " + gameObject.GetComponentInChildren<Text>().text.ToUpper()+ " trash: " + trash.TrashSegType.ToUpper());
+            GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
+        }
+
     }
 }

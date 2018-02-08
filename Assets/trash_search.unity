@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 298374042}
   - component: {fileID: 298374041}
   - component: {fileID: 298374040}
+  - component: {fileID: 298374043}
   m_Layer: 0
   m_Name: TypeBtn2
   m_TagString: typebutton
@@ -617,8 +618,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 3f82be44558c9464195ca57ab5dca7c5, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 298374043}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -663,6 +664,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 298374038}
+--- !u!114 &298374043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 298374038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4039f8cdceaee3b499c8c6cf232a8840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 0}
 --- !u!1 &356939535
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +933,7 @@ GameObject:
   - component: {fileID: 584309367}
   - component: {fileID: 584309366}
   - component: {fileID: 584309365}
+  - component: {fileID: 584309368}
   m_Layer: 0
   m_Name: TypeBtn3
   m_TagString: typebutton
@@ -985,8 +999,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 3f82be44558c9464195ca57ab5dca7c5, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 584309368}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1031,6 +1045,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 584309363}
+--- !u!114 &584309368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 584309363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4039f8cdceaee3b499c8c6cf232a8840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 0}
 --- !u!1 &605846937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1163,7 @@ GameObject:
   - component: {fileID: 691634760}
   - component: {fileID: 691634759}
   - component: {fileID: 691634758}
+  - component: {fileID: 691634761}
   m_Layer: 0
   m_Name: TypeBtn4
   m_TagString: typebutton
@@ -1202,8 +1229,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 3f82be44558c9464195ca57ab5dca7c5, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 691634761}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1248,6 +1275,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 691634756}
+--- !u!114 &691634761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 691634756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4039f8cdceaee3b499c8c6cf232a8840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 0}
 --- !u!1 &774269285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,6 +2957,7 @@ GameObject:
   - component: {fileID: 2054854829}
   - component: {fileID: 2054854828}
   - component: {fileID: 2054854827}
+  - component: {fileID: 2054854830}
   m_Layer: 0
   m_Name: TypeBtn1
   m_TagString: typebutton
@@ -2983,8 +3023,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 3f82be44558c9464195ca57ab5dca7c5, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 2054854830}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3029,3 +3069,15 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2054854825}
+--- !u!114 &2054854830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054854825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4039f8cdceaee3b499c8c6cf232a8840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 0}

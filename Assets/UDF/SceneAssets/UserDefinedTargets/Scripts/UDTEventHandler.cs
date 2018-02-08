@@ -29,8 +29,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     private GameObject[] typeBtn = new GameObject[4];
-    private String[] trashType = {"Biodegradable", "Hazardous", "Non-biodegradable", "Residual"};
-
 
     [System.Serializable]
     public class AnnotateImageRequests
@@ -450,4 +448,5 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             typeBtn[3].SetActive(true);
         }
     }
+
 }
