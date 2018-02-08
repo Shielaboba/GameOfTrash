@@ -6,15 +6,11 @@ public class exitBtnGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	void Update () {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
 
-            
+        Application.Quit();
     }
 }
