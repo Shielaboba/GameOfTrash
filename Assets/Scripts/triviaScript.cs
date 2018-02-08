@@ -6,7 +6,7 @@ using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.user;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 
-public class triviaScript : MonoBehaviour {
+public class TriviaScript : MonoBehaviour {
 
     // Use this for initialization
     string collectionName = "TriviaFile";
@@ -25,7 +25,7 @@ public class triviaScript : MonoBehaviour {
         trashTxt = GameObject.Find("btnText").GetComponent<Text>();
         
 
-       trashHolderValue = trashTxt.text;
+            trashHolderValue = trashTxt.text;
       
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);
