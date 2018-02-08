@@ -4,7 +4,7 @@
     - Trivia DONE!
     - Drag and Drop Game
     - AR Game
-    - Leaderboard
+    - Leaderboard DONE!
     - Logs  
     - Trash Info/Crafts
-    - Music
+    - Music DONE!
