@@ -6,4 +6,5 @@ public class TrashData {
     public string TrashCraftMade;
     public string TrashSegType;
     public string TrashBase;
+    public string TrashTrivia;
 }

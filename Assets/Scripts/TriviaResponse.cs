@@ -12,7 +12,6 @@ public class TriviaResponse : App42CallBack
     public GameObject window;
     public Text DisplayName;
     public Text DisplayDesc;
-    public TriviaData TriviaData;
    
    // Boolean flag;
     
@@ -32,12 +31,12 @@ public class TriviaResponse : App42CallBack
 
            IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
 
-           TriviaData = new TriviaData();
+           TrashData trash = new TrashData();
  
-               TriviaData = JsonUtility.FromJson<TriviaData>(jsonDocList[0].GetJsonDoc());
+               trash = JsonUtility.FromJson<TrashData>(jsonDocList[0].GetJsonDoc());
 
-               DisplayName.text = TriviaData.TrashName.ToUpper();
-               DisplayDesc.text = TriviaData.TriviaDesc;
+               DisplayName.text = trash.TrashName.ToUpper();
+               DisplayDesc.text = trash.TrashTrivia;
 
       // window.SetActive(true);
        App42Log.SetDebug(true);

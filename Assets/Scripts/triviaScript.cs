@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class TriviaScript : MonoBehaviour {
 
     // Use this for initialization
-    string collectionName = "TriviaFile";
+    string collectionName = "TrashFile";
     string keyName = "TrashName";
     public GameObject window;
     TrashData trash;
@@ -47,6 +47,6 @@ public class TriviaScript : MonoBehaviour {
 
     public void OnClick()
     {
-        SceneManager.LoadScene("trash_menu");
+        SceneManager.LoadScene("DIY");        
     }
 }
