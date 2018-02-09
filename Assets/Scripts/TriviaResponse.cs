@@ -36,7 +36,7 @@ public class TriviaResponse : App42CallBack
  
                TriviaData = JsonUtility.FromJson<TriviaData>(jsonDocList[0].GetJsonDoc());
 
-               DisplayName.text = TriviaData.TrashName;
+               DisplayName.text = TriviaData.TrashName.ToUpper();
                DisplayDesc.text = TriviaData.TriviaDesc;
 
       // window.SetActive(true);

@@ -865,6 +865,7 @@ GameObject:
   - component: {fileID: 1446811853}
   - component: {fileID: 1446811852}
   - component: {fileID: 1446811851}
+  - component: {fileID: 1446811855}
   - component: {fileID: 1446811854}
   m_Layer: 5
   m_Name: BtnDiy
@@ -930,7 +931,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1446811852}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1446811855}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1446811852
@@ -983,6 +995,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1446811855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446811849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4039f8cdceaee3b499c8c6cf232a8840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 0}
 --- !u!1 &1453160936
 GameObject:
   m_ObjectHideFlags: 0

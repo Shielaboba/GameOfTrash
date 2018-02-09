@@ -21,14 +21,23 @@ public class TriviaScript : MonoBehaviour {
 
     public void Show()
     {
-        print("HI");
+        if (gameObject.GetComponentInChildren<Text>().text.ToUpper().Equals(trash.TrashSegType.ToUpper()))
+        {
+            SceneManager.LoadScene("trivia_menu");
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);
             Query query = QueryBuilder.Build(keyName, trash.TrashName, Operator.EQUALS);
             StorageService storageService = App42API.BuildStorageService();
             storageService.FindDocumentsByQuery(cons.dbName, collectionName, query, new TriviaResponse());
-            
-            window.SetActive(true);        
+
+            window.SetActive(true);
+        }
+        else
+        {
+            print("GO: " + gameObject.GetComponentInChildren<Text>().text.ToUpper() + " trash: " + trash.TrashSegType.ToUpper());
+            GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
+        }
+           
     }
 
     public void Hide()
@@ -38,16 +47,6 @@ public class TriviaScript : MonoBehaviour {
 
     public void OnClick()
     {
-        if(gameObject.GetComponentInChildren<Text>().text.ToUpper().Equals(trash.TrashSegType.ToUpper()))
-        {
-            SceneManager.LoadScene("trivia_menu");
-            Show();
-        }
-        else
-        {
-            print("GO: " + gameObject.GetComponentInChildren<Text>().text.ToUpper()+ " trash: " + trash.TrashSegType.ToUpper());
-            GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
-        }
-
+        SceneManager.LoadScene("trash_menu");
     }
 }
