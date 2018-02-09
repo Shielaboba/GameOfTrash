@@ -33,16 +33,12 @@ public class TriviaResponse : App42CallBack
            IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
 
            TriviaData = new TriviaData();
-        
-           for (int i = 0; i < jsonDocList.Count; i++)
-           {
-               TriviaData = JsonUtility.FromJson<TriviaData>(jsonDocList[i].GetJsonDoc());
+ 
+               TriviaData = JsonUtility.FromJson<TriviaData>(jsonDocList[0].GetJsonDoc());
 
-               DisplayName.text = TriviaData.TrashName;
+               DisplayName.text = TriviaData.TrashName.ToUpper();
                DisplayDesc.text = TriviaData.TriviaDesc;
-              
-               break;
-           }
+
       // window.SetActive(true);
        App42Log.SetDebug(true);
     }
