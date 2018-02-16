@@ -35,6 +35,13 @@ public class EscKeyScript : MonoBehaviour {
             }
         }
 
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trash_menu"))
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("map");
+            }
+        }
 
     }
 }
