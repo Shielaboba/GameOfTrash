@@ -12,7 +12,7 @@ public class TriviaResponse : App42CallBack
     public GameObject window;
     public Text DisplayName;
     public Text DisplayDesc;
-    public TriviaData TriviaData;
+   
    // Boolean flag;
     
 
@@ -31,17 +31,13 @@ public class TriviaResponse : App42CallBack
 
            IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
 
-           TriviaData = new TriviaData();
+           TrashData trash = new TrashData();
+ 
+               trash = JsonUtility.FromJson<TrashData>(jsonDocList[0].GetJsonDoc());
 
-           for (int i = 0; i < jsonDocList.Count; i++)
-           {
-               TriviaData = JsonUtility.FromJson<TriviaData>(jsonDocList[i].GetJsonDoc());
+               DisplayName.text = trash.TrashName.ToUpper();
+               DisplayDesc.text = trash.TrashTrivia;
 
-               DisplayName.text = TriviaData.TrashName;
-               DisplayDesc.text = TriviaData.TriviaDesc;
-              
-               break;
-           }
       // window.SetActive(true);
        App42Log.SetDebug(true);
     }

@@ -34,7 +34,13 @@ public class EscKeyScript : MonoBehaviour {
                 SceneManager.LoadScene("map");
             }
         }
-
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trash_search"))
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("trash_menu");
+            }
+        }
         else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trash_menu"))
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -42,6 +48,12 @@ public class EscKeyScript : MonoBehaviour {
                 SceneManager.LoadScene("map");
             }
         }
-
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trivia_menu"))
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("trash_menu");
+            }
+        }
     }
 }

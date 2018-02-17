@@ -24,7 +24,7 @@ public class TrashLevelScript : MonoBehaviour {
         }
         else
         {
-            TrashRandom();            
+            TrashRandom();
         }
     }
 

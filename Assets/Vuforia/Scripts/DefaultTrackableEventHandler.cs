@@ -8,26 +8,29 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 using UnityEngine;
 using Vuforia;
+using UnityEngine.UI;
+using System;
 
 /// <summary>
 ///     A custom handler that implements the ITrackableEventHandler interface.
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
+    public GameObject gm;
     #region PRIVATE_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
-
     #endregion // PRIVATE_MEMBER_VARIABLES
 
     #region UNTIY_MONOBEHAVIOUR_METHODS
 
     protected virtual void Start()
-    {
+    {       
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
-            mTrackableBehaviour.RegisterTrackableEventHandler(this);
+            mTrackableBehaviour.RegisterTrackableEventHandler(this);        
     }
+
 
     #endregion // UNTIY_MONOBEHAVIOUR_METHODS
 
@@ -84,6 +87,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+
+        if (gm != null) gm.SetActive(true);
     }
 
 
@@ -104,7 +109,10 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
+
+        if(gm != null) gm.SetActive(false);
     }
 
     #endregion // PRIVATE_METHODS
+
 }
