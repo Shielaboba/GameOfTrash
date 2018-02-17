@@ -24,7 +24,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     public int maxResults = 10;
     Dictionary<string, string> headers;
     Boolean holder = false;
-    TrashData trash = TrashManager.GetInstance().GetTrash();
+    TrashData trash; 
 
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
@@ -116,7 +116,9 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     #region MONOBEHAVIOUR_METHODS
     void Start()
     {
+        trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
+
         GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
         m_TargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
 
