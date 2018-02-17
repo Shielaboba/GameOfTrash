@@ -1452,6 +1452,7 @@ GameObject:
   - component: {fileID: 895919054}
   - component: {fileID: 895919053}
   - component: {fileID: 895919052}
+  - component: {fileID: 895919055}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -1516,8 +1517,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadMenuScene
+      - m_Target: {fileID: 895919055}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1562,6 +1563,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 895919050}
+--- !u!114 &895919055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 895919050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d224695c75ae96b43adc3a6795c743ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &924793057
 GameObject:
   m_ObjectHideFlags: 0
