@@ -21,7 +21,7 @@ public class TrashSearchScript : MonoBehaviour {
 
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
-    public int maxResults = 20;
+    public int maxResults = 10;
     Dictionary<string, string> headers;
 
     byte[] fileData = null;     
@@ -114,8 +114,7 @@ public class TrashSearchScript : MonoBehaviour {
         // read pixels will read from the currently active render texture so make our offscreen 
         // render texture active and then read the pixels
         RenderTexture.active = renderTexture;
-        screenShot.ReadPixels(rect, 0, 0);
-
+        screenShot.ReadPixels(rect, 0, 0);       
         // reset active camera texture and render texture
         camera.targetTexture = null;
         RenderTexture.active = null;
@@ -130,7 +129,6 @@ public class TrashSearchScript : MonoBehaviour {
     {
         headers = new Dictionary<string, string>();
         headers.Add("Content-Type", "application/json; charset=UTF-8");        
-
         string base64 = System.Convert.ToBase64String(fileData);
 
         AnnotateImageRequests requests = new AnnotateImageRequests();

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
 
-public class ProgressLoadScript
+public class ProgressLoadScript : MonoBehaviour
 {
     String collectionName,key,value,user;
     Constant c;
@@ -19,7 +19,6 @@ public class ProgressLoadScript
         c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
     }
-
     
     public void LoadProgress()
     {

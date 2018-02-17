@@ -434,13 +434,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             typeBtn[2].SetActive(false);
             typeBtn[3].SetActive(false);
         }
-        else if (gameLevel == 3 || gameLevel == 4)
-        {
-            typeBtn[0].SetActive(true);
-            typeBtn[1].SetActive(true);
-            typeBtn[2].SetActive(true);
-            typeBtn[3].SetActive(false);
-        } else
+        else
         {
             typeBtn[0].SetActive(true);
             typeBtn[1].SetActive(true);
