@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
 
-public class ProgressLoadScript : MonoBehaviour
+public class ProgressLoadScript
 {
     String collectionName,key,value,user;
     Constant c;

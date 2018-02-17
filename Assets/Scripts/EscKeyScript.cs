@@ -56,4 +56,9 @@ public class EscKeyScript : MonoBehaviour {
             }
         }
     }
+
+    public void OnClick()
+    {
+        SceneManager.LoadScene("trash_menu");
+    }
 }

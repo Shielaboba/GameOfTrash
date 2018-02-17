@@ -47,6 +47,7 @@ public class TriviaScript : MonoBehaviour {
 
     public void OnClick()
     {
-        SceneManager.LoadScene("DIY");        
+        trash.CheckTrash = true;
+        SceneManager.LoadScene("trash_menu");        
     }
 }
