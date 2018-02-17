@@ -11,7 +11,6 @@ public class TriviaScript : MonoBehaviour {
     // Use this for initialization
     string collectionName = "TrashFile";
     string keyName = "TrashName";
-    public GameObject window;
     TrashData trash;
 
     private void Start()
@@ -30,7 +29,8 @@ public class TriviaScript : MonoBehaviour {
             StorageService storageService = App42API.BuildStorageService();
             storageService.FindDocumentsByQuery(cons.dbName, collectionName, query, new TriviaResponse());
 
-            window.SetActive(true);
+            if (SceneManager.GetActiveScene().name.Equals("trivia_menu"))
+                GameObject.Find("triviaModalImg").SetActive(true);
         }
         else
         {
@@ -42,7 +42,7 @@ public class TriviaScript : MonoBehaviour {
 
     public void Hide()
     {
-        window.SetActive(false);
+        GameObject.Find("triviaModalImg").SetActive(false);
     }
 
     public void OnClick()

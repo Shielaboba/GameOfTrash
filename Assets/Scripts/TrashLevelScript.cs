@@ -25,7 +25,6 @@ public class TrashLevelScript : MonoBehaviour {
         else
         {
             TrashRandom();
-            DontDestroyOnLoad(this);
         }
     }
 

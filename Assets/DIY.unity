@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 212211757}
   - component: {fileID: 212211756}
   m_Layer: 5
-  m_Name: SampleName1
+  m_Name: name_diy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,9 +248,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Pencil Holder
-
-'
+  m_Text: 
 --- !u!222 &212211757
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -836,6 +834,7 @@ GameObject:
   - component: {fileID: 1508709857}
   - component: {fileID: 1508709856}
   - component: {fileID: 1508709855}
+  - component: {fileID: 1508709858}
   m_Layer: 5
   m_Name: BtnSample2
   m_TagString: Untagged
@@ -936,6 +935,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1508709853}
+--- !u!114 &1508709858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508709853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef120db48a421cf4daeecbf6e304b2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1604588044
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +957,7 @@ GameObject:
   - component: {fileID: 1604588047}
   - component: {fileID: 1604588046}
   - component: {fileID: 1604588045}
+  - component: {fileID: 1604588049}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1030,6 +1041,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1604588049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1604588044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef120db48a421cf4daeecbf6e304b2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1707091758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1344,7 @@ GameObject:
   - component: {fileID: 1858318208}
   - component: {fileID: 1858318207}
   m_Layer: 5
-  m_Name: SampleName2
+  m_Name: name_diy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1378,9 +1400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Talkey
-
-'
+  m_Text: 
 --- !u!222 &1858318208
 CanvasRenderer:
   m_ObjectHideFlags: 0

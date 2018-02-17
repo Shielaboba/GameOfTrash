@@ -11,7 +11,8 @@ public class GenerateTrashMapLevel : MonoBehaviour {
     int LvlBtn;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         Level = LevelManager.GetInstance().GetLevel();
         LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
         if (LvlBtn > Level)
@@ -22,24 +23,16 @@ public class GenerateTrashMapLevel : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
     public void OnClick()
     {       
-        //Level = LevelManager.GetInstance().GetLevel();
-        //int LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
-        //if (LvlBtn <= Level)
-        //{
-            Debug.Log(btn.GetComponentInChildren<Text>().text);
-            SceneManager.LoadScene("trash_menu");
-            LevelManager.GetInstance().SetLevel(LvlBtn);
-        //}
-        //else
-        //{
-        //    Debug.Log("X = " + btn.GetComponentInChildren<Text>().text);
-        //}
+        Debug.Log(btn.GetComponentInChildren<Text>().text);
+        SceneManager.LoadScene("trash_menu");
+        LevelManager.GetInstance().SetLevel(LvlBtn);
     }
 
 }
