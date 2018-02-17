@@ -7,4 +7,5 @@ public class TrashData {
     public string TrashBase;
     public string TrashTrivia;
     public bool CheckTrash;
+    public string TrashUrl;
 }

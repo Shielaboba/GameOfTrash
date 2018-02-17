@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.upload;
 using System;
@@ -8,24 +9,11 @@ using System;
 public class TrashDropScript : MonoBehaviour {
 
     Constant c;
+    public Image img;
     // public float speed = 10F;
     // Use this for initialization
-    
-    String fileName = "Tire";
 
-    void Start () {
-        
-        App42Log.SetDebug(true); //Prints output in your editor console
-        c = new Constant();
-        App42API.Initialize(c.apiKey, c.secretKey);
-        UploadService uploadService = App42API.BuildUploadService();
-        uploadService.GetFileByName(fileName, new TrashDropResponse());
-        //uploadService.GetAllFiles(new TrashDropResponse());
-
-        //TrashDropResponse tdr = new TrashDropResponse();
-        //tdr.LoadImg(); //
-        //StartCoroutine(tdr.LoadImg());
-    }
+    List<TrashData> trash;
 
     // Update is called once per frame
     void Update () {
@@ -35,39 +23,14 @@ public class TrashDropScript : MonoBehaviour {
 			transform.Translate(touchDeltaPosition.x, touchDeltaPosition.y, 0);
 		}
 	}
-}
 
-internal class TrashDropResponse : App42CallBack
-{
-    public string url;
-    Texture2D img;
-    public void OnSuccess(object response)
+    public string url = "http://cdn.shephertz.com/repository/files/6d3315644df7ab693ec31e305146d091e5bd99ef48d5b059d9564f47506b7cd5/5b40e645c8d6827394d41ddaf53aeb3e452b29b5/tire.png";
+
+    IEnumerator Start()
     {
-        Upload upload = (Upload) response;
-        IList<Upload.File>  fileList = upload.GetFileList();
-
-        for (int i=0; i < fileList.Count; i++) {
-
-            url = fileList[i].GetUrl();
-            Debug.Log(fileList[i].GetUrl());
-        }
-       
-    }
-    public IEnumerator LoadImg()
-    {
-        yield return 0;
-        WWW imgLink = new WWW(url);
-        yield return imgLink;
-        img = imgLink.texture;
+        WWW www = new WWW(url);
+        yield return www;
+        img.sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
     }
 
-    void OnGUI()
-    {
-        GUILayout.Label(img);
-    }
-
-    public void OnException(Exception ex)
-    {
-        throw new NotImplementedException();
-    }
 }
