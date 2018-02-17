@@ -19,7 +19,6 @@ public class ProgressLoadScript
         c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
     }
-
     
     public void LoadProgress()
     {
