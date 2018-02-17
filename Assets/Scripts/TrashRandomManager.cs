@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,4 +27,5 @@ public class TrashRandomManager {
 
     public List<TrashData> GetTrash() { return CurrentTrash; }
     public void SetTrash(List<TrashData> trash) { this.CurrentTrash = trash; }
+
 }

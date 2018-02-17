@@ -35,6 +35,12 @@ public class TrashLevelScript : MonoBehaviour {
         {
             btn[i].GetComponentInChildren<Text>().text = trash[i].TrashName;
 
+            if (trash[i].CheckTrash)
+            {
+                btn[i].enabled = false;
+                btn[i].GetComponentInChildren<Text>().color = Color.red;
+            }
+
             int copy = i;
             btn[i].onClick.AddListener(delegate () {
                 OnClick(trash[copy]);
