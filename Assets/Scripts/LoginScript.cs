@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.user;
+using com.shephertz.app42.paas.sdk.csharp.session;
 
 public class LoginScript : MonoBehaviour
 {
@@ -75,6 +76,11 @@ public class LoginScript : MonoBehaviour
 				errorMessage.text = "" + e.Message;
 			};
         }
+    }
+    public void session()
+    {
+        userField = username.text;
+        SessionService sessionService = App42API.BuildSessionService(); sessionService.GetSession(userField, new LoginSession());
     }
            
 }
