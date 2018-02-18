@@ -10,6 +10,8 @@ public class TrashDropScript : MonoBehaviour {
 
     Constant c;
     public Image img;
+
+    GameObject obj;
     // public float speed = 10F;
     // Use this for initialization
 
@@ -28,9 +30,12 @@ public class TrashDropScript : MonoBehaviour {
 
     IEnumerator Start()
     {
+        obj = new GameObject("tra");
+        obj.AddComponent<Image>();
         WWW www = new WWW(url);
         yield return www;
-        img.sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+        obj.GetComponent<Image>().sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+        Instantiate(obj);
     }
 
 }

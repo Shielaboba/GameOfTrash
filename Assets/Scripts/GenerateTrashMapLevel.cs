@@ -9,14 +9,13 @@ using System;
 
 public class GenerateTrashMapLevel : MonoBehaviour {
     
-    int level;
     public Button btn;
     int LvlBtn;
 
     // Use this for initialization
     void Start ()
     {
-        level = LevelManager.GetInstance().GetLevel();
+        int level = LevelManager.GetInstance().GetLevel();
         LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
  
         if (LvlBtn > level)
@@ -26,8 +25,8 @@ public class GenerateTrashMapLevel : MonoBehaviour {
     }
 	
     public void OnClick()
-    {       
-        Debug.Log(btn.GetComponentInChildren<Text>().text);
+    {
+        LevelManager.GetInstance().SetSelectLevel(LvlBtn);
         TrashRandom();
     }
 
@@ -35,7 +34,7 @@ public class GenerateTrashMapLevel : MonoBehaviour {
     {
         Constant c;
         string key, value;
-
+        int level = LevelManager.GetInstance().GetSelectLevel();
         if (level == 1 || level == 2) value = "easy";
         else value = "hard";
         c = new Constant();
@@ -58,7 +57,7 @@ internal class TrashLevelResponse : App42CallBack
     {
         int trashHolder = 4;
         
-        int level = LevelManager.GetInstance().GetLevel();
+        int level = LevelManager.GetInstance().GetSelectLevel();
 
         if(level > 1) trashHolder += (level*2) - 2;
 
