@@ -17,6 +17,7 @@ public class TrashDropHolder : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         mouseDown = true;
         startPos = transform.position;
         startMousePos = Input.mousePosition;
+        print(gameObject.name);
     }
 
     public void OnPointerUp(PointerEventData ped)

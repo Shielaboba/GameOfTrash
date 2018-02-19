@@ -21,7 +21,7 @@ public class TrashDropUrlHandler : MonoBehaviour {
 internal class TrashDropResponse : App42CallBack
 {
     Texture2D img;
-    List<string> urls = new List<string>();
+    int counter = 0;
     List<TrashData> trashList = TrashRandomManager.GetInstance().GetTrash();
 
     public void OnSuccess(object response)
@@ -35,12 +35,13 @@ internal class TrashDropResponse : App42CallBack
             {
                 if (trashList[j].TrashName.Equals(fileList[i].GetName()))
                 {
-                    urls.Add(fileList[i].GetUrl());
+                    trashList[j].TrashUrl = fileList[i].GetUrl();
+                    counter++;
                 }
-                if (trashList.Count == urls.Count) break;
+                if (trashList.Count == counter) break;
             }
         }
-        TrashUrlManager.GetInstance().SetURL(urls);
+        TrashRandomManager.GetInstance().SetTrash(trashList);
     }
 
     public void OnException(Exception ex)
