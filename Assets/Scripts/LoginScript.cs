@@ -63,6 +63,10 @@ public class LoginScript : MonoBehaviour
 
         if (FieldCheck())
         {
+            userField = username.text;
+            PlayerPrefs.SetString("username", userField);
+            PlayerPrefs.Save();
+
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);
             UserService userService = App42API.BuildUserService();
@@ -76,12 +80,6 @@ public class LoginScript : MonoBehaviour
 				errorMessage.text = "" + e.Message;
 			};
         }
-    }
-    public void session()
-    {
-        userField = username.text;
-        SessionService sessionService = App42API.BuildSessionService(); sessionService.GetSession(userField, new LoginSession());
-    }
-           
+    }  
 }
 
