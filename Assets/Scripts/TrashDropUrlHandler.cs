@@ -21,11 +21,11 @@ public class TrashDropUrlHandler : MonoBehaviour {
         App42API.Initialize(c.apiKey, c.secretKey);
         UploadService uploadService = App42API.BuildUploadService();
 
-        //for (int i = 0; i < TrashRandomManager.GetInstance().GetTrash().Count; i++)
-        //{
+        for (int i = 0; i < TrashRandomManager.GetInstance().GetTrash().Count; i++)
+        {
             uploadService.GetFileByName("Tire", new TrashDropResponse());
-        //    TrashManager.GetInstance().SetTrash(trash[i]);
-        //}
+            TrashManager.GetInstance().SetTrash(trash[i]);
+        }
     }
 
     // Update is called once per frame
@@ -53,17 +53,17 @@ internal class TrashDropResponse : App42CallBack
 
         for (int i = 0; i < fileList.Count; i++)
         {
-            //trash = TrashManager.GetInstance().GetTrash();
-            //trash.TrashUrl = fileList[i].GetUrl();
-
+            trash = TrashManager.GetInstance().GetTrash();
+            trash.TrashUrl = fileList[i].GetUrl();
+            TrashDropScript x = new TrashDropScript();
+            x.SetURL(trash.TrashUrl);
             Debug.Log(fileList[i].GetUrl());
             
         }
 
     }
 
-
-    public void OnException(Exception ex)
+        public void OnException(Exception ex)
     {
         throw new NotImplementedException();
     }

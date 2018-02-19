@@ -24,7 +24,6 @@ public class TrashDropHolder : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         mouseDown = false;
     }
 
-
     void Update()
     {
         if (mouseDown)
