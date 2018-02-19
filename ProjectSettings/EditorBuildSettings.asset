@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/main_menu.unity
     guid: 59361257d32dea74eba57858684d9c4a
   - enabled: 1
     path: Assets/login_menu.unity
     guid: 084d2ffdcf5256647ac8e371f8eeffb4
-  - enabled: 1
+  - enabled: 0
     path: Assets/reg_menu.unity
     guid: ba9ab6c5db3a1ed448542763f4c0725d
   - enabled: 1
     path: Assets/map.unity
     guid: d38a51c92c0ffae4b8a4b2b5d8e5cd54
-  - enabled: 1
+  - enabled: 0
     path: Assets/leaderboard_display.unity
     guid: 4899fb9c9774a334ca193723af4751a0
   - enabled: 1
@@ -29,9 +29,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/DIY_procedure.unity
     guid: de5b75f408238894d95245d77c1db088
-  - enabled: 0
+  - enabled: 1
     path: Assets/trash_seg.unity
     guid: f8614c4201d306d46bb00a69491af3cb
+  - enabled: 1
+    path: Assets/trivia_menu.unity
+    guid: 3293085bd8312f144a5ed10da35a5dbc
   - enabled: 1
     path: Assets/trash_search.unity
     guid: d8fc41b3fe9b20c428a45a31db93cf87
