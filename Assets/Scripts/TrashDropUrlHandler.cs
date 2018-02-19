@@ -41,7 +41,6 @@ internal class TrashDropResponse : App42CallBack
             }
         }
         TrashUrlManager.GetInstance().SetURL(urls);
-        Debug.Log("DONE");
     }
 
     public void OnException(Exception ex)
