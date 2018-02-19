@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vuforia;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 {
@@ -24,7 +25,9 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     public int maxResults = 10;
     Dictionary<string, string> headers;
     Boolean holder = false;
-    TrashData trash; 
+    TrashData trash;
+
+    LifeManager lifeManager;
 
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
@@ -116,6 +119,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     #region MONOBEHAVIOUR_METHODS
     void Start()
     {
+        lifeManager = FindObjectOfType<LifeManager>();       
+
         trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
 
@@ -398,7 +403,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     void Sample_OnAnnotateImageResponses(AnnotateImageResponses responses)
     {               
         holder = false;
-        for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++)
+        for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++) // loop thru all responses
         {
             if ((trash.TrashBase.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty)) ||
                trash.TrashName.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty))))
@@ -416,8 +421,14 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
 
         }
-        else GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
+        else {
 
+            GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
+            lifeManager.TakeLife();//reduce life
+            if (lifeManager.GetCurHealth() == 0)
+                lifeManager.GameOver();
+
+        }
         print("END");
     }
 
@@ -444,5 +455,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             typeBtn[3].SetActive(true);
         }
     }
+    
 
 }

@@ -61,4 +61,8 @@ public class EscKeyScript : MonoBehaviour {
     {
         SceneManager.LoadScene("trash_menu");
     }
+    public void ReturnMap()
+    {
+        SceneManager.LoadScene("map");
+    }
 }

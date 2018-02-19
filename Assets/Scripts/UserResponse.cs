@@ -35,7 +35,7 @@ public class UserResponse : App42CallBack
         if (scene.name.Equals("login_menu"))
         {
             errorMessage.text = "Success";
-            
+            PlayerPrefs.SetInt("PlayerCurrentLives", 4);// .. SET NUMBER OF PLAYING LIFE
             new ProgressLoadScript(user).LoadProgress();
         }
         else if (scene.name.Equals("reg_menu"))
