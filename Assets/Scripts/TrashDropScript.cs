@@ -15,7 +15,7 @@ public class TrashDropScript : MonoBehaviour
     private void Start()
     {
         SelectLevelGame();
-        StartCoroutine("DeployTrash");
+        
     }
 
     private void Update()
@@ -36,6 +36,7 @@ public class TrashDropScript : MonoBehaviour
         {                
             gameObject.SetActive(false);
         }
+        else StartCoroutine("DeployTrash");
     }
 
     IEnumerator DeployTrash()

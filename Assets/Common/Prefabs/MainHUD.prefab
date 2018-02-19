@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4458499261450860}
   m_Layer: 0
-  m_Name: Main HUD
+  m_Name: MainHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

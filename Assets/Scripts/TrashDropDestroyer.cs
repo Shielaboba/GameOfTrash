@@ -25,7 +25,7 @@ public class TrashDropDestroyer : MonoBehaviour {
         }
         else
         {
-            print("NULL");
+            print("NULL:" + trash);
         }
         
         

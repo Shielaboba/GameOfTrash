@@ -30,7 +30,6 @@ public class TrashLevelScript : MonoBehaviour {
 
         if (!gameObject.name.Equals("trashLevel" + level))
         {
-            print(level);
             gameObject.SetActive(false);
 
         }

@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 59502106}
   - component: {fileID: 59502105}
   m_Layer: 5
-  m_Name: Bio
+  m_Name: Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 70899805}
   - component: {fileID: 70899804}
   m_Layer: 5
-  m_Name: Non-Bio
+  m_Name: Non-Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 216213718}
   - component: {fileID: 216213717}
   m_Layer: 5
-  m_Name: Non-Bio
+  m_Name: Non-Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3210,7 +3210,7 @@ GameObject:
   - component: {fileID: 666154013}
   - component: {fileID: 666154012}
   m_Layer: 5
-  m_Name: Bio
+  m_Name: Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3591,7 +3591,7 @@ GameObject:
   - component: {fileID: 699892095}
   - component: {fileID: 699892094}
   m_Layer: 5
-  m_Name: Non-Bio
+  m_Name: Non-Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3718,7 +3718,7 @@ GameObject:
   - component: {fileID: 723645495}
   - component: {fileID: 723645494}
   m_Layer: 5
-  m_Name: Bio
+  m_Name: Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6597,7 +6597,7 @@ GameObject:
   - component: {fileID: 1293116436}
   - component: {fileID: 1293116435}
   m_Layer: 5
-  m_Name: Bio
+  m_Name: Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7613,7 +7613,7 @@ GameObject:
   - component: {fileID: 1518790325}
   - component: {fileID: 1518790324}
   m_Layer: 5
-  m_Name: Bio
+  m_Name: Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8615,7 +8615,7 @@ GameObject:
   - component: {fileID: 1765260634}
   - component: {fileID: 1765260633}
   m_Layer: 5
-  m_Name: Non-Bio
+  m_Name: Non-Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10437,7 +10437,7 @@ GameObject:
   - component: {fileID: 2073232940}
   - component: {fileID: 2073232939}
   m_Layer: 5
-  m_Name: Non-Bio
+  m_Name: Non-Biodegradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
