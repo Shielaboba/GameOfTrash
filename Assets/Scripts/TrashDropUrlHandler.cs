@@ -8,43 +8,21 @@ using System;
 public class TrashDropUrlHandler : MonoBehaviour {
 
     Constant c;
-    // public float speed = 10F;
-    // Use this for initialization
-
-    List<TrashData> trash;
-
     void Start()
     {
-        trash = TrashRandomManager.GetInstance().GetTrash();
         App42Log.SetDebug(true); //Prints output in your editor console
         c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
         UploadService uploadService = App42API.BuildUploadService();
-
-        for (int i = 0; i < TrashRandomManager.GetInstance().GetTrash().Count; i++)
-        {
-            uploadService.GetFileByName("Tire", new TrashDropResponse());
-            TrashManager.GetInstance().SetTrash(trash[i]);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-            transform.Translate(touchDeltaPosition.x, touchDeltaPosition.y, 0);
-        }
+        uploadService.GetAllFiles(new TrashDropResponse());        
     }
 }
 
 internal class TrashDropResponse : App42CallBack
 {
-    public string url;
     Texture2D img;
-    TrashData trash;
+    List<string> urls = new List<string>();
+    List<TrashData> trashList = TrashRandomManager.GetInstance().GetTrash();
 
     public void OnSuccess(object response)
     {
@@ -53,18 +31,21 @@ internal class TrashDropResponse : App42CallBack
 
         for (int i = 0; i < fileList.Count; i++)
         {
-            trash = TrashManager.GetInstance().GetTrash();
-            trash.TrashUrl = fileList[i].GetUrl();
-            TrashDropScript x = new TrashDropScript();
-            x.SetURL(trash.TrashUrl);
-            Debug.Log(fileList[i].GetUrl());
-            
+            for (int j = 0; j < trashList.Count; j++)
+            {
+                if (trashList[j].TrashName.Equals(fileList[i].GetName()))
+                {
+                    urls.Add(fileList[i].GetUrl());
+                }
+                if (trashList.Count == urls.Count) break;
+            }
         }
-
+        TrashUrlManager.GetInstance().SetURL(urls);
+        Debug.Log("DONE");
     }
 
-        public void OnException(Exception ex)
+    public void OnException(Exception ex)
     {
-        throw new NotImplementedException();
+        Debug.Log(ex.Message);
     }
 }
