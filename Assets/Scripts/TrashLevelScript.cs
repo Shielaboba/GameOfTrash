@@ -13,6 +13,7 @@ public class TrashLevelScript : MonoBehaviour {
     Constant c;
     String key,value;
     Button[] btn;
+    public Sprite mybutton;
     List<TrashData> trash;
     Boolean finishAllTrash = true;
 
@@ -29,6 +30,7 @@ public class TrashLevelScript : MonoBehaviour {
 
         if (!gameObject.name.Equals("trashLevel" + level))
         {
+            print(level);
             gameObject.SetActive(false);
 
         }
@@ -39,8 +41,10 @@ public class TrashLevelScript : MonoBehaviour {
             if (!trash[i].CheckTrash) finishAllTrash = false;
             if (trash[i].CheckTrash)
             {
+               
                 btn[i].enabled = false;
-                btn[i].GetComponentInChildren<Text>().color = Color.red;
+                btn[i].image.overrideSprite = mybutton;
+                btn[i].GetComponentInChildren<Text>().color = Color.gray;
             }
 
             int copy = i;

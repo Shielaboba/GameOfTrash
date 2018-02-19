@@ -23,6 +23,7 @@ public class PerformanceResponse : App42CallBack {
         SceneManager.LoadScene("map");
         var lvlManager = LevelManager.GetInstance();
         lvlManager.SetLevel(Data.PlayerGameLvlNo);
+
     }
 
     public void OnException(Exception e)        
