@@ -22,6 +22,7 @@ public class TriviaScript : MonoBehaviour {
     {
         if (gameObject.GetComponentInChildren<Text>().text.ToUpper().Equals(trash.TrashSegType.ToUpper()))
         {
+            ScoreScript.scorePoints += 10;
             SceneManager.LoadScene("trivia_menu");
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);

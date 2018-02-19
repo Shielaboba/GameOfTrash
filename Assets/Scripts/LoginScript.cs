@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.user;
+using com.shephertz.app42.paas.sdk.csharp.session;
 
 public class LoginScript : MonoBehaviour
 {
@@ -62,6 +63,10 @@ public class LoginScript : MonoBehaviour
 
         if (FieldCheck())
         {
+            userField = username.text;
+            PlayerPrefs.SetString("username", userField);
+            PlayerPrefs.Save();
+
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);
             UserService userService = App42API.BuildUserService();
@@ -75,7 +80,6 @@ public class LoginScript : MonoBehaviour
 				errorMessage.text = "" + e.Message;
 			};
         }
-    }
-           
+    }  
 }
 
