@@ -558,7 +558,7 @@ PlayerSettings:
   webGLCompressionFormat: 1
   scriptingDefineSymbols:
     4: VUFORIA_IOS_SETTINGS
-    7: VUFORIA_ANDROID_SETTINGS
+    7: VUFORIA_ANDROID_SETTINGS;TOUCHSCRIPT_DEBUG
     14: VUFORIA_WSA_SETTINGS
   platformArchitecture: {}
   scriptingBackend:

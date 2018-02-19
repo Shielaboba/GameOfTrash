@@ -13,12 +13,15 @@ public class TrashLevelScript : MonoBehaviour {
     Constant c;
     String key,value;
     Button[] btn;
+    public Sprite mybutton;
     List<TrashData> trash;
+    Boolean finishAllTrash = true;
 
     // Use this for initialization
     void Start()
     {
-        level = LevelManager.GetInstance().GetLevel();
+
+        level = LevelManager.GetInstance().GetSelectLevel();
         count = TrashRandomManager.GetInstance().GetTrash().Count;
         trash = TrashRandomManager.GetInstance().GetTrash();
 
@@ -27,6 +30,7 @@ public class TrashLevelScript : MonoBehaviour {
 
         if (!gameObject.name.Equals("trashLevel" + level))
         {
+            print(level);
             gameObject.SetActive(false);
 
         }
@@ -34,17 +38,24 @@ public class TrashLevelScript : MonoBehaviour {
         for (int i = 0; i < count; i++)
         {
             btn[i].GetComponentInChildren<Text>().text = trash[i].TrashName;
-
+            if (!trash[i].CheckTrash) finishAllTrash = false;
             if (trash[i].CheckTrash)
             {
+               
                 btn[i].enabled = false;
-                btn[i].GetComponentInChildren<Text>().color = Color.red;
+                btn[i].image.overrideSprite = mybutton;
+                btn[i].GetComponentInChildren<Text>().color = Color.gray;
             }
 
             int copy = i;
             btn[i].onClick.AddListener(delegate () {
                 OnClick(trash[copy]);
             });
+        }
+
+        if (finishAllTrash)
+        {
+            SceneManager.LoadScene("trash_seg");
         }
     }
 
