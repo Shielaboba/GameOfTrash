@@ -1,32 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using com.shephertz.app42.paas.sdk.csharp;
+using com.shephertz.app42.paas.sdk.csharp.upload;
+using System;
+using UnityEngine.SceneManagement;
 
-public class TrashDropScript : MonoBehaviour {
+public class TrashDropScript : MonoBehaviour
+{
+    public GameObject[] obj;
+    List<TrashData> trash;
 
-	//public float speed = 10F;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+        SelectLevelGame();
+        StartCoroutine("DeployTrash");
+    }
 
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
-			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;            
-			transform.Translate(touchDeltaPosition.x, touchDeltaPosition.y, 0);
-		}
+    private void Update()
+    {        
+        if (transform.childCount-4 == 0)
+        {            
+            print("PROCEED TO NEXT LEVEL!");
+            LevelManager.GetInstance().SetLevel(LevelManager.GetInstance().GetLevel()+1);
+            SceneManager.LoadScene("map");
+        }
+    }
 
-		/*
-		if (Input.touchCount > 0) {
-			Touch touch = Input.GetTouch (0);
+    public void SelectLevelGame()
+    {
+        int level = LevelManager.GetInstance().GetSelectLevel();
 
-			if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved) {
-				Vector3 touchedPos = Camera.main.ScreenToWorldPoint (new Vector3 (touch.position.x,touch.position.y,10));
-				transform.position = Vector3.Lerp (transform.position,touchedPos,Time.deltaTime);
-			}
-		}
-		*/
-	}
+        if (!gameObject.name.Equals("TrashSegLevel" + level))
+        {                
+            gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator DeployTrash()
+    {
+        trash = TrashRandomManager.GetInstance().GetTrash();
+        for (int i = 0; i < obj.Length; i++)
+        {
+            WWW www = new WWW(trash[i].TrashUrl);
+            yield return www;
+
+            if (www.isDone) obj[i].SetActive(true);
+            obj[i].GetComponent<Image>().sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), new Vector2(0, 0));
+            obj[i].name = trash[i].TrashName;
+            Instantiate(obj[i]);
+        }
+    }
 }

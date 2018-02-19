@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MusicOne
   - Buttons
+  - Draggable
   layers:
   - Default
   - TransparentFX
