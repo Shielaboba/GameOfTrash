@@ -50,9 +50,15 @@ public class LifeManager : MonoBehaviour {
         StartCoroutine(StartCountdown()); // .. if life taken away, start countdown again
     }
     public void GiveLife()
-    {              
-        currentHealth++;
+    {
+     
+            currentHealth++;
+        if (currentHealth > 5)
+        {
+            currentHealth = 5;
+        }
         PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth); // .. update player hearts
+
     }
     public void SetCurHealth (int curHealth)
     {
@@ -67,4 +73,12 @@ public class LifeManager : MonoBehaviour {
         PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);
         SceneManager.LoadScene("map"); 
     }
+
+   /* public void AddLifeByTime()
+    {
+        if(cu)
+        {
+
+        }
+    }*/
 }
