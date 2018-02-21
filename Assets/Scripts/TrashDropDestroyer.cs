@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class TrashDropDestroyer : MonoBehaviour {
 
+    LifeManager life_manager;
     List<TrashData> trashList = TrashRandomManager.GetInstance().GetTrash();
     TrashData trash;
+
+    private void Start()
+    {
+        life_manager = FindObjectOfType<LifeManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,15 +23,19 @@ public class TrashDropDestroyer : MonoBehaviour {
             if(trash.TrashSegType.ToUpper().Equals(gameObject.name.ToUpper()))
             {
                 Destroy(collision.gameObject);
+             
             }
             else
             {
+                life_manager.TakeLife();
                 print("WRONG");
             }
         }
         else
         {
+            
             print("NULL:" + trash);
+            
         }
         
         
