@@ -16,6 +16,7 @@ public class TrashLevelScript : MonoBehaviour {
     public Sprite mybutton;
     List<TrashData> trash;
     Boolean finishAllTrash = true;
+    GameObject optionsPanel;
 
     // Use this for initialization
     void Start()
@@ -24,7 +25,7 @@ public class TrashLevelScript : MonoBehaviour {
         level = LevelManager.GetInstance().GetSelectLevel();
         count = TrashRandomManager.GetInstance().GetTrash().Count;
         trash = TrashRandomManager.GetInstance().GetTrash();
-
+        optionsPanel = GameObject.Find("optionsPanel");
         btn = new Button[level];
         btn = gameObject.GetComponentsInChildren<Button>();
 
@@ -54,7 +55,15 @@ public class TrashLevelScript : MonoBehaviour {
 
         if (finishAllTrash)
         {
-            SceneManager.LoadScene("trash_seg");
+            Button btn = GameObject.Find("GoButton").GetComponent<Button>();
+            btn.onClick.AddListener(delegate ()
+            {
+                SceneManager.LoadScene("trash_seg");
+            });           
+        }
+        else
+        {
+            optionsPanel.SetActive(false);
         }
     }
 
@@ -63,4 +72,5 @@ public class TrashLevelScript : MonoBehaviour {
         TrashManager.GetInstance().SetTrash(trash);
         SceneManager.LoadScene("trash_search");
     }
+
 }

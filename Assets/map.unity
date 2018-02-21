@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -556,7 +556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 226477396}
-  playerLives: 0
 --- !u!1 &232252101
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +691,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 232252103}
-  playerLives: 0
 --- !u!1 &250510253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,7 +1899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 598504999}
-  playerLives: 0
 --- !u!114 &598504999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2326,7 +2323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 765139296}
-  playerLives: 0
 --- !u!1 &785089754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,7 +3609,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 0}
-  playerLives: 0
 --- !u!1 &1415826575
 GameObject:
   m_ObjectHideFlags: 0
@@ -4818,7 +4813,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 1853921391}
-  playerLives: 1
 --- !u!1001 &1937311890
 Prefab:
   m_ObjectHideFlags: 0
@@ -5202,7 +5196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn: {fileID: 2043316516}
-  playerLives: 0
 --- !u!1 &2129784092
 GameObject:
   m_ObjectHideFlags: 0

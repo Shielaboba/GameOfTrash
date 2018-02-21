@@ -11,10 +11,6 @@ public class ScoreScript : MonoBehaviour
     public static int scorePoints = 0;
     Text score;
    
-    
-    Constant cons = new Constant();
-
-
     // Use this for initialization
     void Start()
     {

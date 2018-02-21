@@ -10,10 +10,13 @@ using UnityEngine.SceneManagement;
 public class TrashDropScript : MonoBehaviour
 {
     public GameObject[] obj;
+    GameObject optionsPanel;
     List<TrashData> trash;
+    int nextLevel = LevelManager.GetInstance().GetLevel()+1;
 
     private void Start()
     {
+        optionsPanel = GameObject.Find("optionsPanel");
         SelectLevelGame();
         
     }
@@ -21,10 +24,19 @@ public class TrashDropScript : MonoBehaviour
     private void Update()
     {        
         if (transform.childCount-4 == 0)
-        {            
-            print("PROCEED TO NEXT LEVEL!");
-            LevelManager.GetInstance().SetLevel(LevelManager.GetInstance().GetLevel()+1);
-            SceneManager.LoadScene("map");
+        {
+            optionsPanel.SetActive(true);
+            Button btn = GameObject.Find("GoButton").GetComponent<Button>();
+            
+            btn.onClick.AddListener(delegate ()
+            {
+                LevelManager.GetInstance().SetLevel(nextLevel);
+                SceneManager.LoadScene("map");
+            });
+        }
+        else
+        {
+            optionsPanel.SetActive(false);
         }
     }
 
