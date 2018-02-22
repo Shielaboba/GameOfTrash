@@ -22,6 +22,7 @@ public class TrashDropDestroyer : MonoBehaviour {
             print(trash.TrashSegType.ToUpper());
             if(trash.TrashSegType.ToUpper().Equals(gameObject.name.ToUpper()))
             {
+                ScoreScript.AddPoints(10);
                 Destroy(collision.gameObject);
              
             }

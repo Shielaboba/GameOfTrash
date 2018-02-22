@@ -6,6 +6,7 @@ using System;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.user;
+using com.shephertz.app42.paas.sdk.csharp.game;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
 
@@ -16,11 +17,11 @@ public class UserResponse : App42CallBack
     public static string sessionID;//added code for logout
     String user;
     String collectionName, key, value;
+    Constant c;
     public UserResponse() { }
 
     public UserResponse ( String user)
-    {
-       
+    {   
         errorMessage = GameObject.Find("warning").GetComponent<Text>();
         this.user = user;
     }
@@ -35,6 +36,8 @@ public class UserResponse : App42CallBack
         if (scene.name.Equals("login_menu"))
         {
             errorMessage.text = "Success";
+
+
             PlayerPrefs.SetInt("PlayerCurrentLives", 4);// .. SET NUMBER OF PLAYING LIFE
             new ProgressLoadScript(user).LoadProgress();
         }
