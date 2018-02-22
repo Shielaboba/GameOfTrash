@@ -24,7 +24,7 @@ public class LifeManager : MonoBehaviour {
                 currCountdownValue = 20; // .. reset time
             }
             
-            Debug.Log("Countdown: " + currCountdownValue);
+            //Debug.Log("Countdown: " + currCountdownValue);
             yield return new WaitForSeconds(1.0f); // .. decrement timer every 1 second
             currCountdownValue--;
 
