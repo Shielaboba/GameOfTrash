@@ -41,3 +41,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/trivia_menu.unity
     guid: 3293085bd8312f144a5ed10da35a5dbc
+  - enabled: 1
+    path: Assets/DIY.unity
+    guid: 2ce09248599faa14e97e3f9354d541c0
