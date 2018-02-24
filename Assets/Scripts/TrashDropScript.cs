@@ -4,25 +4,58 @@ using UnityEngine;
 using UnityEngine.UI;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.upload;
-using System;
+using System.Timers;
 using UnityEngine.SceneManagement;
 
 public class TrashDropScript : MonoBehaviour
 {
     public GameObject[] obj;
     GameObject optionsPanel;
+    GameObject replayPanel;
+    Text timer;
     List<TrashData> trash;
-    int nextLevel = LevelManager.GetInstance().GetLevel()+1;
+    public float timeLeft;
+    int selLevel, currLevel, nextLevel;
 
     private void Start()
     {
+        nextLevel = LevelManager.GetInstance().GetLevel() + 1;
+        selLevel = LevelManager.GetInstance().GetSelectLevel();
+        currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
+        replayPanel = GameObject.Find("replayPanel");
+        timer = GameObject.Find("timer").GetComponent<Text>();
+        timeLeft = 30.0f;
         SelectLevelGame();
         
     }
 
     private void Update()
-    {        
+    {
+        timeLeft -= Time.deltaTime;
+        int minutes = Mathf.FloorToInt(timeLeft / 60F);
+        int seconds = Mathf.FloorToInt(timeLeft - minutes * 60);
+
+        if (timeLeft >= 0)
+        {
+            replayPanel.SetActive(false);
+            if (minutes == 0 && seconds <= 59)
+                timer.color = Color.red;
+
+            timer.text = string.Format("{0:0}:{1:00}", minutes, seconds);
+        }
+        else
+        {
+            replayPanel.SetActive(true);
+            Button btn = GameObject.Find("RepBtn").GetComponent<Button>();
+
+            btn.onClick.AddListener(delegate ()
+            {
+                Destroy(this);
+                SceneManager.LoadScene("map");
+            });
+        }
+
         if (transform.childCount-4 == 0)
         {
             optionsPanel.SetActive(true);
@@ -30,7 +63,8 @@ public class TrashDropScript : MonoBehaviour
             
             btn.onClick.AddListener(delegate ()
             {
-                LevelManager.GetInstance().SetLevel(nextLevel);
+                if(selLevel == currLevel)
+                    LevelManager.GetInstance().SetLevel(nextLevel);
                 SceneManager.LoadScene("map");
             });
         }
@@ -41,10 +75,8 @@ public class TrashDropScript : MonoBehaviour
     }
 
     public void SelectLevelGame()
-    {
-        int level = LevelManager.GetInstance().GetSelectLevel();
-
-        if (!gameObject.name.Equals("TrashSegLevel" + level))
+    {        
+        if (!gameObject.name.Equals("TrashSegLevel" + selLevel))
         {                
             gameObject.SetActive(false);
         }
