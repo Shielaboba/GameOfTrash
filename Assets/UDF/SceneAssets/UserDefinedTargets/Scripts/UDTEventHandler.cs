@@ -27,7 +27,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     Boolean holder = false;
     TrashData trash;
 
-    LifeManager lifeManager;
+    LifeManager lifeManager;    
 
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
@@ -122,7 +122,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     #region MONOBEHAVIOUR_METHODS
     void Start()
     {
-        lifeManager = FindObjectOfType<LifeManager>();       
+        lifeManager = FindObjectOfType<LifeManager>();
 
         trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
@@ -418,7 +418,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
         if (holder)
         {
-            
+            ScoreScript.AddPoints(10);
             GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
