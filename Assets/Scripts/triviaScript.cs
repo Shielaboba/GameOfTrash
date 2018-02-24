@@ -11,11 +11,13 @@ public class TriviaScript : MonoBehaviour {
     // Use this for initialization
     string collectionName = "TrashFile";
     string keyName = "TrashName";
+    Text btnText;
     TrashData trash;
 
     private void Start()
-    {
-        trash = TrashManager.GetInstance().GetTrash();    
+    {        
+        trash = TrashManager.GetInstance().GetTrash();
+        btnText = GameObject.Find("BtnDiy").GetComponentInChildren<Text>();
     }
 
     public void Show()
@@ -31,7 +33,7 @@ public class TriviaScript : MonoBehaviour {
             storageService.FindDocumentsByQuery(cons.dbName, collectionName, query, new TriviaResponse());
 
             if (SceneManager.GetActiveScene().name.Equals("trivia_menu"))
-                GameObject.Find("triviaModalImg").SetActive(true);
+                GameObject.Find("triviaModalImg").SetActive(true);                
         }
         else
         {
@@ -48,8 +50,10 @@ public class TriviaScript : MonoBehaviour {
 
     public void OnClick()
     {
-        //trash.CheckTrash = true;
-        SceneManager.LoadScene("DIY");        
-
+        trash.CheckTrash = true;
+        if(btnText.text.ToUpper().Equals("DO IT YOURSELF!"))
+            SceneManager.LoadScene("DIY");
+        else
+            SceneManager.LoadScene("trash_menu");        
     }
 }

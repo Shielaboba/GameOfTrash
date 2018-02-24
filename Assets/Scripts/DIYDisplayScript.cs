@@ -79,9 +79,12 @@ public class DIYDisplayScript : MonoBehaviour
                 break;
             }
 
-        }
-        
-        
+        }                
+    }
+
+    public void OnClick()
+    {
+        SceneManager.LoadScene("trash_menu");
     }
 
     public void DisplayProcedure1()
@@ -164,15 +167,12 @@ public class DIYDisplayScript : MonoBehaviour
                 if (string.IsNullOrEmpty(www.error))
                 {
                     JsonData picUrl = JsonMapper.ToObject(www.text);
-
-                    Debug.Log("IN");
                     Texture2D tex = new Texture2D(621, 397, TextureFormat.DXT1, false);
                     using (WWW w = new WWW(picUrl["images"]["value"][0]["thumbnailUrl"].GetString()))
                     {
                         yield return w;
                         GameObject.Find(imageName).GetComponent<Image>().sprite = Sprite.Create(w.texture, new Rect(0, 0, w.texture.width, w.texture.height), new Vector2(0, 0));
                     }
-
                 }
                 else
                 {

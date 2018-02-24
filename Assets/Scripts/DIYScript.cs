@@ -10,18 +10,15 @@ using LitJson;
 
 public class DIYScript : MonoBehaviour
 {
-
     // Use this for initialization
-
     TrashData trash;
 
     private void Start()
     {
         trash = TrashManager.GetInstance().GetTrash();
-
         Constant cons = new Constant();
         App42API.Initialize(cons.apiKey, cons.secretKey);
-        Query query = QueryBuilder.Build("DIYTrashName", "plastic plate", Operator.EQUALS);
+        Query query = QueryBuilder.Build("DIYTrashName", trash.TrashName, Operator.EQUALS);
         StorageService storageService = App42API.BuildStorageService();
         storageService.FindDocumentsByQuery(cons.dbName, "DIYFile", query, new DIYResponse());
     }
@@ -33,7 +30,7 @@ internal class DIYResponse : App42CallBack
     public Text procedure;
     public Text prepareText;
     public Text name;
-
+    Text btnText;
     List<DIYTrashData> diy;
 
     public void OnSuccess(object response)
@@ -47,7 +44,6 @@ internal class DIYResponse : App42CallBack
             diy.Add(JsonUtility.FromJson<DIYTrashData>(jsonDocList[i].GetJsonDoc()));
 
         }
-
         TrashRandomManager.GetInstance().SetDIYTrash(diy);
     }
 
@@ -62,6 +58,7 @@ internal class DIYResponse : App42CallBack
 
     public void OnException(Exception ex)
     {
-        throw new NotImplementedException();
+        btnText = GameObject.Find("BtnDiy").GetComponentInChildren<Text>();
+        btnText.text = "Go back to Trash Hunt";
     }
 }
