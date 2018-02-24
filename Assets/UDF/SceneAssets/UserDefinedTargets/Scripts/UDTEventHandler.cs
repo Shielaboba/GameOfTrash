@@ -33,6 +33,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     private GameObject[] typeBtn = new GameObject[4];
 
+    #region SERIALIZABLE_CLASS
     [System.Serializable]
     public class AnnotateImageRequests
     {
@@ -82,6 +83,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     {
         public string description;
     }
+    #endregion
+
 
     #region PUBLIC_MEMBERS
     /// <summary>
@@ -349,11 +352,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         RenderTexture.active = null;
 
         fileData = screenShot.EncodeToPNG();
-
+        print("Size: "+fileData.Length);
         headers = new Dictionary<string, string>();
         headers.Add("Content-Type", "application/json; charset=UTF-8");
 
-        string base64 = System.Convert.ToBase64String(fileData);
+        string base64 = Convert.ToBase64String(fileData);
 
         AnnotateImageRequests requests = new AnnotateImageRequests();
         requests.requests = new List<AnnotateImageRequest>();
@@ -389,7 +392,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
                 {
                     Debug.Log(www.text.Replace("\n", "").Replace(" ", ""));
                     AnnotateImageResponses responses = JsonUtility.FromJson<AnnotateImageResponses>(www.text);
-                    Sample_OnAnnotateImageResponses(responses);
+                    OnAnnotateImageResponses(responses);
                 }
                 else
                 {
@@ -400,7 +403,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         }
     }
 
-    void Sample_OnAnnotateImageResponses(AnnotateImageResponses responses)
+    void OnAnnotateImageResponses(AnnotateImageResponses responses)
     {               
         holder = false;
         for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++) // loop thru all responses
