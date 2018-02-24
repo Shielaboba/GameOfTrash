@@ -34,15 +34,14 @@ public class UserResponse : App42CallBack
 	
 		errorMessage.text = "Success";
         if (scene.name.Equals("login_menu"))
-        {
-            errorMessage.text = "Success";
-
-
+        {            
             PlayerPrefs.SetInt("PlayerCurrentLives", 4);// .. SET NUMBER OF PLAYING LIFE
             new ProgressLoadScript(user).LoadProgress();
         }
         else if (scene.name.Equals("reg_menu"))
         {
+            ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
+            scoreBoardService.SaveUserScore("GOT", user, 0, new UserResponse()); // .. FOR SAVING FIRST SCORE FOR JUST REGISTERED PLAYERS.
             JSONClass json = new JSONClass
             {
                 { "PlayerGameLvlNo", 1 },
