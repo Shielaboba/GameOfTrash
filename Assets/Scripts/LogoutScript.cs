@@ -7,16 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class LogoutScript : MonoBehaviour
 {
-
-
     string sessionID = UserResponse.sessionID;
     public void Logout()
     {
         SceneManager.LoadScene("login_menu");
         Constant cons = new Constant();
         App42API.Initialize(cons.apiKey, cons.secretKey);
-        UserService userService = App42API.BuildUserService();
 
+        UserService userService = App42API.BuildUserService();
         userService.Logout(sessionID, new LogoutResponse());
     }
 }

@@ -7,15 +7,14 @@ using UnityEngine;
 
 public class LogoutResponse : App42CallBack
 {
-    public void OnException(Exception ex)
-    {
-        throw new NotImplementedException();
-    }
-
     public void OnSuccess(object response)
     {
         App42Response app42response = (App42Response)response;
-        System.Diagnostics.Debug.WriteLine("response is " + app42response);
-        throw new NotImplementedException();
+        String jsonResponse = app42response.ToString();
+        Debug.Log(UserResponse.sessionID);
     }
+    public void OnException(Exception ex)
+    {
+        throw new NotImplementedException();
+    }    
 }
