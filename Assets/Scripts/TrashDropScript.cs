@@ -6,15 +6,19 @@ using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.upload;
 using System.Timers;
 using UnityEngine.SceneManagement;
+using System;
 
 public class TrashDropScript : MonoBehaviour
 {
     public GameObject[] obj;
     GameObject optionsPanel;
     GameObject replayPanel;
+    GameObject btnPoint;
+    Boolean flagDone,flagFinish;
     Text timer;
     List<TrashData> trash;
-    public float timeLeft;
+    PowerUpManager pu_manager;
+    public float timeLeft, timeFinish;
     int selLevel, currLevel, nextLevel;
 
     private void Start()
@@ -24,10 +28,14 @@ public class TrashDropScript : MonoBehaviour
         currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
         replayPanel = GameObject.Find("replayPanel");
+        btnPoint = GameObject.Find("pointsbtn");
         timer = GameObject.Find("timer").GetComponent<Text>();
-        timeLeft = 30.0f;
+        timeLeft = 120.0f;
+        flagDone = false;
+        flagFinish = false;
         SelectLevelGame();
         
+
     }
 
     private void Update()
@@ -36,14 +44,26 @@ public class TrashDropScript : MonoBehaviour
         int minutes = Mathf.FloorToInt(timeLeft / 60F);
         int seconds = Mathf.FloorToInt(timeLeft - minutes * 60);
 
+        //display
         if (timeLeft >= 0)
         {
             replayPanel.SetActive(false);
-            if (minutes == 0 && seconds <= 59)
-                timer.color = Color.red;
+            
+            timer.color = Color.red;
+            if (flagDone.Equals(true))
+            {        
+                Time.timeScale = 0;
+                timeFinish = timeLeft;
+                if (Time.timeScale == 0 && timeFinish >= 100.0f)
+                    PowerUpManager.CheckGivePoint = true;
+               else
+                    btnPoint.SetActive(false);
+            }
 
+            // }
             timer.text = string.Format("{0:0}:{1:00}", minutes, seconds);
         }
+      
         else
         {
             replayPanel.SetActive(true);
@@ -58,7 +78,9 @@ public class TrashDropScript : MonoBehaviour
 
         if (transform.childCount-4 == 0)
         {
+            flagDone = true;
             optionsPanel.SetActive(true);
+            PowerUpManager.CheckGiveLife = true;
             Button btn = GameObject.Find("GoButton").GetComponent<Button>();
             
             btn.onClick.AddListener(delegate ()
@@ -66,6 +88,7 @@ public class TrashDropScript : MonoBehaviour
                 if(selLevel == currLevel)
                     LevelManager.GetInstance().SetLevel(nextLevel);
                 SceneManager.LoadScene("map");
+               // Debug.Log(pu_manager.CheckGiveLife);
             });
         }
         else
@@ -73,6 +96,14 @@ public class TrashDropScript : MonoBehaviour
             optionsPanel.SetActive(false);
         }
     }
+
+  //  public void OnClickGivePoints()
+   // {
+      //  if(Time.timeScale == 0 && flagFinish.Equals(true))
+      //  {
+          //  PowerUpManager.CheckGivePoint = true;
+       // }
+   // }
 
     public void SelectLevelGame()
     {        
