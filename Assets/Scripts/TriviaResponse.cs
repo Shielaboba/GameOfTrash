@@ -12,15 +12,13 @@ public class TriviaResponse : App42CallBack
     public GameObject window;
     public Text DisplayName;
     public Text DisplayDesc;
-   
-   // Boolean flag;
-    
+    Text btnText;    
 
     void Init()
     {
         DisplayDesc = GameObject.Find("displayDesc").GetComponent<Text>();
         DisplayName = GameObject.Find("displayName").GetComponent<Text>();
-        
+        btnText = GameObject.Find("BtnDiy").GetComponentInChildren<Text>();
     }
 
     public void OnSuccess(object response)
@@ -37,13 +35,11 @@ public class TriviaResponse : App42CallBack
 
                DisplayName.text = trash.TrashName.ToUpper();
                DisplayDesc.text = trash.TrashTrivia;
-
-      // window.SetActive(true);
-       App42Log.SetDebug(true);
+               btnText.text = "Do It Yourself!";
+        App42Log.SetDebug(true);
     }
     public void OnException(Exception e)
     {
-       // Debug.Log("booo");
         App42Log.Console("Exception : " + e);
         App42Log.SetDebug(true);
     }
