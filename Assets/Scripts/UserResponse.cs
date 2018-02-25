@@ -36,7 +36,7 @@ public class UserResponse : App42CallBack
         if (scene.name.Equals("login_menu"))
         {            
             PlayerPrefs.SetInt("PlayerCurrentLives", 3);// .. SET NUMBER OF PLAYING LIFE
-            PlayerPrefs.SetInt("PlayerLifeTimer", 20);
+            PlayerPrefs.SetInt("PlayerLifeTimer", 2400);
             new ProgressLoadScript(user).LoadProgress();
         }
         else if (scene.name.Equals("reg_menu"))
