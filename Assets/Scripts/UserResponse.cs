@@ -6,6 +6,7 @@ using System;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.user;
+using com.shephertz.app42.paas.sdk.csharp.game;
 using UnityEngine.SceneManagement;
 using SimpleJSON;
 
@@ -16,11 +17,11 @@ public class UserResponse : App42CallBack
     public static string sessionID;//added code for logout
     String user;
     String collectionName, key, value;
+    Constant c;
     public UserResponse() { }
 
     public UserResponse ( String user)
-    {
-       
+    {   
         errorMessage = GameObject.Find("warning").GetComponent<Text>();
         this.user = user;
     }
@@ -33,13 +34,15 @@ public class UserResponse : App42CallBack
 	
 		errorMessage.text = "Success";
         if (scene.name.Equals("login_menu"))
-        {
-            errorMessage.text = "Success";
-            
+        {            
+            PlayerPrefs.SetInt("PlayerCurrentLives", 3);// .. SET NUMBER OF PLAYING LIFE
+            PlayerPrefs.SetInt("PlayerLifeTimer", 2400);
             new ProgressLoadScript(user).LoadProgress();
         }
         else if (scene.name.Equals("reg_menu"))
         {
+            ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
+            scoreBoardService.SaveUserScore("GOT", user, 0, new UserResponse()); // .. FOR SAVING FIRST SCORE FOR JUST REGISTERED PLAYERS.
             JSONClass json = new JSONClass
             {
                 { "PlayerGameLvlNo", 1 },

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vuforia;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 {
@@ -24,12 +25,15 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     public int maxResults = 10;
     Dictionary<string, string> headers;
     Boolean holder = false;
-    TrashData trash; 
+    TrashData trash;
+
+    LifeManager lifeManager;    
 
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     private GameObject[] typeBtn = new GameObject[4];
 
+    #region SERIALIZABLE_CLASS
     [System.Serializable]
     public class AnnotateImageRequests
     {
@@ -79,6 +83,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     {
         public string description;
     }
+    #endregion
+
 
     #region PUBLIC_MEMBERS
     /// <summary>
@@ -116,6 +122,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     #region MONOBEHAVIOUR_METHODS
     void Start()
     {
+        lifeManager = FindObjectOfType<LifeManager>();
+
         trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
 
@@ -344,11 +352,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         RenderTexture.active = null;
 
         fileData = screenShot.EncodeToPNG();
-
+        print("Size: "+fileData.Length);
         headers = new Dictionary<string, string>();
         headers.Add("Content-Type", "application/json; charset=UTF-8");
 
-        string base64 = System.Convert.ToBase64String(fileData);
+        string base64 = Convert.ToBase64String(fileData);
 
         AnnotateImageRequests requests = new AnnotateImageRequests();
         requests.requests = new List<AnnotateImageRequest>();
@@ -384,7 +392,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
                 {
                     Debug.Log(www.text.Replace("\n", "").Replace(" ", ""));
                     AnnotateImageResponses responses = JsonUtility.FromJson<AnnotateImageResponses>(www.text);
-                    Sample_OnAnnotateImageResponses(responses);
+                    OnAnnotateImageResponses(responses);
                 }
                 else
                 {
@@ -395,10 +403,10 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         }
     }
 
-    void Sample_OnAnnotateImageResponses(AnnotateImageResponses responses)
+    void OnAnnotateImageResponses(AnnotateImageResponses responses)
     {               
         holder = false;
-        for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++)
+        for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++) // loop thru all responses
         {
             if ((trash.TrashBase.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty)) ||
                trash.TrashName.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty))))
@@ -410,14 +418,20 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
         if (holder)
         {
-            
+            ScoreScript.AddPoints(10);
             GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
 
         }
-        else GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
+        else {
 
+            GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
+            lifeManager.TakeLife();//reduce life
+            if (lifeManager.GetCurHealth() == 0)
+                lifeManager.GameOver();
+
+        }
         print("END");
     }
 
@@ -444,5 +458,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             typeBtn[3].SetActive(true);
         }
     }
+    
 
 }

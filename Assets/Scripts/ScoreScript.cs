@@ -9,24 +9,30 @@ using com.shephertz.app42.paas.sdk.csharp.game;
 public class ScoreScript : MonoBehaviour
 {
     public static int scorePoints = 0;
-    Text score;
+    Text scoreText;
    
-    
-    Constant cons = new Constant();
-
-
     // Use this for initialization
     void Start()
     {
-        score = GetComponent<Text>();
-        
+        scoreText = GetComponent<Text>();
+        scorePoints = PlayerPrefs.GetInt("PlayerCurrentScore");
     }
 
     // Update is called once per frame
     void Update()
     {
-        score.text = "Score: " + scorePoints;
+        if (scorePoints < 0)
+            scorePoints = 0;
+
+        scoreText.text = "Score: " + scorePoints;
     }
-    
+        
+    public static void AddPoints (int pointsToAdd)
+    {
+        scorePoints += pointsToAdd;
+        PlayerPrefs.SetInt("PlayerCurrentScore", scorePoints);
+    } 
 
 }
+
+

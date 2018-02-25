@@ -6,6 +6,7 @@ public class TrashData {
     public string TrashSegType;
     public string TrashBase;
     public string TrashTrivia;
+    public string TrashRecyclable;
     public bool CheckTrash;
     public string TrashUrl;
 }

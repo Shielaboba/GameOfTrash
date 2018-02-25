@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using com.shephertz.app42.paas.sdk.csharp.user;
 using com.shephertz.app42.paas.sdk.csharp;
+using com.shephertz.app42.paas.sdk.csharp.game;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -22,6 +23,9 @@ public class ProgressLoadScript
     
     public void LoadProgress()
     {
+        ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
+        scoreBoardService.GetLastScoreByUser(c.gameName, user, new ScoreResponse());
+
         key = "PlayerName";
         value = user;
         StorageService storageService = App42API.BuildStorageService();
