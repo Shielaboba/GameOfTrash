@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class EscKeyScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    GameObject procedure, diymain;
+
+    // Use this for initialization
+    void Start () {
+        procedure = GameObject.Find("procedure");
+        diymain = GameObject.Find("diymain");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -55,6 +58,17 @@ public class EscKeyScript : MonoBehaviour {
                 SceneManager.LoadScene("trash_menu");
             }
         }
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("DIY"))
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                if (procedure.activeInHierarchy)
+                {
+                    diymain.SetActive(true);
+                    procedure.SetActive(false);
+                }
+            }
+        }
     }
 
     public void OnClick()
@@ -68,5 +82,10 @@ public class EscKeyScript : MonoBehaviour {
     public void SegShow()
     {
         SceneManager.LoadScene("trash_seg");
+    }
+    public void ReturnDiyMain()
+    {
+        print("hey");
+        diymain.SetActive(true);
     }
 }
