@@ -10,10 +10,12 @@ public class ScoreScript : MonoBehaviour
 {
     public static int scorePoints = 0;
     Text scoreText;
-   
+    PlayerData player;
+
     // Use this for initialization
     void Start()
     {
+        player = PlayerManager.GetInstance().GetPlayer();
         scoreText = GetComponent<Text>();
         scorePoints = PlayerPrefs.GetInt("PlayerCurrentScore");
     }
@@ -24,7 +26,7 @@ public class ScoreScript : MonoBehaviour
         if (scorePoints < 0)
             scorePoints = 0;
 
-        scoreText.text = "Score: " + scorePoints;
+        scoreText.text = "Score: " + (player.PlayerScoreMade + scorePoints);
     }
         
     public static void AddPoints (int pointsToAdd)

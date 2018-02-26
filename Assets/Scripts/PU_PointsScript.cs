@@ -16,7 +16,8 @@ public class PU_PointsScript : MonoBehaviour {
     {
         addedPoint = GameObject.Find("countPointAdded").GetComponent<Text>();
         btnPoint = GameObject.Find("pointsbtn");
-        countGivePoint = 0;
+        countGivePoint = PlayerManager.GetInstance().GetPlayer().PlayerPowerScore;
+        addedPoint.text = countGivePoint + "";
         flagClick = false;
     }
     
