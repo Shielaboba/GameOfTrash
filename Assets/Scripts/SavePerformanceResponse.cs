@@ -9,6 +9,7 @@ public class SavePerformanceResponse : App42CallBack
 {
     public void OnSuccess(object response)
     {
+        UnityEngine.PlayerPrefs.SetInt("PlayerCurrentScore", 0);
         SceneManager.LoadScene("map");
     }
     public void OnException(Exception e)

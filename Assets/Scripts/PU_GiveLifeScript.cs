@@ -39,6 +39,7 @@ public class PU_GiveLifeScript : MonoBehaviour {
         {
             life_manager.GiveLife();
             count--;
+            addedLife.text = count + "";
         }
       
 

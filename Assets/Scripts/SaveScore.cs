@@ -20,7 +20,7 @@ public class SaveScore : MonoBehaviour
     {
         String userName = player.PlayerName; //PlayerPrefs.GetString("username");
         //int gameScore = ScoreScript.scorePoints;
-        player.PlayerScoreMade += ScoreScript.scorePoints;
+        player.PlayerScoreMade = ScoreScript.scorePoints;
         Constant cons = new Constant();
         App42API.Initialize(cons.apiKey, cons.secretKey);
 
@@ -80,7 +80,13 @@ public class SaveScore : MonoBehaviour
         string data = JsonUtility.ToJson(player);
         print(data);
         App42API.Initialize(cons.apiKey, cons.secretKey);
+
+        ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
+        scoreBoardService.SaveUserScore(cons.gameName, player.PlayerName, player.PlayerScoreMade, new ScoreResponse());
+
         StorageService storageService = App42API.BuildStorageService();
         storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new SavePerformanceResponse());
+
+        
     }
 }

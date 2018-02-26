@@ -42,6 +42,7 @@ public class PU_PointsScript : MonoBehaviour {
         {
             Debug.Log("ACCESS");
             countGivePoint--;
+            addedPoint.text = countGivePoint+"";
         }
 
         if (countGivePoint <= 0)

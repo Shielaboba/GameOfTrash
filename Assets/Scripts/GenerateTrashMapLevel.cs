@@ -17,8 +17,7 @@ public class GenerateTrashMapLevel : MonoBehaviour {
     public Button PlayBtn, CloseBtn;
     // Use this for initialization
     void Start ()
-    {
-        PlayerPrefs.SetInt("PlayerCurrentScore", 0);
+    {        
         levelDetails.SetActive(false);
         int level = LevelManager.GetInstance().GetLevel();
         LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);

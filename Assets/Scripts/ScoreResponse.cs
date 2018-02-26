@@ -10,12 +10,6 @@ public class ScoreResponse : App42CallBack
 {
     public void OnSuccess(object response)
     {
-        Game game = (Game)response;
-
-        for (int i = 0; i < game.GetScoreList().Count; i++)
-        {
-            PlayerPrefs.SetInt("PlayerCurrentScore", Convert.ToInt32(game.GetScoreList()[i].GetValue()));
-        }
     }
     public void OnException(Exception e)
     {
