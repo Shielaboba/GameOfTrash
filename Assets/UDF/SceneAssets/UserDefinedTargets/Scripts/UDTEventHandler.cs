@@ -32,6 +32,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     private GameObject[] typeBtn = new GameObject[4];
+    private GameObject noLifeDetails;
+    private Button CloseBtn, OkayBtn;
 
     #region SERIALIZABLE_CLASS
     [System.Serializable]
@@ -123,7 +125,9 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     void Start()
     {
         lifeManager = FindObjectOfType<LifeManager>();
-
+        noLifeDetails = GameObject.Find("noLifeDetails");
+        OkayBtn = GameObject.Find("OkayBtn").GetComponent<Button>();
+        noLifeDetails.SetActive(false);
         trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
 
@@ -429,7 +433,14 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
             lifeManager.TakeLife();//reduce life
             if (lifeManager.GetCurHealth() == 0)
-                lifeManager.GameOver();
+            {
+                noLifeDetails.SetActive(true);
+                OkayBtn.onClick.AddListener(delegate ()
+                {
+                    SceneManager.LoadScene("map");
+                });
+            }
+                
 
         }
         print("END");

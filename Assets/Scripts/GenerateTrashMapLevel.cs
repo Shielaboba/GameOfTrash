@@ -11,14 +11,16 @@ public class GenerateTrashMapLevel : MonoBehaviour {
 
     public Button btn;
     int LvlBtn;
-    public GameObject levelDetails;
+    public GameObject levelDetails, noLifeDetails;
     PlayerData player;
     public Text ScoreText;
-    public Button PlayBtn, CloseBtn;
+    public Button PlayBtn, CloseBtn, OkayBtn, Close1Btn;
     // Use this for initialization
     void Start ()
-    {        
+    {
+        ScoreScript.scorePoints = 0;
         levelDetails.SetActive(false);
+        noLifeDetails.SetActive(false);
         int level = LevelManager.GetInstance().GetLevel();
         LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
 
@@ -30,31 +32,48 @@ public class GenerateTrashMapLevel : MonoBehaviour {
 
     public void OnClick()
     {
-        print(levelDetails);
-        levelDetails.SetActive(true);
+        if (PlayerPrefs.GetInt("PlayerCurrentLives") == 0)
+        {
+            noLifeDetails.SetActive(true);
+            OkayBtn.onClick.AddListener(delegate ()
+            {
+                noLifeDetails.SetActive(false);
+            });
 
-        LevelManager.GetInstance().SetSelectLevel(LvlBtn);
-
-        if (LevelManager.GetInstance().GetSelectLevel() == 1)
-            ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[0] + "";
-        else if (LevelManager.GetInstance().GetSelectLevel() == 2)
-            ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[1] + "";
-        else if (LevelManager.GetInstance().GetSelectLevel() == 3)
-            ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[2] + "";
-        else if (LevelManager.GetInstance().GetSelectLevel() == 4)
-            ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[3] + "";
-        else if (LevelManager.GetInstance().GetSelectLevel() == 5)
-            ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[4] + "";
+            Close1Btn.onClick.AddListener(delegate ()
+            {
+                noLifeDetails.SetActive(false);
+            });
+        }
         else
-            ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[5] + "";
+        {
+            levelDetails.SetActive(true);
 
-        PlayBtn.onClick.AddListener(delegate () {
-            TrashRandom();
-        });
+            LevelManager.GetInstance().SetSelectLevel(LvlBtn);
 
-        CloseBtn.onClick.AddListener(delegate () {
-            levelDetails.SetActive(false);
-        });
+            if (LevelManager.GetInstance().GetSelectLevel() == 1)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[0] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 2)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[1] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 3)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[2] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 4)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[3] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 5)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[4] + "";
+            else
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[5] + "";
+
+            PlayBtn.onClick.AddListener(delegate ()
+            {
+                TrashRandom();
+            });
+
+            CloseBtn.onClick.AddListener(delegate ()
+            {
+                levelDetails.SetActive(false);
+            });
+        }
 
     }
 

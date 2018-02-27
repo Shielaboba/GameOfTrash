@@ -74,6 +74,11 @@ public class TrashDropScript : MonoBehaviour
         {
             optionsPanel.SetActive(false);
         }
+
+        if(PlayerPrefs.GetInt("PlayerCurrentLives") == 0)
+        {
+            FailedLevel();
+        }
     }
 
     void SuccessLevel()
@@ -98,6 +103,7 @@ public class TrashDropScript : MonoBehaviour
         btn.onClick.AddListener(delegate ()
         {
             Destroy(this);
+            ScoreScript.scorePoints = 0;
             SceneManager.LoadScene("map");
         });
     }
