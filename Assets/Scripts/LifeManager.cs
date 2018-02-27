@@ -52,12 +52,6 @@ public class LifeManager : MonoBehaviour
     {
         currentHealth--;
         PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth); 
-
-            //if(GetCurHealth() == 0)
-            //{
-            //    GameOver();
-            //}        
-
     }
 
     public void GiveLife()

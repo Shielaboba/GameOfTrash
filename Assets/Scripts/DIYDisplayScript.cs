@@ -5,6 +5,7 @@ using LitJson;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class DIYDisplayScript : MonoBehaviour
 {
@@ -17,17 +18,23 @@ public class DIYDisplayScript : MonoBehaviour
 
     void Start()
     {
-        procedure = GameObject.Find("procedure");
-        craftname1 = GameObject.Find("name_diy1").GetComponent<Text>();
-        craftname2 = GameObject.Find("name_diy2").GetComponent<Text>();
+        try
+        {
+            procedure = GameObject.Find("procedure");
+            craftname1 = GameObject.Find("name_diy1").GetComponent<Text>();
+            craftname2 = GameObject.Find("name_diy2").GetComponent<Text>();
 
-        craftnameDisplay = GameObject.Find("name_diy").GetComponent<Text>();
-        tools = GameObject.Find("prepareText").GetComponent<Text>();
-        steps = GameObject.Find("Procedure").GetComponent<Text>();
-        procedure.SetActive(false);
-        
-        DisplayDIYMain();
-        
+            craftnameDisplay = GameObject.Find("name_diy").GetComponent<Text>();
+            tools = GameObject.Find("prepareText").GetComponent<Text>();
+            steps = GameObject.Find("Procedure").GetComponent<Text>();
+            procedure.SetActive(false);
+
+            DisplayDIYMain();
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     public void DisplayDIYMain()
