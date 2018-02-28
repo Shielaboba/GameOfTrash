@@ -30,13 +30,18 @@ public class UserResponse : App42CallBack
     {
         User _user = (User)response;// added code for logout
         sessionID = _user.GetSessionId();//added code for logout
-		Scene scene = SceneManager.GetActiveScene ();		
-	
-		errorMessage.text = "Success";
+		Scene scene = SceneManager.GetActiveScene ();
+
+        string levelScore = "[{\"Level1\": 0}," +
+                                "{ \"Level2\": 0}," +
+                                "{ \"Level3\": 0}," +
+                                "{ \"Level4\": 0}," +
+                                "{ \"Level5\": 0}," +
+                                "{ \"Level6\": 0}]";
+
+        errorMessage.text = "Success";
         if (scene.name.Equals("login_menu"))
-        {            
-            PlayerPrefs.SetInt("PlayerCurrentLives", 3);// .. SET NUMBER OF PLAYING LIFE
-            PlayerPrefs.SetInt("PlayerLifeTimer", 2400);
+        {                                    
             new ProgressLoadScript(user).LoadProgress();
         }
         else if (scene.name.Equals("reg_menu"))
@@ -46,7 +51,12 @@ public class UserResponse : App42CallBack
             JSONClass json = new JSONClass
             {
                 { "PlayerGameLvlNo", 1 },
-                { "PlayerName", user }
+                { "PlayerName", user },
+                { "PlayerScoreMade", 0 },
+                { "PlayerPowerLife", 1},
+                { "PlayerPowerScore", 1},
+                { "PlayerLife", 5 },
+                { "PlayerScoreLevel", levelScore}
             };
             StorageService storageService = App42API.BuildStorageService();
             storageService.InsertJSONDocument("GOTDB", "PerformanceFile", json, new UserResponse());

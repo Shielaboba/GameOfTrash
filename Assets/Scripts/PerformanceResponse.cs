@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class PerformanceResponse : App42CallBack {
 
-    public Data Data;
+    PlayerData Data;
     private MapScript MapScriptInstance;
     
     public void OnSuccess(object response)
@@ -17,9 +17,11 @@ public class PerformanceResponse : App42CallBack {
         Storage storage = (Storage)response;
         IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
 
-        Data = new Data();
-        Data = JsonUtility.FromJson<Data>(jsonDocList[0].GetJsonDoc()); 
-        
+        Data = JsonUtility.FromJson<PlayerData>(jsonDocList[0].GetJsonDoc());
+        PlayerManager.GetInstance().SetPlayer(Data);
+        PlayerPrefs.SetInt("PlayerCurrentScore", 0);
+        PlayerPrefs.SetInt("PlayerCurrentLives", PlayerManager.GetInstance().GetPlayer().PlayerLife);// .. SET NUMBER OF PLAYING LIFE
+        PlayerPrefs.SetInt("PlayerLifeTimer", 2400);
         SceneManager.LoadScene("map");
         var lvlManager = LevelManager.GetInstance();
         lvlManager.SetLevel(Data.PlayerGameLvlNo);

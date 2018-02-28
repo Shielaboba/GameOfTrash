@@ -5,6 +5,7 @@ using LitJson;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class DIYDisplayScript : MonoBehaviour
 {
@@ -12,29 +13,28 @@ public class DIYDisplayScript : MonoBehaviour
     // Use this for initialization
     List<DIYTrashData> diy = TrashRandomManager.GetInstance().GetDIYTrash();
     Text craftname1, craftname2, craftnameDisplay, tools, steps;
-    Button craftimg1, craftimg2;
-    Image diycraft;
-    GameObject procedure, diymain;
+    GameObject procedure;
     string btnName;
 
     void Start()
     {
-        procedure = GameObject.Find("procedure");
-        diymain = GameObject.Find("diymain");
+        try
+        {
+            procedure = GameObject.Find("procedure");
+            craftname1 = GameObject.Find("name_diy1").GetComponent<Text>();
+            craftname2 = GameObject.Find("name_diy2").GetComponent<Text>();
 
-        craftname1 = GameObject.Find("name_diy1").GetComponent<Text>();
-        craftname2 = GameObject.Find("name_diy2").GetComponent<Text>();
-        craftimg1 = GameObject.Find("BtnSample1").GetComponent<Button>();
-        craftimg2 = GameObject.Find("BtnSample2").GetComponent<Button>();
+            craftnameDisplay = GameObject.Find("name_diy").GetComponent<Text>();
+            tools = GameObject.Find("prepareText").GetComponent<Text>();
+            steps = GameObject.Find("Procedure").GetComponent<Text>();
+            procedure.SetActive(false);
 
-        craftnameDisplay = GameObject.Find("name_diy").GetComponent<Text>();
-        tools = GameObject.Find("prepareText").GetComponent<Text>();
-        steps = GameObject.Find("Procedure").GetComponent<Text>();
-        diycraft = GameObject.Find("img_diy").GetComponent<Image>();
-        procedure.SetActive(false);
-        
-        DisplayDIYMain();
-        
+            DisplayDIYMain();
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     public void DisplayDIYMain()
@@ -74,7 +74,6 @@ public class DIYDisplayScript : MonoBehaviour
 
                 tools.text = toolsholder;
                 steps.text = stepsholder;
-                diycraft.name = diy[i].DIYCraftName;
                 StartCoroutine(FindImage(diy[i].DIYCraftName, "img_diy"));
                 break;
             }
@@ -167,7 +166,6 @@ public class DIYDisplayScript : MonoBehaviour
                 if (string.IsNullOrEmpty(www.error))
                 {
                     JsonData picUrl = JsonMapper.ToObject(www.text);
-                    Texture2D tex = new Texture2D(621, 397, TextureFormat.DXT1, false);
                     using (WWW w = new WWW(picUrl["images"]["value"][0]["thumbnailUrl"].GetString()))
                     {
                         yield return w;

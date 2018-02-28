@@ -14,16 +14,15 @@ public class TrashDropScript : MonoBehaviour
     GameObject optionsPanel;
     GameObject replayPanel;
     GameObject btnPoint;
-    Boolean flagDone,flagFinish;
+    Boolean flagDone;
     Text timer;
     List<TrashData> trash;
     PowerUpManager pu_manager;
     public float timeLeft, timeFinish;
-    int selLevel, currLevel, nextLevel;
+    int selLevel, currLevel;
 
     private void Start()
     {
-        nextLevel = LevelManager.GetInstance().GetLevel() + 1;
         selLevel = LevelManager.GetInstance().GetSelectLevel();
         currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
@@ -32,10 +31,7 @@ public class TrashDropScript : MonoBehaviour
         timer = GameObject.Find("timer").GetComponent<Text>();
         timeLeft = 120.0f;
         flagDone = false;
-        flagFinish = false;
-        SelectLevelGame();
-        
-
+        SelectLevelGame();        
     }
 
     private void Update()
@@ -54,6 +50,7 @@ public class TrashDropScript : MonoBehaviour
             {        
                 Time.timeScale = 0;
                 timeFinish = timeLeft;
+                
                 if (Time.timeScale == 0 && timeFinish >= 100.0f)
                     PowerUpManager.CheckGivePoint = true;
                else
@@ -66,44 +63,50 @@ public class TrashDropScript : MonoBehaviour
       
         else
         {
-            replayPanel.SetActive(true);
-            Button btn = GameObject.Find("RepBtn").GetComponent<Button>();
-
-            btn.onClick.AddListener(delegate ()
-            {
-                Destroy(this);
-                SceneManager.LoadScene("map");
-            });
+            FailedLevel();
         }
 
         if (transform.childCount-4 == 0)
         {
-            flagDone = true;
-            optionsPanel.SetActive(true);
-            PowerUpManager.CheckGiveLife = true;
-            Button btn = GameObject.Find("GoButton").GetComponent<Button>();
-            
-            btn.onClick.AddListener(delegate ()
-            {
-                if(selLevel == currLevel)
-                    LevelManager.GetInstance().SetLevel(nextLevel);
-                SceneManager.LoadScene("map");
-               // Debug.Log(pu_manager.CheckGiveLife);
-            });
+            SuccessLevel();
         }
         else
         {
             optionsPanel.SetActive(false);
         }
+
+        if(PlayerPrefs.GetInt("PlayerCurrentLives") == 0)
+        {
+            FailedLevel();
+        }
     }
 
-  //  public void OnClickGivePoints()
-   // {
-      //  if(Time.timeScale == 0 && flagFinish.Equals(true))
-      //  {
-          //  PowerUpManager.CheckGivePoint = true;
-       // }
-   // }
+    void SuccessLevel()
+    {
+        flagDone = true;
+        optionsPanel.SetActive(true);
+        PowerUpManager.CheckGiveLife = true;
+        Button btn = GameObject.Find("GoButton").GetComponent<Button>();
+
+        btn.onClick.AddListener(delegate ()
+        {
+            if (selLevel == currLevel)
+                ScoreScript.scorePoints = 0;            
+        });
+    }
+
+    void FailedLevel()
+    {
+        replayPanel.SetActive(true);
+        Button btn = GameObject.Find("RepBtn").GetComponent<Button>();
+
+        btn.onClick.AddListener(delegate ()
+        {
+            Destroy(this);
+            ScoreScript.scorePoints = 0;
+            SceneManager.LoadScene("map");
+        });
+    }
 
     public void SelectLevelGame()
     {        

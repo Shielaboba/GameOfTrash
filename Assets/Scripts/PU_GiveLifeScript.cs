@@ -18,8 +18,8 @@ public class PU_GiveLifeScript : MonoBehaviour {
         life_manager = FindObjectOfType<LifeManager>();
         btnGiveLife = GameObject.Find("lifebtn"); ;
         flagClick = false;
-        count = 0;
-      
+        count = PlayerManager.GetInstance().GetPlayer().PlayerPowerLife;
+        addedLife.text = count + "";
     }
 	
     public void OnCLickGiveLife()
@@ -39,6 +39,7 @@ public class PU_GiveLifeScript : MonoBehaviour {
         {
             life_manager.GiveLife();
             count--;
+            addedLife.text = count + "";
         }
       
 

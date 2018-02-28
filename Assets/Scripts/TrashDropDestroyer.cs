@@ -11,6 +11,7 @@ public class TrashDropDestroyer : MonoBehaviour {
     private void Start()
     {
         life_manager = FindObjectOfType<LifeManager>();
+        print("DESTROY");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

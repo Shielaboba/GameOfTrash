@@ -41,7 +41,6 @@ public class TimeManager : MonoBehaviour {
         }
         
         PlayerPrefs.SetInt("PlayerLifeTimer", Convert.ToInt32(countingTime));
-        Debug.Log(Mathf.Round(countingTime));
 
         clock.text = string.Format("{0:0}:{1:00}", min, sec);
     }

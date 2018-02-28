@@ -28,8 +28,7 @@ public class LifeManager : MonoBehaviour
                 GiveLife(); 
                 currCountdownValue = 1200;
             }            
-        
-            Debug.Log("Countdown: " + currCountdownValue);
+                    
             yield return new WaitForSeconds(1.0f); 
             currCountdownValue--;
 
@@ -53,12 +52,6 @@ public class LifeManager : MonoBehaviour
     {
         currentHealth--;
         PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth); 
-
-            if(GetCurHealth() == 0)
-            {
-                GameOver();
-            }        
-
     }
 
     public void GiveLife()

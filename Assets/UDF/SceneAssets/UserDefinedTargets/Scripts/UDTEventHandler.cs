@@ -32,6 +32,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     private GameObject[] typeBtn = new GameObject[4];
+    private GameObject noLifeDetails;
+    private Button BackBtn, OkayBtn, BuildBtn;
 
     #region SERIALIZABLE_CLASS
     [System.Serializable]
@@ -123,7 +125,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     void Start()
     {
         lifeManager = FindObjectOfType<LifeManager>();
-
+        noLifeDetails = GameObject.Find("noLifeDetails");
+        BackBtn = GameObject.Find("BackButton").GetComponent<Button>();
+        OkayBtn = GameObject.Find("OkayBtn").GetComponent<Button>();
+        BuildBtn = GameObject.Find("BuildButton").GetComponent<Button>();
+        noLifeDetails.SetActive(false);
         trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
 
@@ -347,6 +353,15 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         RenderTexture.active = renderTexture;
         screenShot.ReadPixels(rect, 0, 0);
 
+        //for (int x = 0; x < screenShot.width; x++)
+        //{
+        //    for (int y = 0; y < screenShot.height; y++)
+        //    {                
+        //        Color newColor = new Color(0.3F, 0.4F, 0.6F);                
+        //        screenShot.SetPixel(x, y, newColor); // Now greyscale
+        //    }
+        //}
+        //screenShot.Apply();
         // reset active camera texture and render texture
         camera.targetTexture = null;
         RenderTexture.active = null;
@@ -429,7 +444,16 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
             lifeManager.TakeLife();//reduce life
             if (lifeManager.GetCurHealth() == 0)
-                lifeManager.GameOver();
+            {
+                BackBtn.enabled = false;
+                BuildBtn.enabled = false;
+                noLifeDetails.SetActive(true);
+                OkayBtn.onClick.AddListener(delegate ()
+                {
+                    SceneManager.LoadScene("map");
+                });
+            }
+                
 
         }
         print("END");
