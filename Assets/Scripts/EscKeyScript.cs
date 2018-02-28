@@ -88,4 +88,10 @@ public class EscKeyScript : MonoBehaviour {
         print("hey");
         diymain.SetActive(true);
     }
+
+    //display book
+    public void GotoBook()
+    {
+        SceneManager.LoadScene("book");
+    }
 }

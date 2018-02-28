@@ -3119,6 +3119,7 @@ GameObject:
   - component: {fileID: 914617044}
   - component: {fileID: 914617043}
   - component: {fileID: 914617042}
+  - component: {fileID: 914617045}
   m_Layer: 5
   m_Name: bookIcon
   m_TagString: Untagged
@@ -3183,7 +3184,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 914617043}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 914617045}
+        m_MethodName: GotoBook
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &914617043
@@ -3219,6 +3231,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 914617040}
+--- !u!114 &914617045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 914617040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d224695c75ae96b43adc3a6795c743ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &924801029
 GameObject:
   m_ObjectHideFlags: 0
