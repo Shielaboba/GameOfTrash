@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/map.unity
     guid: d38a51c92c0ffae4b8a4b2b5d8e5cd54
   - enabled: 1
+    path: Assets/book.unity
+    guid: ea75871bed9a868408d41c607d15272c
+  - enabled: 1
     path: Assets/leaderboard_display.unity
     guid: 4899fb9c9774a334ca193723af4751a0
   - enabled: 1
