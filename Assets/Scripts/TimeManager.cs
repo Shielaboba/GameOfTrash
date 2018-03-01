@@ -12,8 +12,13 @@ public class TimeManager : MonoBehaviour {
 
     public Text clock;
 
+    GameObject timeManager;
+
     void Start()
     {
+
+        timeManager = GameObject.Find("Time System");
+
         clock = GetComponent<Text>();
 
         lifeManager = FindObjectOfType<LifeManager>();
@@ -25,24 +30,32 @@ public class TimeManager : MonoBehaviour {
     void Update()
     {
         if (lifeManager.GetCurHealth() == 5)
-            return;
-
-        countingTime -= Time.deltaTime;
-        int min = Mathf.FloorToInt(countingTime / 60F);
-        int sec = Mathf.FloorToInt(countingTime - min * 60);
-
-        if(countingTime <= 0)
         {
-            //.. to do 
-
-            lifeManager.GiveLife();
-
-            ResetTime();
+            timeManager.SetActive(false); // if puno ang life, hide ang timer.
+            return;
         }
-        
-        PlayerPrefs.SetInt("PlayerLifeTimer", Convert.ToInt32(countingTime));
+        else
+        {
 
-        clock.text = string.Format("{0:0}:{1:00}", min, sec);
+            timeManager.SetActive(true); // if na kwaan ang life, show ang timer.
+
+            countingTime -= Time.deltaTime;
+            int min = Mathf.FloorToInt(countingTime / 60F);
+            int sec = Mathf.FloorToInt(countingTime - min * 60);
+
+            if (countingTime <= 0)
+            {
+                //.. to do 
+
+                lifeManager.GiveLife();
+
+                ResetTime();
+            }
+
+            PlayerPrefs.SetInt("PlayerLifeTimer", Convert.ToInt32(countingTime));
+
+            clock.text = string.Format("{0:0}:{1:00}", min, sec);
+        }
     }
 
     public void ResetTime()
