@@ -20,6 +20,7 @@ public class TrashDropScript : MonoBehaviour
     PowerUpManager pu_manager;
     public float timeLeft, timeFinish;
     int selLevel, currLevel;
+    public bool stopTimer;
 
     private void Start()
     {
@@ -31,12 +32,15 @@ public class TrashDropScript : MonoBehaviour
         timer = GameObject.Find("timer").GetComponent<Text>();
         timeLeft = 120.0f;
         flagDone = false;
+        stopTimer = false;
         SelectLevelGame();        
     }
 
     private void Update()
     {
-        timeLeft -= Time.deltaTime;
+        if (!StopTimer()) // if StopTimer() returns false, continue minus ang timer sa trash_seg. Else, ma skip ni nga line, ma stop ang timer
+            timeLeft -= Time.deltaTime;
+
         int minutes = Mathf.FloorToInt(timeLeft / 60F);
         int seconds = Mathf.FloorToInt(timeLeft - minutes * 60);
 
@@ -47,11 +51,12 @@ public class TrashDropScript : MonoBehaviour
             
             timer.color = Color.red;
             if (flagDone.Equals(true))
-            {        
-                Time.timeScale = 0;
+            {
+                //Time.timeScale = 0;
+                stopTimer = true; // Replace ani ang Time.timeScale = 0 para ma stop ang trash_seg timer only, dle ma apil ang timer para sa life
                 timeFinish = timeLeft;
                 
-                if (Time.timeScale == 0 && timeFinish >= 100.0f)
+                if (timeFinish >= 100.0f)
                     PowerUpManager.CheckGivePoint = true;
                else
                     btnPoint.SetActive(false);
@@ -80,7 +85,15 @@ public class TrashDropScript : MonoBehaviour
             FailedLevel();
         }
     }
+    public bool StopTimer()
+    {
 
+        if (stopTimer) // if stopTimer == true
+            return true;
+
+        return false;
+
+    }
     void SuccessLevel()
     {
         flagDone = true;
@@ -102,6 +115,7 @@ public class TrashDropScript : MonoBehaviour
 
         btn.onClick.AddListener(delegate ()
         {
+            stopTimer = false;
             Destroy(this);
             ScoreScript.scorePoints = 0;
             SceneManager.LoadScene("map");

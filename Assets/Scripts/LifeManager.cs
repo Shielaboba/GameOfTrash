@@ -13,33 +13,13 @@ public class LifeManager : MonoBehaviour
     public Sprite[] HeartSprites;
     public Image HeartsUI; 
 
-    private int currentHealth; 
+    private int currentHealth;
 
-    private float currCountdownValue;
-
-    public IEnumerator StartCountdown(float countdownValue = 1200)
-    {
-        currCountdownValue = countdownValue;                
-        
-        while (currentHealth != 5)
-        {
-            if (currCountdownValue == 0)
-            {
-                GiveLife(); 
-                currCountdownValue = 1200;
-            }            
-                    
-            yield return new WaitForSeconds(1.0f); 
-            currCountdownValue--;
-
-            if (currentHealth == 5)
-                Debug.Log("Life full");
-        }
-    }
+    GameObject timeManager;
 
     void Start ()
     {
-         
+        timeManager = GameObject.Find("Time System");
         currentHealth = PlayerPrefs.GetInt("PlayerCurrentLives"); 
 
     }
@@ -51,7 +31,9 @@ public class LifeManager : MonoBehaviour
     public void TakeLife()
     {
         currentHealth--;
-        PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth); 
+        PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);
+
+        timeManager.SetActive(true); // if na kwaan ang life, start ang timer.
     }
 
     public void GiveLife()
