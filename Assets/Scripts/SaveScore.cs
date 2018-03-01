@@ -16,20 +16,6 @@ public class SaveScore : MonoBehaviour
         cons = new Constant();
     }
 
-    public void SaveLeaderBoard()
-    {
-        String userName = player.PlayerName; //PlayerPrefs.GetString("username");
-        //int gameScore = ScoreScript.scorePoints;
-        player.PlayerScoreMade = ScoreScript.scorePoints;
-        Constant cons = new Constant();
-        App42API.Initialize(cons.apiKey, cons.secretKey);
-
-        ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
-        scoreBoardService.SaveUserScore(cons.gameName, userName, player.PlayerScoreMade, new ScoreResponse());
-
-        App42Log.SetDebug(true);
-    }
-
     public void SavePerfLevel()
     {
         selLevel = LevelManager.GetInstance().GetSelectLevel();
