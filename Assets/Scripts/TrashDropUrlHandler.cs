@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.upload;
@@ -7,11 +6,9 @@ using System;
 
 public class TrashDropUrlHandler : MonoBehaviour {
 
-    Constant c;
     void Start()
     {
-        App42Log.SetDebug(true); //Prints output in your editor console
-        c = new Constant();
+        Constant c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
         UploadService uploadService = App42API.BuildUploadService();
         uploadService.GetAllFiles(new TrashDropResponse());        

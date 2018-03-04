@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,21 +7,17 @@ public class MainMenuScript : MonoBehaviour {
     public GameObject window;
     public Text messageField;
 
-    public void scenes (string name)
+    public void Play()
     {
-        SceneManager.LoadScene(name); 
+        SceneManager.LoadScene("login_menu"); 
     }
 
-    //show window popout
-    public void Show(string message)
+    public void ShowAbout()
     {
-        messageField.text = message;
         window.SetActive(true);
     }
-    //hide window
-    public void Hide()
+    public void HideAbout()
     {
-
         window.SetActive(false);
     }
 

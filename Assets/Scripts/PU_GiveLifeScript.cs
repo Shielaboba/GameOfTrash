@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +13,11 @@ public class PU_GiveLifeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         addedLife = GameObject.Find("countLifeAdded").GetComponent<Text>();
+        count = PlayerManager.GetInstance().GetPlayer().PlayerPowerLife;
         life_manager = FindObjectOfType<LifeManager>();
         btnGiveLife = GameObject.Find("lifebtn"); ;
-        flagClick = false;
-        count = PlayerManager.GetInstance().GetPlayer().PlayerPowerLife;
         addedLife.text = count + "";
+        flagClick = false;
     }
 	
     public void OnCLickGiveLife()
@@ -27,6 +25,7 @@ public class PU_GiveLifeScript : MonoBehaviour {
         flagClick = true;
         if (PowerUpManager.CheckGiveLife.Equals(true))
             count++;  
+
         addedLife.text = "" + count;
 
         if (flagClick.Equals(true))
@@ -42,14 +41,10 @@ public class PU_GiveLifeScript : MonoBehaviour {
             addedLife.text = count + "";
         }
       
-
         if (count <= 0)
         {
             count = 0;
-            Debug.Log("No more power up");
             addedLife.text = "" + 0;
         }
-        
-
     }
 }

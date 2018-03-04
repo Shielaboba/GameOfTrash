@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -470,8 +470,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1985067063}
-        m_MethodName: Action_GotoPage
-        m_Mode: 5
+        m_MethodName: DisplayLeaderboard
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1023,7 +1023,6 @@ GameObject:
   - component: {fileID: 316013757}
   - component: {fileID: 316013756}
   - component: {fileID: 316013755}
-  - component: {fileID: 316013754}
   - component: {fileID: 316013759}
   m_Layer: 5
   m_Name: noBtn1
@@ -1051,17 +1050,6 @@ RectTransform:
   m_AnchoredPosition: {x: -615.6, y: -257.04}
   m_SizeDelta: {x: 575, y: 173.68}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &316013754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 316013752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86cae69591ea2f947b134bdc85614954, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &316013755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3902,10 +3890,9 @@ GameObject:
   - component: {fileID: 924801030}
   - component: {fileID: 924801035}
   - component: {fileID: 924801034}
-  - component: {fileID: 924801037}
   - component: {fileID: 924801033}
-  - component: {fileID: 924801031}
   - component: {fileID: 924801036}
+  - component: {fileID: 924801031}
   m_Layer: 5
   m_Name: yesBtn1
   m_TagString: Untagged
@@ -3940,7 +3927,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 924801029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73f0a4a646e8d654e882e485f94f5c98, type: 3}
+  m_Script: {fileID: 11500000, guid: d224695c75ae96b43adc3a6795c743ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &924801033
@@ -3982,8 +3969,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 924801031}
-        m_MethodName: quit
+      - m_Target: {fileID: 832210079}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3993,8 +3980,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 832210079}
-        m_MethodName: Play
+      - m_Target: {fileID: 924801031}
+        m_MethodName: ExitApp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4119,17 +4106,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &924801037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 924801029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fee75866c935bb4f998f1b432f048c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &938441944
 GameObject:
   m_ObjectHideFlags: 0

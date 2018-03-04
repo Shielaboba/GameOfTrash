@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 70899805}
   - component: {fileID: 70899804}
   m_Layer: 5
-  m_Name: Non-Biodegradable
+  m_Name: Recyclable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1825,7 +1825,7 @@ GameObject:
   - component: {fileID: 216213718}
   - component: {fileID: 216213717}
   m_Layer: 5
-  m_Name: Non-Biodegradable
+  m_Name: Recyclable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4248,7 +4248,7 @@ GameObject:
   - component: {fileID: 699892095}
   - component: {fileID: 699892094}
   m_Layer: 5
-  m_Name: Non-Biodegradable
+  m_Name: Recyclable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5130,7 +5130,7 @@ GameObject:
   - component: {fileID: 886014900}
   - component: {fileID: 886014902}
   m_Layer: 5
-  m_Name: Non-Biodegradable
+  m_Name: Recyclable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10535,7 +10535,7 @@ GameObject:
   - component: {fileID: 1765260634}
   - component: {fileID: 1765260633}
   m_Layer: 5
-  m_Name: Non-Biodegradable
+  m_Name: Recyclable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12568,7 +12568,7 @@ GameObject:
   - component: {fileID: 2073232940}
   - component: {fileID: 2073232939}
   m_Layer: 5
-  m_Name: Non-Biodegradable
+  m_Name: Recyclable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

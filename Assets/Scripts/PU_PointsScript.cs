@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +38,6 @@ public class PU_PointsScript : MonoBehaviour {
         PowerUpManager.CheckDoublePoint = true;
         if (countGivePoint != 0)
         {
-            Debug.Log("ACCESS");
             countGivePoint--;
             addedPoint.text = countGivePoint+"";
         }
@@ -48,7 +45,6 @@ public class PU_PointsScript : MonoBehaviour {
         if (countGivePoint <= 0)
         {
             countGivePoint = 0;
-            Debug.Log("No more power up");
             addedPoint.text = "" + 0;
         }
     }

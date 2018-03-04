@@ -1,20 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.user;
+using com.shephertz.app42.paas.sdk.csharp.game;
+using SimpleJSON;
+using com.shephertz.app42.paas.sdk.csharp.storage;
+using UnityEngine.SceneManagement;
 
 public class RegisterScript : MonoBehaviour
 {
-
-    string userField, passField, confPassField, emailField;
     InputField username, pass, confPass, email;
     Text errorMessage;
-	EventSystem system;
-    
+	EventSystem system;    
 
     void Start()
     {
@@ -45,58 +44,109 @@ public class RegisterScript : MonoBehaviour
 
     public bool FieldCheck()
     {
-        bool flag = false;
-
-        userField = username.text;
-        passField = pass.text;
-        confPassField = confPass.text;
-        emailField = email.text;
-
-        if (!userField.Equals("") && !passField.Equals("") && !confPassField.Equals("") && !emailField.Equals(""))
-        {
-            flag = true;
-            errorMessage.text = "";
-
-            if (passField.Equals(confPassField))
-            {
-                flag = true;
-                errorMessage.text = "";
-            }
-            else
-            {
-                errorMessage.text = "Password didn't match";
-                errorMessage.color = Color.red;
-                flag = false;
-            }
-        }
-        else
+        if (username.text.Equals(string.Empty) || pass.text.Equals(string.Empty) || confPass.text.Equals(string.Empty) || email.text.Equals(string.Empty))
         {
             errorMessage.text = "Please fill all blanks.";
-            errorMessage.color = Color.red;
-            flag = false;
+            return false;
+        }
+        
+        if (!pass.text.Equals(confPass.text))
+        {
+            errorMessage.text = "Password didn't match";
+            return false;
+        }       
+
+        if(pass.text.Length < 6 || confPass.text.Length < 6)
+        {
+            errorMessage.text = "Password too short. Must be atleast 6 characters";
+            return false;
         }
 
-        return flag;
+        errorMessage.text = "Successfully registered!";
+        return true;
     }
 
     public void RegisterBtn()
     {
         if (FieldCheck())
         {
-
             Constant cons = new Constant();
             App42API.Initialize(cons.apiKey, cons.secretKey);
             UserService userService = App42API.BuildUserService();
 
             try
             {
-                userService.CreateUser(userField, passField, emailField, new UserResponse(userField));
+                userService.CreateUser(username.text, pass.text, email.text, new RegisterResponse());
             }
             catch (App42Exception e)
             {
-				errorMessage.text = "" + e.Message;
-            };
-            //App42Log.SetDebug(true);
+                errorMessage.text = char.ToUpper(e.Message[0]) + e.Message.Substring(1).ToLower();
+            };            
         }
+    }
+}
+
+internal class RegisterResponse : App42CallBack
+{
+    public void OnSuccess(object response)
+    {
+        User user = (User)response;        
+        string levelScore = "[{\"Level1\": 0}," +
+                                "{ \"Level2\": 0}," +
+                                "{ \"Level3\": 0}," +
+                                "{ \"Level4\": 0}," +
+                                "{ \"Level5\": 0}," +
+                                "{ \"Level6\": 0}]";
+
+        JSONClass json = new JSONClass
+            {
+                { "PlayerGameLvlNo", 1 },
+                { "PlayerName", user.userName },
+                { "PlayerScoreMade", 0 },
+                { "PlayerPowerLife", 1},
+                { "PlayerPowerScore", 1},
+                { "PlayerLife", 5 },
+                { "PlayerScoreLevel", levelScore}
+            };
+
+        ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
+        scoreBoardService.SaveUserScore("GOT", user.userName, 0, new Response()); // FOR SAVING FIRST SCORE FOR JUST REGISTERED PLAYERS.
+
+        StorageService storageService = App42API.BuildStorageService();
+        storageService.InsertJSONDocument("GOTDB", "PerformanceFile", json, new Response());
+        SceneManager.LoadScene("login_menu");
+    }
+
+    public void OnException(Exception ex)
+    {
+        String jsonTxt = "";
+        Text errorMessage = GameObject.Find("warning").GetComponent<Text>();
+        App42Exception exception = (App42Exception)ex;
+        
+        int appErrorCode = exception.GetAppErrorCode();
+
+        if (appErrorCode == 2000)
+        {
+            jsonTxt = "Username not found!";
+        }
+
+        else if (appErrorCode == 2002)
+        {
+            jsonTxt = "Username/Password did not match. Authentication Failed!";
+        }
+
+        else if (appErrorCode == 2005)
+        {
+            jsonTxt = "Email Address already exists!";
+        }
+
+        else if (appErrorCode == 2001)
+        {
+            jsonTxt = "Username already exists!";
+        }
+
+        errorMessage.text = jsonTxt;
+
+        Debug.Log(exception.GetMessage());        
     }
 }

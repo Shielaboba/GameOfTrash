@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
-
 
 public class UsernameDisplay : MonoBehaviour {
 
@@ -15,11 +12,5 @@ public class UsernameDisplay : MonoBehaviour {
         uname= PlayerPrefs.GetString("username");
         userName = GetComponent<Text>();
         userName.text = uname;
-
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

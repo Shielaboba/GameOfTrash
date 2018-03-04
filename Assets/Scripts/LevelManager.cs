@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LevelManager  {
+﻿public class LevelManager  {
 
     private static LevelManager Instance;
     private int CurrentLevel;

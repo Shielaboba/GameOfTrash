@@ -7,8 +7,7 @@ public class LoaderScript : MonoBehaviour {
 
    public GameObject loadingScreen;
    public Slider slider;
-    public Text progressText;
-
+   public Text progressText;
 
 	public void Loadlevel(int sceneIndex)
     {

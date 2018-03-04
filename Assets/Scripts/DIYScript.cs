@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using UnityEngine.UI;
 using System;
-using LitJson;
 
 public class DIYScript : MonoBehaviour
 {
@@ -22,7 +19,6 @@ public class DIYScript : MonoBehaviour
         StorageService storageService = App42API.BuildStorageService();
         storageService.FindDocumentsByQuery(cons.dbName, "DIYFile", query, new DIYResponse());
     }
-
 }
 
 internal class DIYResponse : App42CallBack
@@ -46,8 +42,6 @@ internal class DIYResponse : App42CallBack
         }
         TrashRandomManager.GetInstance().SetDIYTrash(diy);
     }
-
-
 
     public void DisplayCraftDetails()
     {

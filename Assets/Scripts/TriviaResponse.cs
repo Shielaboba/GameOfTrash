@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;   
 using UnityEngine;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using UnityEngine.UI;
-
 
 public class TriviaResponse : App42CallBack
 {
@@ -23,21 +21,17 @@ public class TriviaResponse : App42CallBack
 
     public void OnSuccess(object response)
     {
-
        Init();
-        Storage storage = (Storage)response;
+       Storage storage = (Storage)response;
+       IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
+       TrashData trash = new TrashData(); 
+       trash = JsonUtility.FromJson<TrashData>(jsonDocList[0].GetJsonDoc());
 
-           IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
-
-           TrashData trash = new TrashData();
- 
-               trash = JsonUtility.FromJson<TrashData>(jsonDocList[0].GetJsonDoc());
-
-               DisplayName.text = trash.TrashName.ToUpper();
-               DisplayDesc.text = trash.TrashTrivia;
-               btnText.text = "Do It Yourself!";
-        App42Log.SetDebug(true);
+       DisplayName.text = trash.TrashName.ToUpper();
+       DisplayDesc.text = trash.TrashTrivia;
+       btnText.text = "Do It Yourself!";
     }
+
     public void OnException(Exception e)
     {
         App42Log.Console("Exception : " + e);

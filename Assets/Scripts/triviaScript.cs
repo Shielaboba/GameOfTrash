@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.storage;
@@ -37,10 +35,8 @@ public class TriviaScript : MonoBehaviour {
         }
         else
         {
-            print("GO: " + gameObject.GetComponentInChildren<Text>().text.ToUpper() + " trash: " + trash.TrashSegType.ToUpper());
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
-        }
-           
+        }           
     }
 
     public void Hide()

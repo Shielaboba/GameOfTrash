@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using System;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.game;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using UnityEngine.UI;
 
-public class SaveScore : MonoBehaviour
+public class SavePlayer : MonoBehaviour
 {
     PlayerData player;
     Constant cons;
     int currLevel, selLevel;
+
     private void Start()
     {
         player = PlayerManager.GetInstance().GetPlayer();
@@ -25,6 +25,7 @@ public class SaveScore : MonoBehaviour
 
         player.PlayerGameLvlNo = LevelManager.GetInstance().GetLevel();
         player.PlayerScoreMade = 0;
+
         switch (selLevel)
         {
             case 1:
@@ -51,24 +52,18 @@ public class SaveScore : MonoBehaviour
         {
             player.PlayerScoreMade += player.PlayerScoreLevel[i];
         }
+
         PlayerPrefs.SetInt("PlayerCurrentScore", 0);
         player.PlayerLife = PlayerPrefs.GetInt("PlayerCurrentLives");
         player.PlayerPowerLife = int.Parse(GameObject.Find("countLifeAdded").GetComponent<Text>().text);
-        player.PlayerPowerScore = int.Parse(GameObject.Find("countPointAdded").GetComponent<Text>().text);
-        print("Name: " + player.PlayerName +
-            "Level: " + player.PlayerGameLvlNo +
-            "Life: " + player.PlayerLife +
-            "PU Score: " + player.PlayerPowerScore +
-            "PU Life: " + player.PlayerPowerLife +
-            "Level1: " + player.PlayerScoreLevel[0] +
-            "Scores: " + player.PlayerScoreMade);
+        player.PlayerPowerScore = int.Parse(GameObject.Find("countPointAdded").GetComponent<Text>().text);       
 
         string data = JsonUtility.ToJson(player);
         print(data);
         App42API.Initialize(cons.apiKey, cons.secretKey);
 
         ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
-        scoreBoardService.SaveUserScore(cons.gameName, player.PlayerName, player.PlayerScoreMade, new ScoreResponse());
+        scoreBoardService.SaveUserScore(cons.gameName, player.PlayerName, player.PlayerScoreMade, new Response());
 
         StorageService storageService = App42API.BuildStorageService();
         storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new SavePerformanceResponse());

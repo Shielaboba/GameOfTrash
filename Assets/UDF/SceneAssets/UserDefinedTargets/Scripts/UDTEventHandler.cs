@@ -14,7 +14,7 @@ using UnityEngine.SceneManagement;
 
 public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 {
-    // private vars for screenshot
+    #region DECLARED_VARIABLES
     private Rect rect;
     private RenderTexture renderTexture;
     private Texture2D screenShot;
@@ -26,7 +26,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     Dictionary<string, string> headers;
     Boolean holder = false;
     TrashData trash;
-
     LifeManager lifeManager;    
 
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
@@ -34,6 +33,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private GameObject[] typeBtn = new GameObject[4];
     private GameObject noLifeDetails;
     private Button BackBtn, OkayBtn, BuildBtn;
+#endregion
 
     #region SERIALIZABLE_CLASS
     [System.Serializable]
@@ -87,7 +87,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     }
     #endregion
 
-
     #region PUBLIC_MEMBERS
     /// <summary>
     /// Can be set in the Unity inspector to reference an ImageTargetBehaviour 
@@ -100,7 +99,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         get { return (m_TargetCounter - 1) % MAX_TARGETS; }
     }
     #endregion PUBLIC_MEMBERS
-
 
     #region PRIVATE_MEMBERS
     const int MAX_TARGETS = 1;
@@ -119,7 +117,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     // Counter used to name newly created targets
     int m_TargetCounter;
     #endregion //PRIVATE_MEMBERS
-
 
     #region MONOBEHAVIOUR_METHODS
     void Start()
@@ -152,7 +149,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         }
     }
     #endregion //MONOBEHAVIOUR_METHODS
-
 
     #region IUserDefinedTargetEventHandler Implementation
     /// <summary>
@@ -237,7 +233,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     }
     #endregion IUserDefinedTargetEventHandler implementation
 
-
     #region PUBLIC_METHODS
     /// <summary>
     /// Instantiates a new user-defined target and is also responsible for dispatching callback to 
@@ -268,7 +263,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     }
 
     #endregion //PUBLIC_METHODS
-
 
     #region PRIVATE_METHODS
 
@@ -344,7 +338,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         }
 
         // get main camera and manually render scene into rt
-
         camera.targetTexture = renderTexture;
         camera.Render();
 
@@ -353,21 +346,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         RenderTexture.active = renderTexture;
         screenShot.ReadPixels(rect, 0, 0);
 
-        //for (int x = 0; x < screenShot.width; x++)
-        //{
-        //    for (int y = 0; y < screenShot.height; y++)
-        //    {                
-        //        Color newColor = new Color(0.3F, 0.4F, 0.6F);                
-        //        screenShot.SetPixel(x, y, newColor); // Now greyscale
-        //    }
-        //}
-        //screenShot.Apply();
-        // reset active camera texture and render texture
         camera.targetTexture = null;
         RenderTexture.active = null;
 
         fileData = screenShot.EncodeToPNG();
-        print("Size: "+fileData.Length);
+        print("Size: " + fileData.Length);
         headers = new Dictionary<string, string>();
         headers.Add("Content-Type", "application/json; charset=UTF-8");
 
@@ -384,15 +367,13 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
         Feature feature = new Feature();
         feature.type = "WEB_DETECTION";
-        feature.maxResults = this.maxResults;
+        feature.maxResults = maxResults;
 
         request.features.Add(feature);
 
         requests.requests.Add(request);
 
         string jsonData = JsonUtility.ToJson(requests, false);
-
-        print(jsonData);
 
         if (jsonData != string.Empty)
         {
@@ -411,8 +392,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
                 }
                 else
                 {
-                    Debug.Log("Error: " + www.error);
-                    GameObject.Find("Title").GetComponent<Text>().text = "System Error!";
+                    GameObject.Find("Title").GetComponent<Text>().text = "Slow Internet Connection";
                 }
             }
         }
@@ -421,7 +401,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     void OnAnnotateImageResponses(AnnotateImageResponses responses)
     {               
         holder = false;
-        for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++) // loop thru all responses
+        for (int i = 0; i < responses.responses[0].webDetection.webEntities.Count; i++)
         {
             if ((trash.TrashBase.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty)) ||
                trash.TrashName.ToUpper().Replace(" ", String.Empty).Contains(responses.responses[0].webDetection.webEntities[i].description.ToUpper().Replace(" ", String.Empty))))
@@ -437,12 +417,12 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
-
         }
-        else {
-
+        else
+        {
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect trash!";
-            lifeManager.TakeLife();//reduce life
+            lifeManager.TakeLife(); //reduce life
+
             if (lifeManager.GetCurHealth() == 0)
             {
                 BackBtn.enabled = false;
@@ -452,21 +432,20 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
                 {
                     SceneManager.LoadScene("map");
                 });
-            }
-                
-
+            }                
         }
-        print("END");
     }
 
     public void ConfigBtn()
     {
-        for(int i=0; i< typeBtn.Length; i++)
+        int gameLevel = LevelManager.GetInstance().GetLevel();
+
+        for (int i=0; i< typeBtn.Length; i++)
         {
             typeBtn[i] = GameObject.Find("TypeBtn" + (i + 1));
         }
 
-        int gameLevel = LevelManager.GetInstance().GetLevel();
+        
         if(gameLevel == 1 || gameLevel == 2)
         {
             typeBtn[0].SetActive(true);
@@ -482,6 +461,4 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             typeBtn[3].SetActive(true);
         }
     }
-    
-
 }

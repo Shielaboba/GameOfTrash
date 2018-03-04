@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class BookScript : MonoBehaviour
 {
-
     GameObject Page1, Page2, EndText;
-    // Button btnPrev,btnNext;
     Text textNext;
     Boolean flag1;
+    Button btnPrev, btnNext;
     public int count;
+
     // Use this for initialization
     void Start()
     {
@@ -22,12 +22,14 @@ public class BookScript : MonoBehaviour
         count = 0;
         flag1 = false;
         textNext = GameObject.Find("nxtText").GetComponent<Text>();
-        //btnPrev.enabled = false;
-        Button btnPrev = GameObject.Find("prevBtn").GetComponent<Button>();
-        Button btnNext = GameObject.Find("nextBtn").GetComponent<Button>();
+        btnPrev = GameObject.Find("prevBtn").GetComponent<Button>();
+        btnNext = GameObject.Find("nextBtn").GetComponent<Button>();
         btnPrev.enabled = false;
+        AddFunctionalityBtn();
+    }
 
-
+    void AddFunctionalityBtn()
+    {
         btnNext.onClick.AddListener(delegate ()
         {
 
@@ -50,10 +52,6 @@ public class BookScript : MonoBehaviour
                 btnPrev.enabled = true;
                 SceneManager.LoadScene("map");
             }
-
-
-
-
         });
 
         btnPrev.onClick.AddListener(delegate ()
@@ -70,10 +68,5 @@ public class BookScript : MonoBehaviour
                 Page1.SetActive(true);
             }
         });
-
-
-
     }
-
-
 }

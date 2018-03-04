@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine;
+﻿public class TrashManager {
 
-public class TrashManager {
     private static TrashManager Instance;
     private TrashData CurrentTrash;
+
     private TrashManager()
     {
-        //CurrentTrash = "";
+
     }
 
     public static TrashManager GetInstance()

@@ -1,23 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MuteSounds : MonoBehaviour {
-    bool isplay = false;
-    public void muteSounds()
+
+    bool isPlay = false;
+
+    public void Mute()
     {
         AudioSource sfx = GameObject.Find("BtnSounds").GetComponent<AudioSource>();
 
-        if (!isplay)
+        if (!isPlay)
         {
             sfx.volume = 0;
-            isplay = true;
-
+            isPlay = true;
         }
         else
         {
             sfx.volume = 1;
-            isplay = false;
+            isPlay = false;
         }
     }
 }

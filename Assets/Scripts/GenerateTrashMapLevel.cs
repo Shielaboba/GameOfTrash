@@ -15,6 +15,7 @@ public class GenerateTrashMapLevel : MonoBehaviour {
     PlayerData player;
     public Text ScoreText;
     public Button PlayBtn, CloseBtn, OkayBtn, Close1Btn;
+
     // Use this for initialization
     void Start ()
     {
@@ -74,7 +75,6 @@ public class GenerateTrashMapLevel : MonoBehaviour {
                 levelDetails.SetActive(false);
             });
         }
-
     }
 
     void TrashRandom()
@@ -109,7 +109,6 @@ public class GenerateTrashMapLevel : MonoBehaviour {
         StorageService storageService = App42API.BuildStorageService();
         storageService.FindDocumentsByQuery("GOTDB", "TrashFile", query, new TrashLevelResponse());
     }
-
 }
 
 internal class TrashLevelResponse : App42CallBack
