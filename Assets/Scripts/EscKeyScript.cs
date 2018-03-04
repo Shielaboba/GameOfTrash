@@ -81,6 +81,8 @@ public class EscKeyScript : MonoBehaviour {
 
     public void SegShow()
     {
+        PlayerPrefs.SetInt("LifePUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
+        PlayerPrefs.SetInt("PointPUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
         SceneManager.LoadScene("trash_seg");
     }
 
