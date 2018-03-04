@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2978,6 +2978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mybutton: {fileID: 21300000, guid: c472d43ff7bed7643a11a96e3bd89ff5, type: 3}
+  optionsPanel: {fileID: 764540972}
 --- !u!1 &470178337
 GameObject:
   m_ObjectHideFlags: 0
@@ -4325,6 +4326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mybutton: {fileID: 21300000, guid: c472d43ff7bed7643a11a96e3bd89ff5, type: 3}
+  optionsPanel: {fileID: 764540972}
 --- !u!1 &633354953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5079,7 +5081,6 @@ GameObject:
   - component: {fileID: 764540973}
   - component: {fileID: 764540976}
   - component: {fileID: 764540975}
-  - component: {fileID: 764540974}
   m_Layer: 5
   m_Name: optionsPanel
   m_TagString: Untagged
@@ -5107,18 +5108,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000013351, y: 70}
   m_SizeDelta: {x: 905.8, y: 25.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &764540974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 764540972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2172de1389982e40b7ea1de12cc206c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 764540972}
 --- !u!114 &764540975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5580,6 +5569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mybutton: {fileID: 21300000, guid: c472d43ff7bed7643a11a96e3bd89ff5, type: 3}
+  optionsPanel: {fileID: 764540972}
 --- !u!1 &860548595
 GameObject:
   m_ObjectHideFlags: 0
@@ -5928,6 +5918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mybutton: {fileID: 21300000, guid: c472d43ff7bed7643a11a96e3bd89ff5, type: 3}
+  optionsPanel: {fileID: 764540972}
 --- !u!114 &957684956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6126,6 +6117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mybutton: {fileID: 21300000, guid: c472d43ff7bed7643a11a96e3bd89ff5, type: 3}
+  optionsPanel: {fileID: 764540972}
 --- !u!1 &1064767720
 GameObject:
   m_ObjectHideFlags: 0
@@ -9586,6 +9578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mybutton: {fileID: 21300000, guid: c472d43ff7bed7643a11a96e3bd89ff5, type: 3}
+  optionsPanel: {fileID: 764540972}
 --- !u!1 &1703649319
 GameObject:
   m_ObjectHideFlags: 0

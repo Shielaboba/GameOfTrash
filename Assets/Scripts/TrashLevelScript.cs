@@ -23,7 +23,6 @@ public class TrashLevelScript : MonoBehaviour {
         trash = TrashRandomManager.GetInstance().GetTrash();
         optionsPanel = GameObject.Find("optionsPanel");
         btn = gameObject.GetComponentsInChildren<Button>();
-        btn = new Button[level];
 
         if (!gameObject.name.Equals("trashLevel" + level))
         {
@@ -32,6 +31,7 @@ public class TrashLevelScript : MonoBehaviour {
 
         for (int i = 0; i < count; i++)
         {
+            print(btn.Length);
             btn[i].GetComponentInChildren<Text>().text = trash[i].TrashName;
             if (!trash[i].CheckTrash) finishAllTrash = false;
             if (trash[i].CheckTrash)

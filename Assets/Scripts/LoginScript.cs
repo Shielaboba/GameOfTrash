@@ -61,8 +61,7 @@ public class LoginScript : MonoBehaviour
             App42API.Initialize(cons.apiKey, cons.secretKey);
             UserService userService = App42API.BuildUserService();
            
-			try {
-                errorMessage.text = "Successfully logged in!";
+			try {                
                 userService.Authenticate(username.text, pass.text, new LoginResponse());
 			}
 			catch (App42Exception e)
@@ -77,13 +76,14 @@ internal class LoginResponse : App42CallBack
 {
     public static string sessionID;
     Constant c;
+    Text errorMessage = GameObject.Find("warning").GetComponent<Text>();
 
     public void OnSuccess(object response)
     {
         c = new Constant();        
         User user = (User)response;
         sessionID = user.GetSessionId(); //Get session ID
-
+        errorMessage.text = "Successfully logged in!";
         App42API.Initialize(c.apiKey, c.secretKey);
         StorageService storageService = App42API.BuildStorageService();
         storageService.FindDocumentByKeyValue("GOTDB", "PerformanceFile", "PlayerName", user.userName, new PerformanceResponse());

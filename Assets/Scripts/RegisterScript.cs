@@ -75,7 +75,6 @@ public class RegisterScript : MonoBehaviour
 
             try
             {
-                errorMessage.text = "Successfully registered!";
                 userService.CreateUser(username.text, pass.text, email.text, new RegisterResponse());
             }
             catch (App42Exception e)
@@ -90,7 +89,9 @@ internal class RegisterResponse : App42CallBack
 {
     public void OnSuccess(object response)
     {
-        User user = (User)response;        
+        Text errorMessage = GameObject.Find("warning").GetComponent<Text>();
+        User user = (User)response;  
+        
         string levelScore = "[{\"Level1\": 0}," +
                                 "{ \"Level2\": 0}," +
                                 "{ \"Level3\": 0}," +
@@ -112,6 +113,7 @@ internal class RegisterResponse : App42CallBack
         ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
         scoreBoardService.SaveUserScore("GOT", user.userName, 0, new Response()); // FOR SAVING FIRST SCORE FOR JUST REGISTERED PLAYERS.
 
+        errorMessage.text = "Successfully registered!";
         StorageService storageService = App42API.BuildStorageService();
         storageService.InsertJSONDocument("GOTDB", "PerformanceFile", json, new Response());
         SceneManager.LoadScene("login_menu");
