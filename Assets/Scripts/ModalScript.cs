@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ModalScript : MonoBehaviour {
 
-    public GameObject window;
+    public GameObject window;    
 
     public void Show()
     {

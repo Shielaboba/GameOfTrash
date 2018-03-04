@@ -31,6 +31,7 @@ public class PU_GiveLifeScript : MonoBehaviour {
         if (flagClick.Equals(true))
             btnGiveLife.SetActive(false);
     }
+
     public void OnClick()
     {
         PowerUpManager.CheckDoublePoint = true;

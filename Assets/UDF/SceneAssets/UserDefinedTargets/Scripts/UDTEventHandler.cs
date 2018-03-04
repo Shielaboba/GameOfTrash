@@ -31,8 +31,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     private GameObject[] typeBtn = new GameObject[4];
-    private GameObject noLifeDetails;
-    private Button BackBtn, OkayBtn, BuildBtn;
+    private GameObject noLifeDetails, tutorialPanel;
+    private Button BackBtn, OkayBtn, BuildBtn, OkBtn;
 #endregion
 
     #region SERIALIZABLE_CLASS
@@ -126,11 +126,21 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         BackBtn = GameObject.Find("BackButton").GetComponent<Button>();
         OkayBtn = GameObject.Find("OkayBtn").GetComponent<Button>();
         BuildBtn = GameObject.Find("BuildButton").GetComponent<Button>();
+        tutorialPanel = GameObject.Find("TutorialPanel");
+        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
         noLifeDetails.SetActive(false);
         trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
-
         GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
+
+        if(PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
+        {
+            OkBtn.onClick.AddListener(delegate() {
+                tutorialPanel.SetActive(false);
+            });
+        }
+        else tutorialPanel.SetActive(false);
+
         m_TargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
 
         if (m_TargetBuildingBehaviour)

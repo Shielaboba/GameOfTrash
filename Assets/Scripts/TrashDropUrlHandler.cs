@@ -3,11 +3,25 @@ using UnityEngine;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.upload;
 using System;
+using UnityEngine.UI;
 
 public class TrashDropUrlHandler : MonoBehaviour {
+    GameObject tutorialPanel;
+    Button OkBtn;
 
     void Start()
     {
+        tutorialPanel = GameObject.Find("TutorialPanel");
+        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
+
+        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
+        {
+            OkBtn.onClick.AddListener(delegate () {
+                tutorialPanel.SetActive(false);
+            });
+        }
+        else tutorialPanel.SetActive(false);
+
         Constant c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
         UploadService uploadService = App42API.BuildUploadService();
@@ -17,7 +31,6 @@ public class TrashDropUrlHandler : MonoBehaviour {
 
 internal class TrashDropResponse : App42CallBack
 {
-    Texture2D img;
     int counter = 0;
     List<TrashData> trashList = TrashRandomManager.GetInstance().GetTrash();
 

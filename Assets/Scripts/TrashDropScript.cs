@@ -8,9 +8,8 @@ using System;
 public class TrashDropScript : MonoBehaviour
 {
     public GameObject[] obj;
-    GameObject optionsPanel;
-    GameObject replayPanel;
-    GameObject btnPoint;
+    GameObject optionsPanel, replayPanel, btnPoint, tutorialPanel;
+    Button OkBtn;
     Boolean flagDone;
     Text timer;
     List<TrashData> trash;
@@ -21,6 +20,17 @@ public class TrashDropScript : MonoBehaviour
 
     private void Start()
     {
+        tutorialPanel = GameObject.Find("TutorialPanel");
+        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
+
+        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
+        {
+            OkBtn.onClick.AddListener(delegate () {
+                tutorialPanel.SetActive(false);
+            });
+        }
+        else tutorialPanel.SetActive(false);
+
         selLevel = LevelManager.GetInstance().GetSelectLevel();
         currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
