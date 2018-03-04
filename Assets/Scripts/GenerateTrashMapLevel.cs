@@ -145,7 +145,7 @@ internal class TrashLevelResponse : App42CallBack
         }
         var trashRandom = TrashRandomManager.GetInstance();
         trashRandom.SetTrash(trash);
-        SceneManager.LoadScene("trash_menu");
+        SceneManager.LoadScene("load_screen");
     }
 
     public void OnException(Exception ex)

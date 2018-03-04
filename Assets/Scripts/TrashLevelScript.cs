@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class TrashLevelScript : MonoBehaviour {
 
     int level, count;
-    Constant c;
-    String key,value;
     Button[] btn;
     public Sprite mybutton;
     List<TrashData> trash;
@@ -28,10 +26,9 @@ public class TrashLevelScript : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
-
+        
         for (int i = 0; i < count; i++)
         {
-            print(btn.Length);
             btn[i].GetComponentInChildren<Text>().text = trash[i].TrashName;
             if (!trash[i].CheckTrash) finishAllTrash = false;
             if (trash[i].CheckTrash)

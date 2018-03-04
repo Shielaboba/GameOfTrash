@@ -7,6 +7,18 @@ using System;
 
 public class LeaderboardDisplay : MonoBehaviour {
 
+    GameObject tutorialPanel;
+
+    private void Start()
+    {
+        tutorialPanel = GameObject.Find("TutorialPanel");
+        print(PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo);
+        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo != 1)
+        {
+            tutorialPanel.SetActive(false);
+        }
+    }
+
     public void DisplayLeaderboard()
     {
         SceneManager.LoadScene("leaderboard_display");
@@ -19,8 +31,6 @@ public class LeaderboardDisplay : MonoBehaviour {
 
 internal class LeaderboardResponse : App42CallBack
 {
-    GameObject[] userNameText;
-    GameObject[] userScoreText;
 
     public void OnSuccess(object response)
     {

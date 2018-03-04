@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class PU_PointsScript : MonoBehaviour {
 
-    PowerUpManager pu_manager;
     public Text addedPoint;
     int countGivePoint;
     int updatedPointValue;

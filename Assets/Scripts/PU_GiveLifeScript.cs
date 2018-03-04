@@ -36,6 +36,7 @@ public class PU_GiveLifeScript : MonoBehaviour {
             addLifebtn.enabled = true;
 
     }
+
     //use powerup
     public void OnClickUsePU()
     {

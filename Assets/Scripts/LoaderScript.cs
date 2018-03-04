@@ -9,14 +9,14 @@ public class LoaderScript : MonoBehaviour {
    public Slider slider;
    public Text progressText;
 
-	public void Loadlevel(int sceneIndex)
+	void Start()
     {
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+        StartCoroutine(LoadAsynchronously());
     }
 
-    IEnumerator LoadAsynchronously(int sceneIndex)
+    IEnumerator LoadAsynchronously()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync("trash_menu");
         loadingScreen.SetActive(true);
         while (!operation.isDone)
         {
