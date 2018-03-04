@@ -61,8 +61,7 @@ public class RegisterScript : MonoBehaviour
             errorMessage.text = "Password too short. Must be atleast 6 characters";
             return false;
         }
-
-        errorMessage.text = "Successfully registered!";
+        
         return true;
     }
 
@@ -76,6 +75,7 @@ public class RegisterScript : MonoBehaviour
 
             try
             {
+                errorMessage.text = "Successfully registered!";
                 userService.CreateUser(username.text, pass.text, email.text, new RegisterResponse());
             }
             catch (App42Exception e)

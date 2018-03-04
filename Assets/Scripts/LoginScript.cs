@@ -46,8 +46,7 @@ public class LoginScript : MonoBehaviour
             errorMessage.text = "Please fill all blanks.";
             return false;
         }
-
-        errorMessage.text = "Successfully logged in!";
+        
         return true;
     }
 
@@ -63,8 +62,8 @@ public class LoginScript : MonoBehaviour
             UserService userService = App42API.BuildUserService();
            
 			try {
-				
-            	userService.Authenticate(username.text, pass.text, new LoginResponse());
+                errorMessage.text = "Successfully logged in!";
+                userService.Authenticate(username.text, pass.text, new LoginResponse());
 			}
 			catch (App42Exception e)
 			{
