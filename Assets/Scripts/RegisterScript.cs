@@ -6,12 +6,9 @@ using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.user;
 using com.shephertz.app42.paas.sdk.csharp.game;
 using SimpleJSON;
-using System.Net;
-using System.Net.Mail;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using UnityEngine.SceneManagement;
+using com.shephertz.app42.paas.sdk.csharp.email;
 
 public class RegisterScript : MonoBehaviour
 {
@@ -119,35 +116,60 @@ internal class RegisterResponse : App42CallBack
 
         ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
         scoreBoardService.SaveUserScore("GOT", user.userName, 0, new Response()); // FOR SAVING FIRST SCORE FOR JUST REGISTERED PLAYERS.
-        Debug.Log(user.userName+" "+user.email);
         errorMessage.text = "Successfully registered!";
         SendEmail(user.userName, user.email);
-        StorageService storageService = App42API.BuildStorageService();
-        storageService.InsertJSONDocument("GOTDB", "PerformanceFile", json, new Response());
-        SceneManager.LoadScene("login_menu");
+        //StorageService storageService = App42API.BuildStorageService();
+        //storageService.InsertJSONDocument("GOTDB", "PerformanceFile", json, new Response());
+        //SceneManager.LoadScene("login_menu");
     }
 
     public void SendEmail(String uname, String email)
     {
-        MailMessage mail = new MailMessage();
+        Constant c = new Constant();
+        App42API.Initialize(c.apiKey, c.secretKey);
+        EmailService emailService = App42API.BuildEmailService();
 
-        mail.From = new MailAddress("devzygote101@gmail.com");
-        mail.To.Add("" + email);
-        Debug.Log(email);
-        mail.Subject = "Game Of Trash";
-        mail.Body = "Hi " + uname + ",\nYou have successfully registered to the Game Of Trash where learning how to segregate and recycle trash are made in a fun and interactive way! You can now proceed to the game and start playing. Welcome and enjoy! \n\n" +
-            "-------------------\n" + "Best Regards,\n" + "Team Zygote";
+        //String emailHost = "smtp.gmail.com";
+        //int emailPort = 465;
+        //String emailId = "devzygote101@gmail.com";
+        //String password = "zygote101";
+        //Boolean isSSL = true;
 
-        SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-        smtpServer.Port = 587;
-        smtpServer.Credentials = new System.Net.NetworkCredential("devzygote101@gmail.com", "zygote101") as ICredentialsByHost;
-        smtpServer.EnableSsl = true;
-        ServicePointManager.ServerCertificateValidationCallback =
-            delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-            {
-                return true;
-            };
-        smtpServer.Send(mail);
+        
+        //emailService.CreateMailConfiguration(emailHost, emailPort, emailId, password, isSSL, new Response());
+
+        String sendTo = email;
+        String sendSubject = "Game of Trash";
+        String sendMsg = "Hi ";
+        String senderEmailId = "devzygote101@gmail.com";
+        String emailMime = "PLAIN_TEXT_MIME_TYPE";
+        //Print output in your editor console
+        Debug.Log(sendTo);
+        emailService.SendMail(sendTo, sendSubject, sendMsg, senderEmailId, emailMime, new Response());
+
+        App42Log.SetDebug(true);
+
+
+
+        //MailMessage mail = new MailMessage();
+
+        //mail.From = new MailAddress("devzygote101@gmail.com");
+        //mail.To.Add("" + email);
+        //Debug.Log(email);
+        //mail.Subject = "Game Of Trash";
+        //mail.Body = "Hi " + uname + ",\nYou have successfully registered to the Game Of Trash where learning how to segregate and recycle trash are made in a fun and interactive way! You can now proceed to the game and start playing. Welcome and enjoy! \n\n" +
+        //    "-------------------\n" + "Best Regards,\n" + "Team Zygote";
+
+        //SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+        //smtpServer.Port = 587;
+        //smtpServer.Credentials = new System.Net.NetworkCredential("devzygote101@gmail.com", "zygote101") as ICredentialsByHost;
+        //smtpServer.EnableSsl = true;
+        //ServicePointManager.ServerCertificateValidationCallback =
+        //    delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        //    {
+        //        return true;
+        //    };
+        //smtpServer.Send(mail);
         Debug.Log("success");
 
     }
