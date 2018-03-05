@@ -28,8 +28,8 @@ public class PU_GiveLifeScript : MonoBehaviour {
     {
         flagClick = true;
         if (PowerUpManager.CheckGiveLife.Equals(true))
-            count++;  
-        addedLife.text = "" + (count- PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
+            countLife++;  
+        addedLife.text = "" + (countLife - PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
 
         if (life_manager.GetCurHealth() == 5)
         {
