@@ -448,7 +448,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
     public void ConfigBtn()
     {
-        int gameLevel = LevelManager.GetInstance().GetLevel();
+        int gameLevel = LevelManager.GetInstance().GetSelectLevel();
 
         for (int i=0; i< typeBtn.Length; i++)
         {
