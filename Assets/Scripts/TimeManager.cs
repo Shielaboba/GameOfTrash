@@ -49,6 +49,6 @@ public class TimeManager : MonoBehaviour {
 
     public void ResetTime()
     {
-        countingTime = 20;
+        countingTime = 2400;
     }
 }

@@ -19,7 +19,7 @@ public class PerformanceResponse : App42CallBack {
         PlayerManager.GetInstance().SetPlayer(Data);
         PlayerPrefs.SetInt("PlayerCurrentScore", 0);
         PlayerPrefs.SetInt("PlayerCurrentLives", PlayerManager.GetInstance().GetPlayer().PlayerLife); // SET NUMBER OF PLAYING LIFE
-        PlayerPrefs.SetInt("PlayerLifeTimer", 2400);
+        PlayerPrefs.SetInt("PlayerLifeTimer", PlayerManager.GetInstance().GetPlayer().PlayerLifeTimer);
         SceneManager.LoadScene("map");
         var lvlManager = LevelManager.GetInstance();
         lvlManager.SetLevel(Data.PlayerGameLvlNo);

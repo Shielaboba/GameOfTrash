@@ -107,6 +107,7 @@ internal class RegisterResponse : App42CallBack
                 { "PlayerPowerLife", 1},
                 { "PlayerPowerScore", 1},
                 { "PlayerLife", 5 },
+                { "PlayerLifeTimer", 0 },
                 { "PlayerScoreLevel", levelScore}
             };
 
