@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using com.shephertz.app42.paas.sdk.csharp;
+using com.shephertz.app42.paas.sdk.csharp.storage;
 
 public class EscKeyScript : MonoBehaviour {
+
+    PlayerData player;
 
     GameObject procedure, diymain;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        player = PlayerManager.GetInstance().GetPlayer();
         procedure = GameObject.Find("procedure");
         diymain = GameObject.Find("diymain");
     }
@@ -99,6 +105,18 @@ public class EscKeyScript : MonoBehaviour {
 
     public void ExitApp()
     {
+        Constant cons = new Constant();
+
+        player.PlayerLifeTimer = PlayerPrefs.GetInt("PlayerLifeTimer");
+        player.PlayerLife = PlayerPrefs.GetInt("PlayerCurrentLives");
+
+        string data = JsonUtility.ToJson(player);
+
+        App42API.Initialize(cons.apiKey, cons.secretKey);
+
+        StorageService storageService = App42API.BuildStorageService();
+        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new Response());
+
         Application.Quit();
     }
 

@@ -26,6 +26,10 @@ public class PU_GiveLifeScript : MonoBehaviour {
     }
     void Update()
     {
+        flagClick = true;
+        if (PowerUpManager.CheckGiveLife.Equals(true))
+            countLife++;  
+        addedLife.text = "" + (countLife - PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
 
         if (life_manager.GetCurHealth() == 5)
         {
