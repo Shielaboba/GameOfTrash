@@ -11,9 +11,10 @@ public class TriviaScript : MonoBehaviour {
     string keyName = "TrashName";
     Text btnText;
     TrashData trash;
-
+    LifeManager lifeManager;
     private void Start()
-    {        
+    {
+        lifeManager = FindObjectOfType<LifeManager>();
         trash = TrashManager.GetInstance().GetTrash();
         btnText = GameObject.Find("BtnDiy").GetComponentInChildren<Text>();
     }
@@ -35,6 +36,7 @@ public class TriviaScript : MonoBehaviour {
         }
         else
         {
+            lifeManager.TakeLife(); 
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
         }           
     }

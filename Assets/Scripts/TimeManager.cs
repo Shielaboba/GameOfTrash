@@ -23,6 +23,7 @@ public class TimeManager : MonoBehaviour {
     {
         if (lifeManager.GetCurHealth() == 5)
         {
+            PlayerPrefs.SetInt("PlayerLifeTimer", 2400);
             timeManager.SetActive(false);
             return;
         }

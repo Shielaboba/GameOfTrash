@@ -52,9 +52,4 @@ public class LifeManager : MonoBehaviour
         return currentHealth;
     }
 
-    public void GameOver()
-    {
-        PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);
-        SceneManager.LoadScene("map"); 
-    }
 }
