@@ -132,4 +132,10 @@ public class EscKeyScript : MonoBehaviour {
         life_manager.TakeLife();
         SceneManager.LoadScene("map");
     }
+
+    public void ReplayClickBtn()
+    {
+        ScoreScript.scorePoints = 0;
+        SceneManager.LoadScene("map");
+    }
 }

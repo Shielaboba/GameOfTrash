@@ -20,8 +20,6 @@ public class TrashDropScript : MonoBehaviour
 
     private void Start()
     {
-
-
         selLevel = LevelManager.GetInstance().GetSelectLevel();
         currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
@@ -75,7 +73,8 @@ public class TrashDropScript : MonoBehaviour
         }      
         else
         {
-            FailedLevel();
+            panelModals.SetActive(true);
+            replayPanel.SetActive(true);
         }
 
         if (transform.childCount-4 == 0)
@@ -90,7 +89,8 @@ public class TrashDropScript : MonoBehaviour
 
         if(PlayerPrefs.GetInt("PlayerCurrentLives") == 0)
         {
-            FailedLevel();
+            panelModals.SetActive(true);
+            replayPanel.SetActive(true);
         }
     }
     public bool StopTimer()
@@ -113,20 +113,6 @@ public class TrashDropScript : MonoBehaviour
         btn.onClick.AddListener(delegate ()
         {
             ScoreScript.scorePoints = 0;            
-        });
-    }
-
-    void FailedLevel()
-    {
-        panelModals.SetActive(true);
-        replayPanel.SetActive(true);
-        Button btn = GameObject.Find("RepBtn").GetComponent<Button>();
-        //stopTimer = true;
-        btn.onClick.AddListener(delegate ()
-        {
-            Destroy(this);
-            ScoreScript.scorePoints = 0;
-            SceneManager.LoadScene("map");
         });
     }
 
