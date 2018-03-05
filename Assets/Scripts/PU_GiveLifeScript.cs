@@ -27,7 +27,7 @@ public class PU_GiveLifeScript : MonoBehaviour {
         flagClick = true;
         if (PowerUpManager.CheckGiveLife.Equals(true))
             count++;  
-        addedLife.text = "" + count;
+        addedLife.text = "" + (count- PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
 
         if (flagClick.Equals(true))
             btnGiveLife.SetActive(false);

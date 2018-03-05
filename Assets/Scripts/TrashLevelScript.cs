@@ -26,7 +26,7 @@ public class TrashLevelScript : MonoBehaviour {
         count = TrashRandomManager.GetInstance().GetTrash().Count;
         trash = TrashRandomManager.GetInstance().GetTrash();
         optionsPanel = GameObject.Find("optionsPanel");
-        btn = new Button[level];
+        //btn = new Button[level];
         btn = gameObject.GetComponentsInChildren<Button>();
 
         if (!gameObject.name.Equals("trashLevel" + level))

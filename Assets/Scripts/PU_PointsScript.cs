@@ -28,7 +28,7 @@ public class PU_PointsScript : MonoBehaviour {
         if (PowerUpManager.CheckGivePoint.Equals(true))
             countGivePoint++;
 
-       addedPoint.text = "" + countGivePoint;
+       addedPoint.text = "" + (countGivePoint- PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
 
         if (flagClick.Equals(true))
             btnPoint.SetActive(false);

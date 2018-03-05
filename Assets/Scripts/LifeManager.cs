@@ -17,16 +17,28 @@ public class LifeManager : MonoBehaviour
 
     GameObject timeManager;
 
+    TimerService timerService = App42API.BuildTimerService();
+
     void Start ()
     {
         timeManager = GameObject.Find("Time System");
-        currentHealth = PlayerPrefs.GetInt("PlayerCurrentLives"); 
-
+        currentHealth = PlayerPrefs.GetInt("PlayerCurrentLives");        
     }
     void Update()
     {
         HeartsUI.sprite = HeartSprites[currentHealth];
 
+        //TimerService timerService = App42API.BuildTimerService();
+        //timerService.GetCurrentTime(new CurrentTimeResponse());
+    }
+    IEnumerator DoCheck()
+    {
+        for ( ; ; )
+        {
+            timerService.GetCurrentTime(new CurrentTimeResponse());
+
+            yield return new WaitForSeconds(1.0f);
+        }
     }
     public void TakeLife()
     {
@@ -34,6 +46,15 @@ public class LifeManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);
 
         timeManager.SetActive(true); // if na kwaan ang life, start ang timer.
+
+        // temp code
+
+        //TimerService timerService = App42API.BuildTimerService();
+        timerService.StartTimer("GiveLifeTimer", "summer", new TimerResponse());
+        //StartCoroutine(DoCheck());
+        //timerService.GetCurrentTime(new CurrentTimeResponse());
+        
+        //
     }
 
     public void GiveLife()

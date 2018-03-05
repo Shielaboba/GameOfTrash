@@ -40,6 +40,7 @@ public class TimeManager : MonoBehaviour {
             timeManager.SetActive(true); // if na kwaan ang life, show ang timer.
 
             countingTime -= Time.deltaTime;
+
             int min = Mathf.FloorToInt(countingTime / 60F);
             int sec = Mathf.FloorToInt(countingTime - min * 60);
 
