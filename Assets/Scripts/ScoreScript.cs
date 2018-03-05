@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
-using com.shephertz.app42.paas.sdk.csharp;
-using com.shephertz.app42.paas.sdk.csharp.game;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -34,7 +29,6 @@ public class ScoreScript : MonoBehaviour
         scorePoints += pointsToAdd;
         PlayerPrefs.SetInt("PlayerCurrentScore", scorePoints);
     } 
-
 }
 
 

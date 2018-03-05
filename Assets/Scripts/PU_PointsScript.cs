@@ -1,24 +1,25 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PU_PointsScript : MonoBehaviour {
 
-    PowerUpManager pu_manager;
     public Text addedPoint;
     int countGivePoint;
-    Boolean flagClick;
+    int updatedPointValue;
+    Boolean flagClickPU, flagClickUsePU;
+    Button doublePointBtn;
     GameObject btnPoint;
 
     void Start()
     {
         addedPoint = GameObject.Find("countPointAdded").GetComponent<Text>();
         btnPoint = GameObject.Find("pointsbtn");
-        countGivePoint = PlayerManager.GetInstance().GetPlayer().PlayerPowerScore;
+        doublePointBtn = GameObject.Find("doublePoints").GetComponent<Button>();
+        countGivePoint = PlayerPrefs.GetInt("PointPUcount");
         addedPoint.text = countGivePoint + "";
-        flagClick = false;
+        flagClickPU = false;
+        flagClickUsePU = false;
     }
     
 	public void OnclickPoints()
@@ -37,19 +38,43 @@ public class PU_PointsScript : MonoBehaviour {
 
     public void OnClickUsePU()
     {
+        flagClickUsePU = true;
         PowerUpManager.CheckDoublePoint = true;
         if (countGivePoint != 0)
         {
-            Debug.Log("ACCESS");
             countGivePoint--;
-            addedPoint.text = countGivePoint+"";
+            PlayerPrefs.SetInt("PointPUcount", countGivePoint);
+            addedPoint.text =  "" + PlayerPrefs.GetInt("PointPUcount"); ;
         }
 
         if (countGivePoint <= 0)
         {
             countGivePoint = 0;
-            Debug.Log("No more power up");
             addedPoint.text = "" + 0;
         }
+
+        if(flagClickUsePU.Equals(true))
+        {
+            doublePointBtn.enabled = false;
+        }
     }
+    //give point powerup
+    public void OnclickGivePoints()
+    {
+        flagClickPU = true;
+
+        if (PowerUpManager.CheckGivePoint.Equals(true))
+        {
+            updatedPointValue = PlayerPrefs.GetInt("PointPUcount");
+            updatedPointValue++;
+            PlayerPrefs.SetInt("PointPUcount", updatedPointValue);
+        }
+        addedPoint.text = "" + PlayerPrefs.GetInt("PointPUcount"); 
+
+        if (flagClickPU.Equals(true))
+            btnPoint.SetActive(false);
+       
+    }
+
+  
 }

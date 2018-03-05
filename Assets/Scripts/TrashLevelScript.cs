@@ -1,17 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using com.shephertz.app42.paas.sdk.csharp.storage;
-using com.shephertz.app42.paas.sdk.csharp;
 using UnityEngine.SceneManagement;
 
 public class TrashLevelScript : MonoBehaviour {
 
     int level, count;
-    Constant c;
-    String key,value;
     Button[] btn;
     public Sprite mybutton;
     List<TrashData> trash;
@@ -21,27 +16,24 @@ public class TrashLevelScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
         level = LevelManager.GetInstance().GetSelectLevel();
         count = TrashRandomManager.GetInstance().GetTrash().Count;
         trash = TrashRandomManager.GetInstance().GetTrash();
         optionsPanel = GameObject.Find("optionsPanel");
-        //btn = new Button[level];
+
         btn = gameObject.GetComponentsInChildren<Button>();
 
         if (!gameObject.name.Equals("trashLevel" + level))
         {
             gameObject.SetActive(false);
-
         }
-
+        
         for (int i = 0; i < count; i++)
         {
             btn[i].GetComponentInChildren<Text>().text = trash[i].TrashName;
             if (!trash[i].CheckTrash) finishAllTrash = false;
             if (trash[i].CheckTrash)
-            {
-               
+            {               
                 btn[i].enabled = false;
                 btn[i].image.overrideSprite = mybutton;
                 btn[i].GetComponentInChildren<Text>().color = Color.gray;
@@ -63,7 +55,14 @@ public class TrashLevelScript : MonoBehaviour {
         }
         else
         {
-            optionsPanel.SetActive(false);
+            try
+            {
+                optionsPanel.SetActive(false);
+            }
+            catch(Exception e)
+            {
+                Debug.Log(e.Message);
+            }
         }
     }
 

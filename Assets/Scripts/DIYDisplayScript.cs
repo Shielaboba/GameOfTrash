@@ -9,7 +9,6 @@ using System;
 
 public class DIYDisplayScript : MonoBehaviour
 {
-
     // Use this for initialization
     List<DIYTrashData> diy = TrashRandomManager.GetInstance().GetDIYTrash();
     Text craftname1, craftname2, craftnameDisplay, tools, steps;
@@ -33,7 +32,7 @@ public class DIYDisplayScript : MonoBehaviour
         }
         catch (Exception e)
         {
-
+            print(e.Message);
         }
     }
 
@@ -99,13 +98,11 @@ public class DIYDisplayScript : MonoBehaviour
             {
                 for(int x=0; x<diy[i].DIYTools.Length; x++)
                 {
-
                     toolsholder = toolsholder + diy[i].DIYTools[x] + "\n";
                 }
 
                 for (int y = 0; y < diy[i].DIYProcedure.Length; y++)
                 {
-
                     stepsholder = stepsholder + diy[i].DIYProcedure[y] + "\n";
                 }
 
@@ -115,8 +112,7 @@ public class DIYDisplayScript : MonoBehaviour
             }
         }
         
-        StartCoroutine(FindImage(diy[0].DIYCraftName, "img_diy"));
-        
+        StartCoroutine(FindImage(diy[0].DIYCraftName, "img_diy"));        
     }
 
     public void DisplayProcedure2()
@@ -132,13 +128,11 @@ public class DIYDisplayScript : MonoBehaviour
             {
                 for (int x = 0; x < diy[i].DIYTools.Length; x++)
                 {
-
                     toolsholder = toolsholder + diy[i].DIYTools[x] + "\n";
                 }
 
                 for (int y = 0; y < diy[i].DIYProcedure.Length; y++)
                 {
-
                     stepsholder = stepsholder + diy[i].DIYProcedure[y] + "\n";
                 }
 
@@ -149,7 +143,6 @@ public class DIYDisplayScript : MonoBehaviour
         }
 
         StartCoroutine(FindImage(diy[1].DIYCraftName, "img_diy"));
-
     }
 
     IEnumerator FindImage(string craft, string imageName)
@@ -157,26 +150,26 @@ public class DIYDisplayScript : MonoBehaviour
         Dictionary<string, string> headers = new Dictionary<string, string>();
         headers.Add("Ocp-Apim-Subscription-Key", "1b4d9849f0e14b3a815c56c5958832be");
 
-            var url = "https://api.cognitive.microsoft.com/bing/v7.0/search?q=" + craft + "&answerCount=1&responseFilter=images&mkt=en-us";
+        var url = "https://api.cognitive.microsoft.com/bing/v7.0/search?q=" + craft + "&answerCount=1&responseFilter=images&mkt=en-us";
 
-            using (WWW www = new WWW(url, null, headers))
+        using (WWW www = new WWW(url, null, headers))
+        {
+            yield return www;
+
+            if (string.IsNullOrEmpty(www.error))
             {
-                yield return www;
-
-                if (string.IsNullOrEmpty(www.error))
+                JsonData picUrl = JsonMapper.ToObject(www.text);
+                using (WWW w = new WWW(picUrl["images"]["value"][0]["thumbnailUrl"].GetString()))
                 {
-                    JsonData picUrl = JsonMapper.ToObject(www.text);
-                    using (WWW w = new WWW(picUrl["images"]["value"][0]["thumbnailUrl"].GetString()))
-                    {
-                        yield return w;
-                        GameObject.Find(imageName).GetComponent<Image>().sprite = Sprite.Create(w.texture, new Rect(0, 0, w.texture.width, w.texture.height), new Vector2(0, 0));
-                    }
-                }
-                else
-                {
-                    Debug.Log("Error: " + www.error);
+                    yield return w;
+                    GameObject.Find(imageName).GetComponent<Image>().sprite = Sprite.Create(w.texture, new Rect(0, 0, w.texture.width, w.texture.height), new Vector2(0, 0));
                 }
             }
+            else
+            {
+                Debug.Log("Error: " + www.error);
+            }
+        }
     }
 
 }

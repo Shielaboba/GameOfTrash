@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerManager
+﻿public class PlayerManager
 {
-
     private static PlayerManager Instance;
     private PlayerData CurrentPlayer;
+
     private PlayerManager()
     {
-        
+
     }
 
     public static PlayerManager GetInstance()

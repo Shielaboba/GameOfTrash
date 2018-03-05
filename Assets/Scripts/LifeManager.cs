@@ -1,20 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using com.shephertz.app42.paas.sdk.csharp;
-using com.shephertz.app42.paas.sdk.csharp.timer;
-using System;
 
 public class LifeManager : MonoBehaviour
 {
-
     public Sprite[] HeartSprites;
     public Image HeartsUI; 
-
     private int currentHealth;
-
     GameObject timeManager;
 
     TimerService timerService = App42API.BuildTimerService();
@@ -24,6 +16,7 @@ public class LifeManager : MonoBehaviour
         timeManager = GameObject.Find("Time System");
         currentHealth = PlayerPrefs.GetInt("PlayerCurrentLives");        
     }
+
     void Update()
     {
         HeartsUI.sprite = HeartSprites[currentHealth];
@@ -40,6 +33,7 @@ public class LifeManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
     }
+
     public void TakeLife()
     {
         currentHealth--;
@@ -82,5 +76,4 @@ public class LifeManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);
         SceneManager.LoadScene("map"); 
     }
-
 }

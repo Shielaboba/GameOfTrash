@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1422,7 +1422,7 @@ GameObject:
   - component: {fileID: 708485944}
   - component: {fileID: 708485943}
   m_Layer: 5
-  m_Name: userNameText
+  m_Name: userNameText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1646,7 +1646,7 @@ GameObject:
   - component: {fileID: 769370915}
   - component: {fileID: 769370914}
   m_Layer: 5
-  m_Name: userScoreText
+  m_Name: userScoreText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

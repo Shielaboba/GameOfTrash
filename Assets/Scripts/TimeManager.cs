@@ -7,37 +7,29 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour {
 
     private float countingTime;
-
     LifeManager lifeManager;
-
     public Text clock;
-
     GameObject timeManager;
 
     void Start()
     {
-
-        timeManager = GameObject.Find("Time System");
-
-        clock = GetComponent<Text>();
-
-        lifeManager = FindObjectOfType<LifeManager>();
-        
+        timeManager = GameObject.Find("Time System");                        
         countingTime = PlayerPrefs.GetInt("PlayerLifeTimer");
-
+        lifeManager = FindObjectOfType<LifeManager>();
+        clock = GetComponent<Text>();
     }
 
     void Update()
     {
         if (lifeManager.GetCurHealth() == 5)
         {
-            timeManager.SetActive(false); // if puno ang life, hide ang timer.
+            timeManager.SetActive(false);
             return;
         }
+
         else
         {
-
-            timeManager.SetActive(true); // if na kwaan ang life, show ang timer.
+            timeManager.SetActive(true);
 
             countingTime -= Time.deltaTime;
 
@@ -46,15 +38,11 @@ public class TimeManager : MonoBehaviour {
 
             if (countingTime <= 0)
             {
-                //.. to do 
-
                 lifeManager.GiveLife();
-
                 ResetTime();
             }
 
             PlayerPrefs.SetInt("PlayerLifeTimer", Convert.ToInt32(countingTime));
-
             clock.text = string.Format("{0:0}:{1:00}", min, sec);
         }
     }

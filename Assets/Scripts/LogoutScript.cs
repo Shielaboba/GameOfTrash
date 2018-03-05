@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class LogoutScript : MonoBehaviour
 {
-    string sessionID = UserResponse.sessionID;
+    string sessionID = LoginResponse.sessionID;
     public void Logout()
     {
         SceneManager.LoadScene("login_menu");
@@ -15,6 +16,6 @@ public class LogoutScript : MonoBehaviour
         App42API.Initialize(cons.apiKey, cons.secretKey);
 
         UserService userService = App42API.BuildUserService();
-        userService.Logout(sessionID, new LogoutResponse());
+        userService.Logout(sessionID, new Response());
     }
 }

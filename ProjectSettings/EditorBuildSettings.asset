@@ -30,8 +30,8 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/DIY_procedure.unity
-    guid: de5b75f408238894d95245d77c1db088
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/trash_seg.unity
     guid: f8614c4201d306d46bb00a69491af3cb
@@ -47,3 +47,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DIY.unity
     guid: 2ce09248599faa14e97e3f9354d541c0
+  - enabled: 1
+    path: Assets/load_screen.unity
+    guid: 44efdfae6cb9372489db1f30239913fb

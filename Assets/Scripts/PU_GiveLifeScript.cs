@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,47 +7,80 @@ public class PU_GiveLifeScript : MonoBehaviour {
     LifeManager life_manager;
     PowerUpManager pu_manager;
     GameObject btnGiveLife;
+    Button addLifebtn;
     Boolean flagClick;
-    int count;
-  
+    int countLife;
+    int x;//updated count value for using power up
 	// Use this for initialization
 	void Start () {
         addedLife = GameObject.Find("countLifeAdded").GetComponent<Text>();
+
+       
+        countLife = PlayerPrefs.GetInt("LifePUcount");// iya gikuha pila ang value nga na set did2 sa button clicked.
         life_manager = FindObjectOfType<LifeManager>();
-        btnGiveLife = GameObject.Find("lifebtn"); ;
+        btnGiveLife = GameObject.Find("lifebtn");
+        addLifebtn = GameObject.Find("addLife").GetComponent<Button>();
+        addedLife.text = countLife + "";
         flagClick = false;
-        count = PlayerManager.GetInstance().GetPlayer().PlayerPowerLife;
-        addedLife.text = count + "";
+        Debug.Log(life_manager.GetCurHealth());
     }
-	
-    public void OnCLickGiveLife()
+    void Update()
     {
         flagClick = true;
         if (PowerUpManager.CheckGiveLife.Equals(true))
             count++;  
         addedLife.text = "" + (count- PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
 
+        if (life_manager.GetCurHealth() == 5)
+        {
+            addLifebtn.enabled = false;
+           
+        }
+        else
+            addLifebtn.enabled = true;
+
+    }
+
+    //use powerup
+    public void OnClickUsePU()
+    {
+      
+        PowerUpManager.CheckDoublePoint = true;
+        if (countLife != 0 )
+        {
+                life_manager.GiveLife();
+                countLife--;
+                PlayerPrefs.SetInt("LifePUcount", countLife);
+
+                addedLife.text = "" + PlayerPrefs.GetInt("LifePUcount");
+            
+        }
+
+        if (countLife <= 0)
+        {
+            countLife = 0;
+            addedLife.text = "" + 0;
+        }
+    }
+    //give powerup
+    public void OnCLickGiveLife()
+    {
+        flagClick = true;
+        if (PowerUpManager.CheckGiveLife.Equals(true))
+        {
+            //count++;
+            x = PlayerPrefs.GetInt("LifePUcount");
+            x++;
+            PlayerPrefs.SetInt("LifePUcount", x);
+            Debug.Log(x);
+
+        }
+
+
+        addedLife.text = "" + PlayerPrefs.GetInt("LifePUcount");
+
         if (flagClick.Equals(true))
             btnGiveLife.SetActive(false);
     }
-    public void OnClick()
-    {
-        PowerUpManager.CheckDoublePoint = true;
-        if (count!=0)
-        {
-            life_manager.GiveLife();
-            count--;
-            addedLife.text = count + "";
-        }
-      
-
-        if (count <= 0)
-        {
-            count = 0;
-            Debug.Log("No more power up");
-            addedLife.text = "" + 0;
-        }
-        
-
-    }
+   
 }

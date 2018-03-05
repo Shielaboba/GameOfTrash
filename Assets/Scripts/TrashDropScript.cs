@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using com.shephertz.app42.paas.sdk.csharp;
-using com.shephertz.app42.paas.sdk.csharp.upload;
-using System.Timers;
 using UnityEngine.SceneManagement;
 using System;
 
 public class TrashDropScript : MonoBehaviour
 {
     public GameObject[] obj;
-    GameObject optionsPanel;
-    GameObject replayPanel;
-    GameObject btnPoint;
+    GameObject optionsPanel, replayPanel, btnPoint, tutorialPanel;
+    Button OkBtn;
     Boolean flagDone;
     Text timer;
     List<TrashData> trash;
@@ -24,6 +20,17 @@ public class TrashDropScript : MonoBehaviour
 
     private void Start()
     {
+        tutorialPanel = GameObject.Find("TutorialPanel");
+        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
+
+        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
+        {
+            OkBtn.onClick.AddListener(delegate () {
+                tutorialPanel.SetActive(false);
+            });
+        }
+        else tutorialPanel.SetActive(false);
+
         selLevel = LevelManager.GetInstance().GetSelectLevel();
         currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
@@ -38,13 +45,12 @@ public class TrashDropScript : MonoBehaviour
 
     private void Update()
     {
-        if (!StopTimer()) // if StopTimer() returns false, continue minus ang timer sa trash_seg. Else, ma skip ni nga line, ma stop ang timer
+        if (!StopTimer()) 
             timeLeft -= Time.deltaTime;
 
         int minutes = Mathf.FloorToInt(timeLeft / 60F);
         int seconds = Mathf.FloorToInt(timeLeft - minutes * 60);
 
-        //display
         if (timeLeft >= 0)
         {
             replayPanel.SetActive(false);
@@ -52,8 +58,7 @@ public class TrashDropScript : MonoBehaviour
             timer.color = Color.red;
             if (flagDone.Equals(true))
             {
-                //Time.timeScale = 0;
-                stopTimer = true; // Replace ani ang Time.timeScale = 0 para ma stop ang trash_seg timer only, dle ma apil ang timer para sa life
+                stopTimer = true;
                 timeFinish = timeLeft;
                 
                 if (timeFinish >= 100.0f)
@@ -62,10 +67,8 @@ public class TrashDropScript : MonoBehaviour
                     btnPoint.SetActive(false);
             }
 
-            // }
             timer.text = string.Format("{0:0}:{1:00}", minutes, seconds);
-        }
-      
+        }      
         else
         {
             FailedLevel();
@@ -88,7 +91,7 @@ public class TrashDropScript : MonoBehaviour
     public bool StopTimer()
     {
 
-        if (stopTimer) // if stopTimer == true
+        if (stopTimer)
             return true;
 
         return false;
@@ -103,8 +106,7 @@ public class TrashDropScript : MonoBehaviour
 
         btn.onClick.AddListener(delegate ()
         {
-            if (selLevel == currLevel)
-                ScoreScript.scorePoints = 0;            
+            ScoreScript.scorePoints = 0;            
         });
     }
 

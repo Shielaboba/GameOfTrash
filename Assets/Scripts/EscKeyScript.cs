@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EscKeyScript : MonoBehaviour {
@@ -75,23 +73,37 @@ public class EscKeyScript : MonoBehaviour {
     {
         SceneManager.LoadScene("trash_menu");
     }
+
     public void ReturnMap()
     {
         SceneManager.LoadScene("map");
     }
+
     public void SegShow()
     {
+        PlayerPrefs.SetInt("LifePUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
+        PlayerPrefs.SetInt("PointPUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
         SceneManager.LoadScene("trash_seg");
     }
+
     public void ReturnDiyMain()
     {
         print("hey");
         diymain.SetActive(true);
     }
 
-    //display book
     public void GotoBook()
     {
         SceneManager.LoadScene("book");
+    }
+
+    public void ExitApp()
+    {
+        Application.Quit();
+    }
+
+    public void Register()
+    {
+        SceneManager.LoadScene("reg_menu");
     }
 }

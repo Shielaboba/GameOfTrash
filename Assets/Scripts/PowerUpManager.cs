@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class PowerUpManager : MonoBehaviour{
+public class PowerUpManager {
 
     private static PowerUpManager Instance;
     public static Boolean CheckGiveLife = false;

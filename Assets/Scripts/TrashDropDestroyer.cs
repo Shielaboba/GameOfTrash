@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TrashDropDestroyer : MonoBehaviour {
@@ -11,7 +10,6 @@ public class TrashDropDestroyer : MonoBehaviour {
     private void Start()
     {
         life_manager = FindObjectOfType<LifeManager>();
-        print("DESTROY");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,29 +18,18 @@ public class TrashDropDestroyer : MonoBehaviour {
 
         if (trash != null)
         {
-            print(trash.TrashSegType.ToUpper());
             if(trash.TrashSegType.ToUpper().Equals(gameObject.name.ToUpper()))
             {
                 ScoreScript.AddPoints(10);
                 if (PowerUpManager.CheckDoublePoint.Equals(true))
                     ScoreScript.AddPoints(10);
 
-                Destroy(collision.gameObject);
-             
+                Destroy(collision.gameObject);             
             }
             else
             {
                 life_manager.TakeLife();
-                print("WRONG");
             }
-        }
-        else
-        {
-            
-            print("NULL:" + trash);
-            
-        }
-        
-        
+        }        
     }
 }
