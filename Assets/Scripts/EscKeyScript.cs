@@ -115,7 +115,7 @@ public class EscKeyScript : MonoBehaviour {
         App42API.Initialize(cons.apiKey, cons.secretKey);
 
         StorageService storageService = App42API.BuildStorageService();
-        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new SaveWhenLogoutExitResponse());
+        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new Response());
 
         Application.Quit();
     }
