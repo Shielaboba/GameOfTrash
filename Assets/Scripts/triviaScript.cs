@@ -47,7 +47,7 @@ public class TriviaScript : MonoBehaviour {
     public void OnClick()
     {
         trash.CheckTrash = true;
-        if(btnText.text.ToUpper().Equals("DO IT YOURSELF!"))
+        if(trash.TrashRecyclable.ToUpper().Equals("YES"))
             SceneManager.LoadScene("DIY");
         else
             SceneManager.LoadScene("trash_menu");        

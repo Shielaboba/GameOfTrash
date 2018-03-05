@@ -20,16 +20,7 @@ public class TrashDropScript : MonoBehaviour
 
     private void Start()
     {
-        tutorialPanel = GameObject.Find("TutorialPanel");
-        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
 
-        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
-        {
-            OkBtn.onClick.AddListener(delegate () {
-                tutorialPanel.SetActive(false);
-            });
-        }
-        else tutorialPanel.SetActive(false);
 
         selLevel = LevelManager.GetInstance().GetSelectLevel();
         currLevel = LevelManager.GetInstance().GetLevel();
@@ -40,7 +31,18 @@ public class TrashDropScript : MonoBehaviour
         timeLeft = 120.0f;
         flagDone = false;
         stopTimer = false;
-        SelectLevelGame();        
+        SelectLevelGame();
+
+        tutorialPanel = GameObject.Find("TutorialPanel");
+        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
+
+        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
+        {
+            OkBtn.onClick.AddListener(delegate () {
+                tutorialPanel.SetActive(false);
+            });
+        }
+        else tutorialPanel.SetActive(false);
     }
 
     private void Update()

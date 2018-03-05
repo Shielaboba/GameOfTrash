@@ -29,7 +29,10 @@ public class TriviaResponse : App42CallBack
 
        DisplayName.text = trash.TrashName.ToUpper();
        DisplayDesc.text = trash.TrashTrivia;
-       btnText.text = "Do It Yourself!";
+        if (trash.TrashRecyclable.ToUpper().Equals("YES"))
+            btnText.text = "Do It Yourself!";
+        else
+            btnText.text = "Go Back To Trash Hunt!";
     }
 
     public void OnException(Exception e)
