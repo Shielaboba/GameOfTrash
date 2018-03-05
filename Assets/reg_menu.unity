@@ -736,7 +736,6 @@ GameObject:
   - component: {fileID: 434770865}
   - component: {fileID: 434770864}
   - component: {fileID: 434770863}
-  - component: {fileID: 434770868}
   - component: {fileID: 434770866}
   - component: {fileID: 434770867}
   m_Layer: 5
@@ -826,17 +825,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 434770868}
-        m_MethodName: SendEmail
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &434770864
@@ -900,17 +888,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &434770868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 434770861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576e67538e8919043bde3c80fe1493fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &651408008
 GameObject:
   m_ObjectHideFlags: 0
