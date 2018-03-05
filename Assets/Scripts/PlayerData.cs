@@ -11,5 +11,6 @@ public class PlayerData
     public int PlayerPowerLife;
     public int PlayerPowerScore;
     public int PlayerLife;
+    public int PlayerLifeTimer;
     public List<int> PlayerScoreLevel;
 }

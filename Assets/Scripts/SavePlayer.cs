@@ -55,8 +55,10 @@ public class SavePlayer : MonoBehaviour
 
         PlayerPrefs.SetInt("PlayerCurrentScore", 0);
         player.PlayerLife = PlayerPrefs.GetInt("PlayerCurrentLives");
+        player.PlayerLifeTimer = PlayerPrefs.GetInt("PlayerLifeTimer");
         player.PlayerPowerLife = int.Parse(GameObject.Find("countLifeAdded").GetComponent<Text>().text);
-        player.PlayerPowerScore = int.Parse(GameObject.Find("countPointAdded").GetComponent<Text>().text);       
+        player.PlayerPowerScore = int.Parse(GameObject.Find("countPointAdded").GetComponent<Text>().text);
+        
 
         string data = JsonUtility.ToJson(player);
         print(data);

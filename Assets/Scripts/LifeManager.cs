@@ -1,30 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using com.shephertz.app42.paas.sdk.csharp;
+using com.shephertz.app42.paas.sdk.csharp.timer;
+using System.Collections;
 
 public class LifeManager : MonoBehaviour
 {
     public Sprite[] HeartSprites;
     public Image HeartsUI; 
     private int currentHealth;
-    GameObject timeManager;
+    GameObject timeManager;    
 
     void Start ()
     {
         timeManager = GameObject.Find("Time System");
-        currentHealth = PlayerPrefs.GetInt("PlayerCurrentLives"); 
+        currentHealth = PlayerPrefs.GetInt("PlayerCurrentLives");        
     }
 
     void Update()
     {
-        HeartsUI.sprite = HeartSprites[currentHealth];
+        HeartsUI.sprite = HeartSprites[currentHealth];        
     }
 
     public void TakeLife()
     {
         currentHealth--;
-        PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);        
-        timeManager.SetActive(true); //If life reduced, time will start
+        PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);
+
+        timeManager.SetActive(true); // if na kwaan ang life, start ang timer.
+        
     }
 
     public void GiveLife()

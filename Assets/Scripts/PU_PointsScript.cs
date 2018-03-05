@@ -21,7 +21,21 @@ public class PU_PointsScript : MonoBehaviour {
         flagClickPU = false;
         flagClickUsePU = false;
     }
-    //use point powerup
+    
+	public void OnclickPoints()
+    {
+        flagClickPU = true;
+      
+        if (PowerUpManager.CheckGivePoint.Equals(true))
+            countGivePoint++;
+
+       addedPoint.text = "" + (countGivePoint- PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
+
+        if (flagClickPU.Equals(true))
+            btnPoint.SetActive(false);
+       
+    }
+
     public void OnClickUsePU()
     {
         flagClickUsePU = true;

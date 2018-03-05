@@ -32,6 +32,7 @@ public class TimeManager : MonoBehaviour {
             timeManager.SetActive(true);
 
             countingTime -= Time.deltaTime;
+
             int min = Mathf.FloorToInt(countingTime / 60F);
             int sec = Mathf.FloorToInt(countingTime - min * 60);
 
@@ -48,6 +49,6 @@ public class TimeManager : MonoBehaviour {
 
     public void ResetTime()
     {
-        countingTime = 20;
+        countingTime = 2400;
     }
 }
