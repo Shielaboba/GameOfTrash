@@ -76,6 +76,9 @@ public class RegisterScript : MonoBehaviour
             try
             {
                 userService.CreateUser(username.text, pass.text, email.text, new RegisterResponse());
+                PlayerPrefs.SetString("email", email.text);
+                PlayerPrefs.SetString("uname", username.text);
+                PlayerPrefs.Save();
             }
             catch (App42Exception e)
             {
