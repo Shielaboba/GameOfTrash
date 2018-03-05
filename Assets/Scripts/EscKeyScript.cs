@@ -6,13 +6,14 @@ using com.shephertz.app42.paas.sdk.csharp.storage;
 public class EscKeyScript : MonoBehaviour {
 
     PlayerData player;
-
+    LifeManager life_manager;
     GameObject procedure, diymain;
 
     // Use this for initialization
     void Start ()
     {
         player = PlayerManager.GetInstance().GetPlayer();
+        life_manager = FindObjectOfType<LifeManager>();
         procedure = GameObject.Find("procedure");
         diymain = GameObject.Find("diymain");
     }
@@ -96,6 +97,7 @@ public class EscKeyScript : MonoBehaviour {
     {
         print("hey");
         diymain.SetActive(true);
+        procedure.SetActive(false);
     }
 
     public void GotoBook()
@@ -123,5 +125,11 @@ public class EscKeyScript : MonoBehaviour {
     public void Register()
     {
         SceneManager.LoadScene("reg_menu");
+    }
+
+    public void ExitTrashMenu()
+    {
+        life_manager.TakeLife();
+        SceneManager.LoadScene("map");
     }
 }

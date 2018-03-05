@@ -8,7 +8,7 @@ using System;
 public class TrashDropScript : MonoBehaviour
 {
     public GameObject[] obj;
-    GameObject optionsPanel, replayPanel, btnPoint, tutorialPanel;
+    GameObject optionsPanel, replayPanel, btnPoint, tutorialPanel,panelModals;
     Button OkBtn;
     Boolean flagDone;
     Text timer;
@@ -26,6 +26,7 @@ public class TrashDropScript : MonoBehaviour
         currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
         replayPanel = GameObject.Find("replayPanel");
+        panelModals = GameObject.Find("PanelModals");
         btnPoint = GameObject.Find("pointsbtn");
         timer = GameObject.Find("timer").GetComponent<Text>();
         timeLeft = 120.0f;
@@ -55,6 +56,7 @@ public class TrashDropScript : MonoBehaviour
 
         if (timeLeft >= 0)
         {
+            panelModals.SetActive(false);
             replayPanel.SetActive(false);
             
             timer.color = Color.red;
@@ -82,6 +84,7 @@ public class TrashDropScript : MonoBehaviour
         }
         else
         {
+            panelModals.SetActive(false);
             optionsPanel.SetActive(false);
         }
 
@@ -102,6 +105,7 @@ public class TrashDropScript : MonoBehaviour
     void SuccessLevel()
     {
         flagDone = true;
+        panelModals.SetActive(true);
         optionsPanel.SetActive(true);
         PowerUpManager.CheckGiveLife = true;
         Button btn = GameObject.Find("GoButton").GetComponent<Button>();
@@ -114,12 +118,12 @@ public class TrashDropScript : MonoBehaviour
 
     void FailedLevel()
     {
+        panelModals.SetActive(true);
         replayPanel.SetActive(true);
         Button btn = GameObject.Find("RepBtn").GetComponent<Button>();
-
+        //stopTimer = true;
         btn.onClick.AddListener(delegate ()
         {
-            stopTimer = false;
             Destroy(this);
             ScoreScript.scorePoints = 0;
             SceneManager.LoadScene("map");

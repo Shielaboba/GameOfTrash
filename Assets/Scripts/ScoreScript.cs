@@ -21,7 +21,7 @@ public class ScoreScript : MonoBehaviour
         if (scorePoints < 0)
             scorePoints = 0;
 
-        scoreText.text = "Score: " + (player.PlayerScoreMade + scorePoints);
+        scoreText.text = "Points: " + (player.PlayerScoreMade + scorePoints);
     }
         
     public static void AddPoints (int pointsToAdd)
