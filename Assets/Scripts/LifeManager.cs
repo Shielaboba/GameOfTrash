@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using com.shephertz.app42.paas.sdk.csharp;
+using com.shephertz.app42.paas.sdk.csharp.timer;
+using System.Collections;
 
 public class LifeManager : MonoBehaviour
 {
     public Sprite[] HeartSprites;
     public Image HeartsUI; 
     private int currentHealth;
-    GameObject timeManager;
-
-    TimerService timerService = App42API.BuildTimerService();
+    GameObject timeManager;    
 
     void Start ()
     {
@@ -19,19 +20,7 @@ public class LifeManager : MonoBehaviour
 
     void Update()
     {
-        HeartsUI.sprite = HeartSprites[currentHealth];
-
-        //TimerService timerService = App42API.BuildTimerService();
-        //timerService.GetCurrentTime(new CurrentTimeResponse());
-    }
-    IEnumerator DoCheck()
-    {
-        for ( ; ; )
-        {
-            timerService.GetCurrentTime(new CurrentTimeResponse());
-
-            yield return new WaitForSeconds(1.0f);
-        }
+        HeartsUI.sprite = HeartSprites[currentHealth];        
     }
 
     public void TakeLife()
@@ -40,15 +29,7 @@ public class LifeManager : MonoBehaviour
         PlayerPrefs.SetInt("PlayerCurrentLives", currentHealth);
 
         timeManager.SetActive(true); // if na kwaan ang life, start ang timer.
-
-        // temp code
-
-        //TimerService timerService = App42API.BuildTimerService();
-        timerService.StartTimer("GiveLifeTimer", "summer", new TimerResponse());
-        //StartCoroutine(DoCheck());
-        //timerService.GetCurrentTime(new CurrentTimeResponse());
         
-        //
     }
 
     public void GiveLife()

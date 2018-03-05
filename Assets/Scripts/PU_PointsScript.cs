@@ -24,14 +24,14 @@ public class PU_PointsScript : MonoBehaviour {
     
 	public void OnclickPoints()
     {
-        flagClick = true;
+        flagClickPU = true;
       
         if (PowerUpManager.CheckGivePoint.Equals(true))
             countGivePoint++;
 
        addedPoint.text = "" + (countGivePoint- PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
 
-        if (flagClick.Equals(true))
+        if (flagClickPU.Equals(true))
             btnPoint.SetActive(false);
        
     }
