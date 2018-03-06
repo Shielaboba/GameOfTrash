@@ -5,19 +5,7 @@ using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.game;
 using System;
 
-public class LeaderboardDisplay : MonoBehaviour {
-
-    GameObject tutorialPanel;
-
-    private void Start()
-    {
-        tutorialPanel = GameObject.Find("TutorialPanel");
-        print(PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo);
-        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo != 1)
-        {
-            tutorialPanel.SetActive(false);
-        }
-    }
+public class LeaderboardDisplay : MonoBehaviour {    
 
     public void DisplayLeaderboard()
     {

@@ -2721,7 +2721,6 @@ GameObject:
   - component: {fileID: 1255962739}
   - component: {fileID: 1255962738}
   - component: {fileID: 1255962737}
-  - component: {fileID: 1255962736}
   m_Layer: 5
   m_Name: OkBtn
   m_TagString: Untagged
@@ -2748,18 +2747,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000017166092, y: -91.00001}
   m_SizeDelta: {x: 328.2, y: 115.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1255962736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1255962734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2172de1389982e40b7ea1de12cc206c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 1776966848}
 --- !u!114 &1255962737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,8 +2786,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Show
+      - m_Target: {fileID: 2126083984}
+        m_MethodName: NextTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2810,7 +2797,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1776966850}
+      - m_Target: {fileID: 2126083985}
         m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
@@ -3468,7 +3455,6 @@ GameObject:
   - component: {fileID: 1776966849}
   - component: {fileID: 1776966852}
   - component: {fileID: 1776966851}
-  - component: {fileID: 1776966850}
   m_Layer: 5
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -3495,18 +3481,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5.0555, y: 369}
   m_SizeDelta: {x: 571.3, y: 488.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1776966850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1776966848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2172de1389982e40b7ea1de12cc206c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 1776966848}
 --- !u!114 &1776966851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4456,6 +4430,8 @@ GameObject:
   - component: {fileID: 2126083981}
   - component: {fileID: 2126083983}
   - component: {fileID: 2126083982}
+  - component: {fileID: 2126083984}
+  - component: {fileID: 2126083985}
   m_Layer: 0
   m_Name: TutorialPanel
   m_TagString: Untagged
@@ -4515,6 +4491,29 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2126083980}
+--- !u!114 &2126083984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126083980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5e0442d0e24cb478f8b1eaeaa36f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2126083985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126083980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2172de1389982e40b7ea1de12cc206c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 2126083980}
 --- !u!1 &2140512279
 GameObject:
   m_ObjectHideFlags: 0

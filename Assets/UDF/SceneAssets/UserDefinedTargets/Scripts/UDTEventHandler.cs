@@ -126,20 +126,10 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         BackBtn = GameObject.Find("BackButton").GetComponent<Button>();
         OkayBtn = GameObject.Find("OkayBtn").GetComponent<Button>();
         BuildBtn = GameObject.Find("BuildButton").GetComponent<Button>();
-        tutorialPanel = GameObject.Find("TutorialPanel");
-        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
         noLifeDetails.SetActive(false);
         trash = TrashManager.GetInstance().GetTrash();
         ConfigBtn();
         GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
-
-        if(PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
-        {
-            OkBtn.onClick.AddListener(delegate() {
-                tutorialPanel.SetActive(false);
-            });
-        }
-        else tutorialPanel.SetActive(false);
 
         m_TargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
 

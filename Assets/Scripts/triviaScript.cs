@@ -38,7 +38,6 @@ public class TriviaScript : MonoBehaviour
         }
         else
         {
-            print("TAAAAAKE FUCK!");
             FindObjectOfType<LifeManager>().TakeLife();
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
 
