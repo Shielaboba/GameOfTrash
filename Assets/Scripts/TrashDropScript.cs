@@ -16,6 +16,7 @@ public class TrashDropScript : MonoBehaviour
     public float timeLeft, timeFinish;
     int selLevel, currLevel;
     public bool stopTimer;
+    Animation anim;
 
     private void Start()
     {
@@ -48,11 +49,11 @@ public class TrashDropScript : MonoBehaviour
             timer.color = Color.red;
             if (flagDone.Equals(true))
             {
-                stopTimer = true;
+                //stopTimer = true;
                 timeFinish = timeLeft;
                 
                 if (timeFinish >= 100.0f)
-                    PowerUpManager.CheckGivePoint = true;
+                    PowerUpManager.CheckGivePoint = true;//for point power up
                else
                     btnPoint.SetActive(false);
             }
@@ -71,6 +72,7 @@ public class TrashDropScript : MonoBehaviour
         }
         else
         {
+            stopTimer = true;
             panelModals.SetActive(false);
             optionsPanel.SetActive(false);
         }
