@@ -20,7 +20,8 @@ public class TrashLevelScript : MonoBehaviour {
         count = TrashRandomManager.GetInstance().GetTrash().Count;
         trash = TrashRandomManager.GetInstance().GetTrash();
         optionsPanel = GameObject.Find("optionsPanel");
-
+        PlayerPrefs.SetInt("LifePUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
+        PlayerPrefs.SetInt("PointPUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
         btn = gameObject.GetComponentsInChildren<Button>();
 
         if (!gameObject.name.Equals("trashLevel" + level))
@@ -50,6 +51,8 @@ public class TrashLevelScript : MonoBehaviour {
             Button btn = GameObject.Find("GoButton").GetComponent<Button>();
             btn.onClick.AddListener(delegate ()
             {
+               // PlayerPrefs.SetInt("LifePUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
+               // PlayerPrefs.SetInt("PointPUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
                 SceneManager.LoadScene("trash_seg");
             });           
         }

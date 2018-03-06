@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using com.shephertz.app42.paas.sdk.csharp;
-using com.shephertz.app42.paas.sdk.csharp.storage;
 
 public class EscKeyScript : MonoBehaviour {
 
-    PlayerData player;
+    GameObject procedure, diymain, ExitOpt;
     LifeManager life_manager;
-    GameObject procedure, diymain;
-
+ 
     // Use this for initialization
-    void Start ()
-    {
-        player = PlayerManager.GetInstance().GetPlayer();
-        life_manager = FindObjectOfType<LifeManager>();
+    void Start () {
         procedure = GameObject.Find("procedure");
         diymain = GameObject.Find("diymain");
+        life_manager = FindObjectOfType<LifeManager>();
+        ExitOpt = GameObject.Find("exitOption");
     }
 	
 	// Update is called once per frame
@@ -49,13 +45,7 @@ public class EscKeyScript : MonoBehaviour {
                 SceneManager.LoadScene("trash_menu");
             }
         }
-        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trash_menu"))
-        {
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                SceneManager.LoadScene("map");
-            }
-        }
+   
         else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trivia_menu"))
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -83,11 +73,14 @@ public class EscKeyScript : MonoBehaviour {
 
     public void ReturnMap()
     {
+        
         SceneManager.LoadScene("map");
+        life_manager.TakeLife();
     }
 
     public void SegShow()
     {
+        
         PlayerPrefs.SetInt("LifePUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
         PlayerPrefs.SetInt("PointPUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
         SceneManager.LoadScene("trash_seg");
@@ -95,7 +88,7 @@ public class EscKeyScript : MonoBehaviour {
 
     public void ReturnDiyMain()
     {
-        print("hey");
+       
         diymain.SetActive(true);
         procedure.SetActive(false);
     }
@@ -107,35 +100,11 @@ public class EscKeyScript : MonoBehaviour {
 
     public void ExitApp()
     {
-        Constant cons = new Constant();
-
-        player.PlayerLifeTimer = PlayerPrefs.GetInt("PlayerLifeTimer");
-        player.PlayerLife = PlayerPrefs.GetInt("PlayerCurrentLives");
-
-        string data = JsonUtility.ToJson(player);
-
-        App42API.Initialize(cons.apiKey, cons.secretKey);
-
-        StorageService storageService = App42API.BuildStorageService();
-        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new Response());
-
         Application.Quit();
     }
 
     public void Register()
     {
         SceneManager.LoadScene("reg_menu");
-    }
-
-    public void ExitTrashMenu()
-    {
-        life_manager.TakeLife();
-        SceneManager.LoadScene("map");
-    }
-
-    public void ReplayClickBtn()
-    {
-        ScoreScript.scorePoints = 0;
-        SceneManager.LoadScene("map");
     }
 }

@@ -49,7 +49,7 @@ public class TrashDropScript : MonoBehaviour
             timer.color = Color.red;
             if (flagDone.Equals(true))
             {
-                //stopTimer = true;
+                stopTimer = true;
                 timeFinish = timeLeft;
                 
                 if (timeFinish >= 100.0f)
@@ -72,7 +72,7 @@ public class TrashDropScript : MonoBehaviour
         }
         else
         {
-            stopTimer = true;
+           
             panelModals.SetActive(false);
             optionsPanel.SetActive(false);
         }
