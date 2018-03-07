@@ -73,6 +73,7 @@ public class RegisterScript : MonoBehaviour
 
     public void RegisterBtn()
     {
+        errorMessage.text = "";
         if (FieldCheck())
         {
             Constant cons = new Constant();

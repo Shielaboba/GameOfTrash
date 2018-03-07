@@ -7,6 +7,7 @@ using com.shephertz.app42.paas.sdk.csharp.storage;
 public class EscKeyScript : MonoBehaviour {
 
     GameObject procedure, diymain, ExitOpt;
+    PlayerData player;
     LifeManager life_manager;
  
     // Use this for initialization
@@ -15,6 +16,7 @@ public class EscKeyScript : MonoBehaviour {
         diymain = GameObject.Find("diymain");
         life_manager = FindObjectOfType<LifeManager>();
         ExitOpt = GameObject.Find("exitOption");
+        player = PlayerManager.GetInstance().GetPlayer();
     }
 	
 	// Update is called once per frame
@@ -118,7 +120,7 @@ public class EscKeyScript : MonoBehaviour {
         string data = JsonUtility.ToJson(player);
 
         StorageService storageService = App42API.BuildStorageService();
-        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new SaveWhenLogoutExitResponse());
+        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new Response());
 
         Application.Quit();
     }

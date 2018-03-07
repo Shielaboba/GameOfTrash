@@ -52,6 +52,7 @@ public class LoginScript : MonoBehaviour
 
     public void LoginBtn()
     {
+        errorMessage.text = "";
         if (FieldCheck())
         {
             PlayerPrefs.SetString("username", username.text);
@@ -115,6 +116,7 @@ internal class LoginResponse : App42CallBack
         {
             jsonTxt = "Username already exists!";
         }
+        else jsonTxt = "No Internet Connection!";
 
         errorMessage.text = jsonTxt;
 
