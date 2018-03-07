@@ -44,7 +44,7 @@ public class LifeManager : MonoBehaviour
 
     public void SetCurHealth (int curHealth)
     {
-        this.currentHealth = curHealth;
+        currentHealth = curHealth;
     }
 
     public int GetCurHealth()

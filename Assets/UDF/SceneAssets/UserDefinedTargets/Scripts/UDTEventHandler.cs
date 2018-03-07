@@ -33,7 +33,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private GameObject[] typeBtn = new GameObject[4];
     private GameObject noLifeDetails, tutorialPanel;
     private Button BackBtn, OkayBtn, BuildBtn, OkBtn;
-#endregion
+    Text MatCompText;
+    #endregion
 
     #region SERIALIZABLE_CLASS
     [System.Serializable]
@@ -126,20 +127,11 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         BackBtn = GameObject.Find("BackButton").GetComponent<Button>();
         OkayBtn = GameObject.Find("OkayBtn").GetComponent<Button>();
         BuildBtn = GameObject.Find("BuildButton").GetComponent<Button>();
-        tutorialPanel = GameObject.Find("TutorialPanel");
-        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
         noLifeDetails.SetActive(false);
         trash = TrashManager.GetInstance().GetTrash();
+        MatCompText = GameObject.Find("MatComp").GetComponentInChildren<Text>();
         ConfigBtn();
         GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
-
-        if(PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
-        {
-            OkBtn.onClick.AddListener(delegate() {
-                tutorialPanel.SetActive(false);
-            });
-        }
-        else tutorialPanel.SetActive(false);
 
         m_TargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
 
@@ -284,7 +276,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         for (float f = 1f; f >= 0; f -= 0.1f)
         {
             f = (float)Math.Round(f, 1);
-            Debug.Log("FadeOut: " + f);
             canvasGroup.alpha = (float)Math.Round(f, 1);
             yield return null;
         }
@@ -423,8 +414,16 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
         if (holder)
         {
+            MatCompText.text = "";
             ScoreScript.AddPoints(10);
-            GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
+            GameObject.Find("Title").GetComponent<Text>().text = "Correct!";
+
+            for (int i = 0; i < trash.TrashMatComp.Length; i++)
+            {
+                print(trash.TrashMatComp[i] + "\n");
+                MatCompText.text += trash.TrashMatComp[i] + "\n";
+            }
+            
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
         }
@@ -448,13 +447,12 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
     public void ConfigBtn()
     {
-        int gameLevel = LevelManager.GetInstance().GetLevel();
+        int gameLevel = LevelManager.GetInstance().GetSelectLevel();
 
         for (int i=0; i< typeBtn.Length; i++)
         {
             typeBtn[i] = GameObject.Find("TypeBtn" + (i + 1));
         }
-
         
         if(gameLevel == 1 || gameLevel == 2)
         {

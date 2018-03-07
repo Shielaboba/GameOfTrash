@@ -6,16 +6,15 @@ using com.shephertz.app42.paas.sdk.csharp.storage;
 
 public class EscKeyScript : MonoBehaviour {
 
-    PlayerData player;
-
-    GameObject procedure, diymain;
-
+    GameObject procedure, diymain, ExitOpt;
+    LifeManager life_manager;
+ 
     // Use this for initialization
-    void Start ()
-    {
-        player = PlayerManager.GetInstance().GetPlayer();
+    void Start () {
         procedure = GameObject.Find("procedure");
         diymain = GameObject.Find("diymain");
+        life_manager = FindObjectOfType<LifeManager>();
+        ExitOpt = GameObject.Find("exitOption");
     }
 	
 	// Update is called once per frame
@@ -49,13 +48,7 @@ public class EscKeyScript : MonoBehaviour {
                 SceneManager.LoadScene("trash_menu");
             }
         }
-        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trash_menu"))
-        {
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                SceneManager.LoadScene("map");
-            }
-        }
+   
         else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("trivia_menu"))
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -83,11 +76,14 @@ public class EscKeyScript : MonoBehaviour {
 
     public void ReturnMap()
     {
+        
         SceneManager.LoadScene("map");
+        life_manager.TakeLife();
     }
 
     public void SegShow()
     {
+        
         PlayerPrefs.SetInt("LifePUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
         PlayerPrefs.SetInt("PointPUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
         SceneManager.LoadScene("trash_seg");
@@ -95,8 +91,9 @@ public class EscKeyScript : MonoBehaviour {
 
     public void ReturnDiyMain()
     {
-        print("hey");
+       
         diymain.SetActive(true);
+        procedure.SetActive(false);
     }
 
     public void GotoBook()

@@ -6,22 +6,9 @@ using System;
 using UnityEngine.UI;
 
 public class TrashDropUrlHandler : MonoBehaviour {
-    GameObject tutorialPanel;
-    Button OkBtn;
-
+    
     void Start()
     {
-        tutorialPanel = GameObject.Find("TutorialPanel");
-        OkBtn = GameObject.Find("OkBtn").GetComponent<Button>();
-
-        if (PlayerManager.GetInstance().GetPlayer().PlayerGameLvlNo == 1)
-        {
-            OkBtn.onClick.AddListener(delegate () {
-                tutorialPanel.SetActive(false);
-            });
-        }
-        else tutorialPanel.SetActive(false);
-
         Constant c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
         UploadService uploadService = App42API.BuildUploadService();

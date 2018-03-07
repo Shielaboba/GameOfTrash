@@ -8,12 +8,18 @@ using com.shephertz.app42.paas.sdk.csharp.game;
 using SimpleJSON;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using UnityEngine.SceneManagement;
+using com.shephertz.app42.paas.sdk.csharp.email;
+using System.Collections.Generic;
+using System.Net.Mail;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 public class RegisterScript : MonoBehaviour
 {
     InputField username, pass, confPass, email;
     Text errorMessage;
-	EventSystem system;    
+    EventSystem system;    
 
     void Start()
     {
@@ -116,11 +122,37 @@ internal class RegisterResponse : App42CallBack
 
         ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
         scoreBoardService.SaveUserScore("GOT", user.userName, 0, new Response()); // FOR SAVING FIRST SCORE FOR JUST REGISTERED PLAYERS.
-
         errorMessage.text = "Successfully registered!";
+        SendEmail(user.userName, user.email);
         StorageService storageService = App42API.BuildStorageService();
         storageService.InsertJSONDocument("GOTDB", "PerformanceFile", json, new Response());
         SceneManager.LoadScene("login_menu");
+    }
+
+    public void SendEmail(String uname, String email)
+    {
+        MailMessage mail = new MailMessage();
+
+        mail.From = new MailAddress("devzygote101@gmail.com");
+        mail.To.Add("" + email);
+        Debug.Log(email);
+        mail.Subject = "Game Of Trash";
+        mail.Body = "Hi " + uname + ",\nYou have successfully registered to the Game Of Trash where learning how to segregate and recycle trash are made in a fun and interactive way! You can now proceed to the game and start playing. Welcome and enjoy! \n\n" +
+            "-------------------\n" + "Best Regards,\n" + "Team Zygote";
+
+        SmtpClient smtpServer = new SmtpClient();
+        smtpServer.Host = "smtp.gmail.com";
+        smtpServer.Port = 587;
+        smtpServer.Credentials = new System.Net.NetworkCredential("devzygote101@gmail.com", "zygote101") as ICredentialsByHost;
+        smtpServer.EnableSsl = true;
+        ServicePointManager.ServerCertificateValidationCallback =
+            delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+            {
+                return true;
+            };
+        smtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+        smtpServer.Send(mail);
+        Debug.Log("success");
     }
 
     public void OnException(Exception ex)

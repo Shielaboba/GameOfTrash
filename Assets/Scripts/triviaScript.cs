@@ -4,7 +4,8 @@ using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 using UnityEngine.SceneManagement;
 
-public class TriviaScript : MonoBehaviour {
+public class TriviaScript : MonoBehaviour
+{
 
     // Use this for initialization
     string collectionName = "TrashFile";
@@ -14,7 +15,6 @@ public class TriviaScript : MonoBehaviour {
     LifeManager lifeManager;
     private void Start()
     {
-        lifeManager = FindObjectOfType<LifeManager>();
         trash = TrashManager.GetInstance().GetTrash();
         btnText = GameObject.Find("BtnDiy").GetComponentInChildren<Text>();
     }
@@ -32,13 +32,14 @@ public class TriviaScript : MonoBehaviour {
             storageService.FindDocumentsByQuery(cons.dbName, collectionName, query, new TriviaResponse());
 
             if (SceneManager.GetActiveScene().name.Equals("trivia_menu"))
-                GameObject.Find("triviaModalImg").SetActive(true);                
+                GameObject.Find("triviaModalImg").SetActive(true);
         }
         else
         {
-            lifeManager.TakeLife(); 
+            FindObjectOfType<LifeManager>().TakeLife();
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
-        }           
+
+        }
     }
 
     public void Hide()
@@ -49,9 +50,9 @@ public class TriviaScript : MonoBehaviour {
     public void OnClick()
     {
         trash.CheckTrash = true;
-        if(trash.TrashRecyclable.ToUpper().Equals("YES"))
+        if (trash.TrashRecyclable.ToUpper().Equals("YES"))
             SceneManager.LoadScene("DIY");
         else
-            SceneManager.LoadScene("trash_menu");        
+            SceneManager.LoadScene("trash_menu");
     }
 }

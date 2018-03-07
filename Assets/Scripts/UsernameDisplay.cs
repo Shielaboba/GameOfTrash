@@ -11,6 +11,6 @@ public class UsernameDisplay : MonoBehaviour {
 	void Start () {
         uname= PlayerPrefs.GetString("username");
         userName = GetComponent<Text>();
-        userName.text = uname;
+        userName.text = "Welcome " + uname;
     }
 }

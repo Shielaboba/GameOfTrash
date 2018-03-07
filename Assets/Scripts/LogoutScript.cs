@@ -36,7 +36,7 @@ public class LogoutScript : MonoBehaviour
         string data = JsonUtility.ToJson(player);
             
         StorageService storageService = App42API.BuildStorageService();
-        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new SaveWhenLogoutExitResponse());
+        storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new Response());
 
         UserService userService = App42API.BuildUserService();
         userService.Logout(sessionID, new Response());
