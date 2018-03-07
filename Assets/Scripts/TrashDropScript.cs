@@ -8,7 +8,7 @@ using System;
 public class TrashDropScript : MonoBehaviour
 {
     public GameObject[] obj;
-    GameObject optionsPanel, replayPanel, btnPoint,panelModals;
+    GameObject optionsPanel, replayPanel, btnPoint,panelModals, congratulationspanel;
     Boolean flagDone;
     Text timer;
     List<TrashData> trash;
@@ -16,6 +16,7 @@ public class TrashDropScript : MonoBehaviour
     public float timeLeft, timeFinish;
     int selLevel, currLevel;
     public bool stopTimer;
+    Button btn;
     Animation anim;
 
     private void Start()
@@ -23,6 +24,8 @@ public class TrashDropScript : MonoBehaviour
         selLevel = LevelManager.GetInstance().GetSelectLevel();
         currLevel = LevelManager.GetInstance().GetLevel();
         optionsPanel = GameObject.Find("optionsPanel");
+        btn = GameObject.Find("GoButton").GetComponent<Button>();
+        congratulationspanel = GameObject.Find("congratulationsPanel");
         replayPanel = GameObject.Find("replayPanel");
         panelModals = GameObject.Find("PanelModals");
         btnPoint = GameObject.Find("pointsbtn");
@@ -45,7 +48,8 @@ public class TrashDropScript : MonoBehaviour
         {
             panelModals.SetActive(false);
             replayPanel.SetActive(false);
-            
+            congratulationspanel.SetActive(false);
+
             timer.color = Color.red;
             if (flagDone.Equals(true))
             {
@@ -64,6 +68,7 @@ public class TrashDropScript : MonoBehaviour
         {
             panelModals.SetActive(true);
             replayPanel.SetActive(true);
+            congratulationspanel.SetActive(false);
         }
 
         if (transform.childCount-4 == 0)
@@ -75,12 +80,15 @@ public class TrashDropScript : MonoBehaviour
            
             panelModals.SetActive(false);
             optionsPanel.SetActive(false);
+            congratulationspanel.SetActive(false);
+
         }
 
         if(PlayerPrefs.GetInt("PlayerCurrentLives") == 0)
         {
             panelModals.SetActive(true);
             replayPanel.SetActive(true);
+            congratulationspanel.SetActive(false);
         }
     }
     public bool StopTimer()
@@ -94,11 +102,23 @@ public class TrashDropScript : MonoBehaviour
     }
     void SuccessLevel()
     {
-        flagDone = true;
-        panelModals.SetActive(true);
-        optionsPanel.SetActive(true);
-        PowerUpManager.CheckGiveLife = true;
-        Button btn = GameObject.Find("GoButton").GetComponent<Button>();
+        if ((selLevel != 6) || (currLevel != 6))
+        {
+            flagDone = true;
+            panelModals.SetActive(true);
+            optionsPanel.SetActive(true);
+            congratulationspanel.SetActive(false);
+            PowerUpManager.CheckGiveLife = true;
+
+        }
+        else
+        {
+            flagDone = true;
+            panelModals.SetActive(true);
+            congratulationspanel.SetActive(true);
+            PowerUpManager.CheckGiveLife = true;
+        }
+        
 
         btn.onClick.AddListener(delegate ()
         {
