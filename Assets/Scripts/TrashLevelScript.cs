@@ -20,6 +20,7 @@ public class TrashLevelScript : MonoBehaviour {
         count = TrashRandomManager.GetInstance().GetTrash().Count;
         trash = TrashRandomManager.GetInstance().GetTrash();
         optionsPanel = GameObject.Find("optionsPanel");
+        //set powerups
         PlayerPrefs.SetInt("LifePUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerLife);
         PlayerPrefs.SetInt("PointPUcount", PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
         btn = gameObject.GetComponentsInChildren<Button>();

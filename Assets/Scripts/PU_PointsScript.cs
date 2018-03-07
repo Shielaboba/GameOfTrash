@@ -2,8 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PU_PointsScript : MonoBehaviour {
+public class PU_PointsScript : MonoBehaviour
+{
 
+    PowerUpManager pu_manager;
     public Text addedPoint;
     int countGivePoint;
     int updatedPointValue;
@@ -14,37 +16,26 @@ public class PU_PointsScript : MonoBehaviour {
     void Start()
     {
         addedPoint = GameObject.Find("countPointAdded").GetComponent<Text>();
-        btnPoint = GameObject.Find("pointsbtn");
+        btnPoint = GameObject.Find("givepupoints");
         doublePointBtn = GameObject.Find("doublePoints").GetComponent<Button>();
         countGivePoint = PlayerPrefs.GetInt("PointPUcount");
         addedPoint.text = countGivePoint + "";
         flagClickPU = false;
         flagClickUsePU = false;
     }
-    
-	public void OnclickPoints()
-    {
-        flagClickPU = true;
-      
-        if (PowerUpManager.CheckGivePoint.Equals(true))
-            countGivePoint++;
-
-       addedPoint.text = "" + (countGivePoint- PlayerManager.GetInstance().GetPlayer().PlayerPowerScore);
-
-        if (flagClickPU.Equals(true))
-            btnPoint.SetActive(false);
-       
-    }
-
+    //use point powerup
     public void OnClickUsePU()
     {
         flagClickUsePU = true;
+
+        //double score
         PowerUpManager.CheckDoublePoint = true;
+
         if (countGivePoint != 0)
         {
             countGivePoint--;
             PlayerPrefs.SetInt("PointPUcount", countGivePoint);
-            addedPoint.text =  "" + PlayerPrefs.GetInt("PointPUcount"); ;
+            addedPoint.text = "" + PlayerPrefs.GetInt("PointPUcount"); ;
         }
 
         if (countGivePoint <= 0)
@@ -53,7 +44,7 @@ public class PU_PointsScript : MonoBehaviour {
             addedPoint.text = "" + 0;
         }
 
-        if(flagClickUsePU.Equals(true))
+        if (flagClickUsePU.Equals(true))
         {
             doublePointBtn.enabled = false;
         }
@@ -69,12 +60,12 @@ public class PU_PointsScript : MonoBehaviour {
             updatedPointValue++;
             PlayerPrefs.SetInt("PointPUcount", updatedPointValue);
         }
-        addedPoint.text = "" + PlayerPrefs.GetInt("PointPUcount"); 
+        addedPoint.text = "" + PlayerPrefs.GetInt("PointPUcount");
 
-        if (flagClickPU.Equals(true))
+        if (flagClickPU)
             btnPoint.SetActive(false);
-       
+
     }
 
-  
+
 }

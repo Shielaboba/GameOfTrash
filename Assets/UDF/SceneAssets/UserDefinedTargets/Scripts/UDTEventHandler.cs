@@ -31,7 +31,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private const string API_KEY = "AIzaSyB3S7o3-A1nKrvfeL4FGG_4S0iTy67tbbg";
     private const string API_URL = "https://vision.googleapis.com/v1/images:annotate?key=";
     private GameObject[] typeBtn = new GameObject[4];
-    private GameObject noLifeDetails, tutorialPanel;
+    private GameObject noLifeDetails, tutorialPanel, panelModal;
     private Button BackBtn, OkayBtn, BuildBtn, OkBtn;
     Text MatCompText;
     #endregion
@@ -124,10 +124,12 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     {
         lifeManager = FindObjectOfType<LifeManager>();
         noLifeDetails = GameObject.Find("noLifeDetails");
+        panelModal  = GameObject.Find("PanelModals");
         BackBtn = GameObject.Find("BackButton").GetComponent<Button>();
         OkayBtn = GameObject.Find("OkayBtn").GetComponent<Button>();
         BuildBtn = GameObject.Find("BuildButton").GetComponent<Button>();
         noLifeDetails.SetActive(false);
+        panelModal.SetActive(false);
         trash = TrashManager.GetInstance().GetTrash();
         MatCompText = GameObject.Find("MatComp").GetComponentInChildren<Text>();
         ConfigBtn();
@@ -436,6 +438,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             {
                 BackBtn.enabled = false;
                 BuildBtn.enabled = false;
+                panelModal.SetActive(true);
                 noLifeDetails.SetActive(true);
                 OkayBtn.onClick.AddListener(delegate ()
                 {

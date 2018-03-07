@@ -17,7 +17,7 @@ public class TrashDropScript : MonoBehaviour
     int selLevel, currLevel;
     public bool stopTimer;
     Button btn;
-    Animation anim;
+   
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class TrashDropScript : MonoBehaviour
         congratulationspanel = GameObject.Find("congratulationsPanel");
         replayPanel = GameObject.Find("replayPanel");
         panelModals = GameObject.Find("PanelModals");
-        btnPoint = GameObject.Find("pointsbtn");
+        btnPoint = GameObject.Find("givepupoints");
         timer = GameObject.Find("timer").GetComponent<Text>();
         timeLeft = 120.0f;
         flagDone = false;
@@ -60,7 +60,7 @@ public class TrashDropScript : MonoBehaviour
                     PowerUpManager.CheckGivePoint = true;//for point power up
                else
                     btnPoint.SetActive(false);
-            }
+            }   
 
             timer.text = string.Format("{0:0}:{1:00}", minutes, seconds);
         }      
