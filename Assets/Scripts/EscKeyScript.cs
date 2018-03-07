@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using com.shephertz.app42.paas.sdk.csharp;
+using com.shephertz.app42.paas.sdk.csharp.timer;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 
 public class EscKeyScript : MonoBehaviour {
@@ -106,13 +107,18 @@ public class EscKeyScript : MonoBehaviour {
     public void ExitApp()
     {
         Constant cons = new Constant();
+        App42API.Initialize(cons.apiKey, cons.secretKey);
 
         player.PlayerLifeTimer = PlayerPrefs.GetInt("PlayerLifeTimer");
         player.PlayerLife = PlayerPrefs.GetInt("PlayerCurrentLives");
 
-        string data = JsonUtility.ToJson(player);
+        TimerService timerService = App42API.BuildTimerService();
+        timerService.GetCurrentTime(new CurrentTimeResponse());
 
-        App42API.Initialize(cons.apiKey, cons.secretKey);
+        Debug.Log(PlayerPrefs.GetString("CurrentTime"));
+        player.PlayerExitTime = PlayerPrefs.GetString("CurrentTime"); //temp
+
+        string data = JsonUtility.ToJson(player);
 
         StorageService storageService = App42API.BuildStorageService();
         storageService.UpdateDocumentByKeyValue(cons.dbName, "PerformanceFile", "PlayerName", player.PlayerName, data, new SaveWhenLogoutExitResponse());
