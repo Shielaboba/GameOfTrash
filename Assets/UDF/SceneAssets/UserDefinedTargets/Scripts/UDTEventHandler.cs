@@ -33,7 +33,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private GameObject[] typeBtn = new GameObject[4];
     private GameObject noLifeDetails, tutorialPanel;
     private Button BackBtn, OkayBtn, BuildBtn, OkBtn;
-#endregion
+    Text MatCompText;
+    #endregion
 
     #region SERIALIZABLE_CLASS
     [System.Serializable]
@@ -128,6 +129,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         BuildBtn = GameObject.Find("BuildButton").GetComponent<Button>();
         noLifeDetails.SetActive(false);
         trash = TrashManager.GetInstance().GetTrash();
+        MatCompText = GameObject.Find("MatComp").GetComponentInChildren<Text>();
         ConfigBtn();
         GameObject.Find("Title").GetComponent<Text>().text = trash.TrashName;
 
@@ -274,7 +276,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         for (float f = 1f; f >= 0; f -= 0.1f)
         {
             f = (float)Math.Round(f, 1);
-            Debug.Log("FadeOut: " + f);
             canvasGroup.alpha = (float)Math.Round(f, 1);
             yield return null;
         }
@@ -414,7 +415,10 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         if (holder)
         {
             ScoreScript.AddPoints(10);
-            GameObject.Find("Title").GetComponent<Text>().text = "Correct!";           
+            GameObject.Find("Title").GetComponent<Text>().text = "Correct!";
+            print(MatCompText);
+            print(trash.TrashMatComp.Length);
+            MatCompText.text = trash.TrashMatComp[0];
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
         }
@@ -444,7 +448,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         {
             typeBtn[i] = GameObject.Find("TypeBtn" + (i + 1));
         }
-
         
         if(gameLevel == 1 || gameLevel == 2)
         {

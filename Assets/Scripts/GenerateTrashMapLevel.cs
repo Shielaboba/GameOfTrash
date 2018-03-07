@@ -132,6 +132,7 @@ internal class TrashLevelResponse : App42CallBack
         Storage storage = (Storage)response;
 
         IList<Storage.JSONDocument> jsonDocList = storage.GetJsonDocList();
+
         trash = new List<TrashData>();
         for (int i = 0; i < trashHolder; i++)
         {
