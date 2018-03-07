@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using com.shephertz.app42.paas.sdk.csharp;
+using com.shephertz.app42.paas.sdk.csharp.game;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -13,6 +15,12 @@ public class ScoreScript : MonoBehaviour
         player = PlayerManager.GetInstance().GetPlayer();
         scoreText = GetComponent<Text>();
         scorePoints = PlayerPrefs.GetInt("PlayerCurrentScore");
+
+        Constant cons = new Constant();
+        App42API.Initialize(cons.apiKey, cons.secretKey);
+
+        ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();
+        scoreBoardService.GetLastScoreByUser(cons.gameName, player.PlayerName, new ScoreResponse());
     }
 
     // Update is called once per frame
@@ -20,8 +28,8 @@ public class ScoreScript : MonoBehaviour
     {
         if (scorePoints < 0)
             scorePoints = 0;
-
-        scoreText.text = "Points: " + (player.PlayerScoreMade + scorePoints);
+        
+        scoreText.text = "Score: " + (PlayerPrefs.GetInt("PlayerTotalScore") + scorePoints);
     }
         
     public static void AddPoints (int pointsToAdd)

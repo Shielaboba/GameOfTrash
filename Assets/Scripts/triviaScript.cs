@@ -10,15 +10,13 @@ public class TriviaScript : MonoBehaviour
     // Use this for initialization
     string collectionName = "TrashFile";
     string keyName = "TrashName";
-    //LifeManager life_manager;
     Text btnText;
     TrashData trash;
-
+    LifeManager lifeManager;
     private void Start()
     {
         trash = TrashManager.GetInstance().GetTrash();
         btnText = GameObject.Find("BtnDiy").GetComponentInChildren<Text>();
-        //life_manager = FindObjectOfType<LifeManager>();
     }
 
     public void Show()

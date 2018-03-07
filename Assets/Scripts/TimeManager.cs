@@ -13,7 +13,7 @@ public class TimeManager : MonoBehaviour {
 
     void Start()
     {
-        timeManager = GameObject.Find("Time System");                        
+        timeManager = GameObject.Find("Time System");                
         countingTime = PlayerPrefs.GetInt("PlayerLifeTimer");
         lifeManager = FindObjectOfType<LifeManager>();
         clock = GetComponent<Text>();
@@ -23,6 +23,7 @@ public class TimeManager : MonoBehaviour {
     {
         if (lifeManager.GetCurHealth() == 5)
         {
+            PlayerPrefs.SetInt("PlayerLifeTimer", 2400);
             timeManager.SetActive(false);
             return;
         }
