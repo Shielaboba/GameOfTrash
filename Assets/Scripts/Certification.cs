@@ -54,7 +54,7 @@ public class Certification : MonoBehaviour
                 "-------------------\n" + "Best Regards,\n" + "Team Zygote";
 
             Attachment attachment;
-            attachment = new Attachment("assets/img/eggshell.jpg");
+            attachment = new Attachment("Assets/Img/Certificate.jpg");
             mail.Attachments.Add(attachment);
 
             SmtpClient smtpServer = new SmtpClient();

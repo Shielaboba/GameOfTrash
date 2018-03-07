@@ -125,6 +125,11 @@ public class EscKeyScript : MonoBehaviour {
         Application.Quit();
     }
 
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
+
     public void Register()
     {
         SceneManager.LoadScene("reg_menu");
