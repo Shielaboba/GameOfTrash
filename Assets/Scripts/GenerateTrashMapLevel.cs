@@ -8,32 +8,79 @@ using com.shephertz.app42.paas.sdk.csharp.storage;
 using System;
 
 public class GenerateTrashMapLevel : MonoBehaviour {
-    
+
     public Button btn;
     int LvlBtn;
+    public GameObject levelDetails, noLifeDetails;
+    PlayerData player;
+    public Text ScoreText;
+    public Button PlayBtn, CloseBtn, OkayBtn, Close1Btn;
 
     // Use this for initialization
     void Start ()
     {
+        ScoreScript.scorePoints = 0;
+        levelDetails.SetActive(false);
+        noLifeDetails.SetActive(false);
         int level = LevelManager.GetInstance().GetLevel();
         LvlBtn = int.Parse(btn.GetComponentInChildren<Text>().text);
- 
+
         if (LvlBtn > level)
         {
             btn.gameObject.SetActive(false);
         }
     }
-	
+
     public void OnClick()
     {
-        LevelManager.GetInstance().SetSelectLevel(LvlBtn);
-        TrashRandom();
+        if (PlayerPrefs.GetInt("PlayerCurrentLives") == 0)
+        {
+            noLifeDetails.SetActive(true);
+            OkayBtn.onClick.AddListener(delegate ()
+            {
+                noLifeDetails.SetActive(false);
+            });
+
+            Close1Btn.onClick.AddListener(delegate ()
+            {
+                noLifeDetails.SetActive(false);
+            });
+        }
+        else
+        {
+            levelDetails.SetActive(true);
+
+            LevelManager.GetInstance().SetSelectLevel(LvlBtn);
+
+            if (LevelManager.GetInstance().GetSelectLevel() == 1)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[0] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 2)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[1] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 3)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[2] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 4)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[3] + "";
+            else if (LevelManager.GetInstance().GetSelectLevel() == 5)
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[4] + "";
+            else
+                ScoreText.text = PlayerManager.GetInstance().GetPlayer().PlayerScoreLevel[5] + "";
+
+            PlayBtn.onClick.AddListener(delegate ()
+            {
+                TrashRandom();
+            });
+
+            CloseBtn.onClick.AddListener(delegate ()
+            {
+                levelDetails.SetActive(false);
+            });
+        }
     }
 
     void TrashRandom()
     {
         Constant c;
-        string key, diffValue, type;
+        string diffValue, type;
         Query query, query1, query2;
         int level = LevelManager.GetInstance().GetSelectLevel();
 
@@ -59,11 +106,9 @@ public class GenerateTrashMapLevel : MonoBehaviour {
             
         c = new Constant();
         App42API.Initialize(c.apiKey, c.secretKey);
-        key = "TrashLvlDifficulty";
         StorageService storageService = App42API.BuildStorageService();
         storageService.FindDocumentsByQuery("GOTDB", "TrashFile", query, new TrashLevelResponse());
     }
-
 }
 
 internal class TrashLevelResponse : App42CallBack
@@ -100,7 +145,7 @@ internal class TrashLevelResponse : App42CallBack
         }
         var trashRandom = TrashRandomManager.GetInstance();
         trashRandom.SetTrash(trash);
-        SceneManager.LoadScene("trash_menu");
+        SceneManager.LoadScene("load_screen");
     }
 
     public void OnException(Exception ex)

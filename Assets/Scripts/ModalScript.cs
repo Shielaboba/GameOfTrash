@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ModalScript : MonoBehaviour {
 
-
-    public GameObject window;
+    public GameObject window;    
 
     public void Show()
     {

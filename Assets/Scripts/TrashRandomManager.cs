@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class TrashRandomManager {
 
     private static TrashRandomManager Instance;
     private List<TrashData> CurrentTrash;
     private List<DIYTrashData> DIYTrash;
+
     private TrashRandomManager()
     {
-        //CurrentTrash = "";
+        
     }
 
     public static TrashRandomManager GetInstance()

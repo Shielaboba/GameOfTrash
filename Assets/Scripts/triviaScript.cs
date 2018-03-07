@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.storage;
@@ -13,9 +11,10 @@ public class TriviaScript : MonoBehaviour {
     string keyName = "TrashName";
     Text btnText;
     TrashData trash;
-
+    LifeManager lifeManager;
     private void Start()
-    {        
+    {
+        lifeManager = FindObjectOfType<LifeManager>();
         trash = TrashManager.GetInstance().GetTrash();
         btnText = GameObject.Find("BtnDiy").GetComponentInChildren<Text>();
     }
@@ -37,10 +36,9 @@ public class TriviaScript : MonoBehaviour {
         }
         else
         {
-            print("GO: " + gameObject.GetComponentInChildren<Text>().text.ToUpper() + " trash: " + trash.TrashSegType.ToUpper());
+            lifeManager.TakeLife(); 
             GameObject.Find("Title").GetComponent<Text>().text = "Incorrect Type";
-        }
-           
+        }           
     }
 
     public void Hide()
@@ -51,7 +49,7 @@ public class TriviaScript : MonoBehaviour {
     public void OnClick()
     {
         trash.CheckTrash = true;
-        if(btnText.text.ToUpper().Equals("DO IT YOURSELF!"))
+        if(trash.TrashRecyclable.ToUpper().Equals("YES"))
             SceneManager.LoadScene("DIY");
         else
             SceneManager.LoadScene("trash_menu");        

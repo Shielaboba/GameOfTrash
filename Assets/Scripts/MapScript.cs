@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MapScript: MonoBehaviour {
 
@@ -19,13 +16,8 @@ public class MapScript: MonoBehaviour {
         UpdateLevel();
     }
 
-    void Update()
-    {               
-        
-    }
-
     public void UpdateLevel() {
-        this.level = LevelManager.GetInstance().GetLevel();
+        level = LevelManager.GetInstance().GetLevel();
 
         switch (level)
         {

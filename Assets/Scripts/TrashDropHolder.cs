@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class TrashDropHolder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -11,13 +8,11 @@ public class TrashDropHolder : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private Vector3 startMousePos;
     private Vector3 startPos;
 
-
     public void OnPointerDown(PointerEventData ped)
     {
         mouseDown = true;
         startPos = transform.position;
         startMousePos = Input.mousePosition;
-        print(gameObject.name);
     }
 
     public void OnPointerUp(PointerEventData ped)

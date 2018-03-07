@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class MuteMusic : MonoBehaviour {
 
-    bool isplay = false;
+    bool isPlay = false;
 
-    public void muteMusic()
+    public void Mute()
     {
         AudioSource music = GameObject.Find("MusicOne").GetComponent<AudioSource>();
         music.ignoreListenerVolume = true;
 
-        if (!isplay)
+        if (!isPlay)
         {
             music.Pause();
-            isplay = true;
-
+            isPlay = true;
         }
         else
         {
             music.UnPause();
-            isplay = false;
+            isPlay = false;
         }
     }
-
 }
