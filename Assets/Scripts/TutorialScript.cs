@@ -33,8 +33,6 @@ public class TutorialScript : MonoBehaviour {
         {
             tutorialPanel.SetActive(false);
         }
-        print("c: " + currNo);
-        print("t: " + tutorialNo);
     }
 	
 	public void NextTutorial()

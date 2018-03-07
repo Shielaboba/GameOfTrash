@@ -24,7 +24,6 @@ public class PU_GiveLifeScript : MonoBehaviour
         addLifebtn = GameObject.Find("addLife").GetComponent<Button>();
         addedLife.text = countLife + "";
         flagClick = false;
-        Debug.Log(life_manager.GetCurHealth());
     }
     void Update()
     {
