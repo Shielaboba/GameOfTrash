@@ -414,11 +414,16 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
         if (holder)
         {
+            MatCompText.text = "";
             ScoreScript.AddPoints(10);
             GameObject.Find("Title").GetComponent<Text>().text = "Correct!";
-            print(MatCompText);
-            print(trash.TrashMatComp.Length);
-            MatCompText.text = trash.TrashMatComp[0];
+
+            for (int i = 0; i < trash.TrashMatComp.Length; i++)
+            {
+                print(trash.TrashMatComp[i] + "\n");
+                MatCompText.text += trash.TrashMatComp[i] + "\n";
+            }
+            
             string targetName = string.Format("{0}-{1}", ImageTargetTemplate.TrackableName, m_TargetCounter);
             m_TargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
         }
