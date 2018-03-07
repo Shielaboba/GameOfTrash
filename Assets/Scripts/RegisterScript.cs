@@ -106,11 +106,11 @@ internal class RegisterResponse : App42CallBack
             {
                 { "PlayerGameLvlNo", 1 },
                 { "PlayerName", user.userName },
-                { "PlayerScoreMade", 0 },
+                { "PlayerExitTime", "" },
+                { "PlayerLifeTimer", 2400 },
                 { "PlayerPowerLife", 1},
                 { "PlayerPowerScore", 1},
-                { "PlayerLife", 5 },
-                { "PlayerLifeTimer", 0 },
+                { "PlayerLife", 5 },                
                 { "PlayerScoreLevel", levelScore}
             };
 
