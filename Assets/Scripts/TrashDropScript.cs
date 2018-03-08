@@ -75,14 +75,6 @@ public class TrashDropScript : MonoBehaviour
         {
             SuccessLevel();
         }
-        else
-        {
-           
-            panelModals.SetActive(false);
-            optionsPanel.SetActive(false);
-            congratulationspanel.SetActive(false);
-
-        }
 
         if(PlayerPrefs.GetInt("PlayerCurrentLives") == 0)
         {
