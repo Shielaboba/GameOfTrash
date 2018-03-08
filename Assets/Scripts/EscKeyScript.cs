@@ -76,11 +76,16 @@ public class EscKeyScript : MonoBehaviour {
         SceneManager.LoadScene("trash_menu");
     }
 
-    public void ReturnMap()
+    public void ReturnMapBack()
     {
-        
         SceneManager.LoadScene("map");
-        life_manager.TakeLife();
+        if (life_manager.GetCurHealth() > 0)
+            life_manager.TakeLife();
+    }
+
+    public void ReturnMap()
+    {        
+        SceneManager.LoadScene("map");
     }
 
     public void SegShow()
